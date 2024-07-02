@@ -1,0 +1,143 @@
+<!--pages/user/user.wxml-->
+<view wx:if="{{!user}}" style="width: 100%;height: 300rpx; background: linear-gradient(#FFE200, #f6f6f6); position: relative;">
+  <view class="newUser" bindtap="registeredBtn">
+      登录
+  </view>
+  <view class="newUser_bc">
+  </view>
+  <!-- <image class="" src="../../images/logo/logo_up.png"></image> -->
+</view>
+<view wx:if="{{user}}" class="dis_flex-direction_row-aligin_center-justify-between  user_backcolor">
+  <!-- <image class="bg" src="{{user.user_message.avatarUrl}}" style="margin-right: 10rpx;">
+  </image> -->
+  <!-- <image class="bg" src="../../images/logo/logo_left.png" mode="aspectFill"></image> -->
+  <view class="dis_flex-direction_row-aligin_center-justify-start" style="width:100%;height: 350rpx;">
+    <!-- <view class="dis_flex-direction_row-aligin_center-justify-start" style="width: 100%;height: 250rpx;"> -->
+       <image src="{{user.avatarUrl}}" class="user_show_img"></image>
+      <text class="user_show_text_name" style="color: #333333;margin-left: 30rpx; font-weight: 600;font-size: larger;">{{user.nickName}}</text>
+      <!-- <text style="color: #948f8f;font-weight: 400;font-size: 30rpx;">鲸点: {{user.user_message.integral}}</text> -->
+    <!-- </view> -->
+   
+    <!-- 等级 -->
+    <view class="user_level">
+        <image wx:if="{{user.level == 1 }}" class="user_icon_level" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv1.png"></image>
+        <image wx:if="{{user.level == 2 }}" class="user_icon_level" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv2.png"></image>
+        <image wx:if="{{user.level == 3 }}" class="user_icon_level" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv3.png"></image>
+        <image wx:if="{{user.level == 4 }}" class="user_icon_level" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv4.png"></image>
+        <image wx:if="{{user.level == 5 }}" class="user_icon_level" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv5.png"></image>
+    </view>
+    <!-- 按钮 -->
+    <!-- <button class="user_show_button records"><van-icon name="records" size="18px"/> 编辑</button>
+    <button class="user_show_button setting"><van-icon name="setting-o" size="18px"/> 设置</button> -->
+
+    <view class="personality" style="height: 30rpx;line-height: 30rpx;" >
+      <text wx:if="{{user.personality}}">{{user.personality}}</text>
+      <text wx:if="{{!user.personality}}">我还比较神秘哦！</text>  
+      <van-icon name="edit" size="22px" style="margin-left: 10rpx;" bind:click="change_personality" />
+    </view>
+    <!--性别 0是女性 1是男性 2是保密-->
+    <view class="user_sex">
+      <image wx:if="{{user.gender == 0 }}" class="user_icon_sex" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user_icon/female.png"></image>
+      <image wx:if="{{user.gender == 1 }}" class="user_icon_sex" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user_icon/male.png"></image>
+      <image wx:else class="user_icon_sex" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user_icon/noknow.png"></image>
+    </view>
+    <!-- 人物爱好标签 因为是定位 所以 上限是4个字-->
+    <view class="user_hobby" >
+       <van-tag plain size="medium" type="warning">{{user.hobby}}</van-tag>
+    </view>
+    <!-- 人物职称标签  -->
+    <view class="user_tagmessage" style="width:200rpx;">
+       <van-tag plain size="medium" type="primary" >{{user.tagmessage}}</van-tag>
+    </view>
+  </view>
+</view>
+
+<view class=" dis_flex-direction_column-aligin_center-justify-center pad_box">
+ <view class="dis_flex-direction_row-aligin_center-justify-center ">
+ </view>
+</view>
+
+<!-- 基础功能 -->
+<view class="dis_flex-direction_column-aligin_center-justify-center pad_box ab_case_list" style="width: 95%;">
+  <view class="dis_flex-direction_row-aligin_center-justify-start">
+    <text style="font-size:30rpx;color: #888888;  padding-left: 10rpx;" 
+       class="dis-flex_flex-row_just-fsta"> 基础功能</text>
+  </view>
+  <van-divider style="width:100%;" custom-style="margin-top:20rpx;margin-bottom:20rpx;"></van-divider>
+  <!--订单信息  -->
+  <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;" bindtap="goto_orderMessage">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user/orderMessage.png"></image>
+      <text class="ab_text">订单信息</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view>
+  <view style="height: 40rpx;"></view>
+   <!--我的发布  -->
+  <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;" bindtap="goto_myAction">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user/publish.png"></image>
+      <text class="ab_text">我的发布</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view>
+  <view style="height: 40rpx;"></view>
+   <!--支持项目  -->
+   <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;" bindtap="goto_supportProject">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user/progress.png"></image>
+      <text class="ab_text">支持项目</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view>
+</view>
+
+<!-- 鲸遇技术支持 -->
+<view class="dis_flex-direction_column-aligin_center-justify-center pad_box ab_case_list" style="width: 95%;">
+  <view class="dis_flex-direction_row-aligin_center-justify-start">
+    <text style="font-size:30rpx;color: #888888;  padding-left: 10rpx;" 
+       class="dis-flex_flex-row_just-fsta"> 鲸遇技术支持</text>
+  </view>
+  <van-divider style="width:100%;" custom-style="margin-top:20rpx;margin-bottom:20rpx;"></van-divider>
+   <!--问题反馈  -->
+   <!-- <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user/report.png"></image>
+      <text class="ab_text">问题反馈</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view>
+  <view style="height: 40rpx;"></view> -->
+   <!--联系客服  -->
+   <!-- <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user/customerService.png"></image>
+      <text class="ab_text">联系客服</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view> -->
+  <view style="height: 40rpx;"></view>
+   <!--关于我们  -->
+   <view class="dis_flex-direction_row-aligin_center-justify-between" style="height: 80rpx;" bindtap="show_version_Pop">
+    <view class="dis_flex-direction_row-aligin_center-justify-start"> 
+      <image class="ab_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/user/moreMessage.png"></image>
+      <text class="ab_text">关于我们</text>
+    </view>
+    <van-icon name="arrow" size="25px" color="#717171" class="ab_icon" />
+  </view>
+</view>
+
+<!-- 版本信息  -->
+<view class="about" bindtap="show_version_Pop" style="display:{{version}};">
+  <view class="content">
+    <view class="img">
+      <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/logo_up.png"></image>
+    </view>
+    <view class="font">舒情画意-文创众筹社区</view>
+    <view class="font1">版本编号：1.01</view>
+    <view class="font1">QQ交流群：512711052</view>
+    <view class="font1">欢迎小伙伴们加入~</view>
+    <!-- <view class="font1">详情</view> -->
+    <view class="font2">我们的口号是：做有生命力的文创！</view>
+  </view>
+</view>

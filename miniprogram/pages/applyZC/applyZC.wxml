@@ -1,0 +1,13 @@
+<!--pages/applyZC/applyZC.wxml-->
+<input type="text" placeholder="请输入商品名称" value="{{}}"/>
+<input type="text" placeholder="请输入商品种类" value="{{}}"/>
+<input type="text" placeholder="众筹开始时间" value="{{}}"/>
+<input type="text" placeholder="众筹结束时间" value="{{}}"/>
+<input type="text" placeholder="众筹目标金额" value="{{}}"/>
+<button>上传众筹轮播图图片</button>
+<button>上传详情图图片</button>
+<view>选择众筹商品规格</view>
+<button>+</button>
+
+
+

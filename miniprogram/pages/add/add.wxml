@@ -1,0 +1,73 @@
+<!--pages/add/add.wxml-->
+<!-- head区域 -->
+<view class="head-wrap" >
+  <view wx:if="{{!chooseproposition}}" class="bc-text">添加话题，你的帖子将会被更多人看到</view>
+  <view wx:if="{{chooseproposition}}">
+    <!-- <text class="bc-text">#{{chooseTopic}}#</text> -->
+    <text wx:if="{{chooseproposition}}" class="bc-text textSingleLine">#{{chooseproposition}}#</text>
+  </view>
+  <!-- <view wx:if="{{chooseTopic.length!=0}}" class="bc-text">#{{chooseTopic}}#</view>
+  <view wx:if="{{chooseTopic.length!=0}}" class="bc-text">#{{chooseproposition}}#</view> -->
+
+  <!--ifOpentopic 弹窗打开  !ifOpentopic 弹窗关闭  -->
+  <view wx:if="{{!ifOpentopic}}" class="subject-text" bindtap="openTopic" >+话题</view>
+  <view wx:if="{{ifOpentopic}}" class="subject-text_button" bindtap="closeTopic" >关闭</view>
+</view>
+<!-- 添加话题弹窗界面 -->
+<view wx:if="{{ifOpentopic}}" class="dis_flex-direction_column-aligin_center-justify-center">
+  <view class="pad_box case topicBox dis_flex-direction_row-aligin_center-justify-center">
+    <!-- 左边 -->
+    <scroll-view style="width:25%;height: 100%;" scroll-y="true">
+      <block wx:for="{{topicList}}" wx:key="idnex" >
+        <text class="topic_left_eare textSingleLine {{chooseTopic == item.topicName?'select_Topic':''}}" bindtap="choose_topic" data-name="{{item.topicName}}">{{item.topicName}}</text>
+      </block>
+    </scroll-view>
+    <view style="width: 5%;height: 100%;">
+    </view>
+    <!-- 右边 -->
+    <scroll-view style="width:70%;height: 100%;" scroll-y="true">
+      <block wx:for="{{proposition}}" wx:key="idnex" >
+        <view class="topic_right_eare textSingleLine" bindtap="choose_proposition" data-proposition="{{item.proposition}}">{{item.proposition}}</view>
+      </block>
+    </scroll-view>
+
+  </view>
+
+</view>
+
+<!-- title 书写栏 -->
+<view class="title">
+  <textarea placeholder="{{titleNullString}}" maxlength="20" class="title-text" value="{{title}}"
+  bindinput="getTitle"></textarea>
+</view>
+<!-- 背景分割 -->
+<view class="shadowbanner">
+</view>
+<!-- 输入区域 -->
+<view class="input-wrap">
+  <!-- maxlength 设置最大字符长度为 300 -->
+  <textarea placeholder="{{nullString}}" maxlength="800" class="input-text" value="{{inputValue}}"
+  bindinput="getValue"></textarea>
+</view>
+
+<!-- 图片区域 -->
+<view class="img-wrap" wx:if="{{!videoUrl}}">
+  <block wx:for="{{cloudImgList}}" wx:key="index">
+    <view class="one-img">
+      <image src="{{item}}" class="choose-img"></image>
+      <image src="../../images/add/delete_img_2.png" mode="aspectFit" class="delete-img" bindtap="deleteImage" 
+      data-index="{{index}}"></image>
+    </view>
+  </block>
+  <view class="one-img" bindtap="chooseImage" wx:if="{{cloudImgList.length < 9}}">
+    <image src="../../images/add/add_img.png" class="choose-img"></image>
+  </view>
+</view>
+
+<video class="videoShow" wx:if="{{videoUrl}}" src="{{videoUrl}}"></video>
+<view wx:if="{{!cloudImgList.length>0}}" class="choose-location" bindtap="chooseVideo">上传视频</view>
+
+<view class="choose-location" bindtap="chooseAddress">{{location}}</view>
+
+<van-button color="#FFE200" size="large" class="public_btn" bindtap="submitData">冒泡</van-button>
+

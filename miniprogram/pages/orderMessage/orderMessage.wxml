@@ -1,0 +1,159 @@
+<!-- 左上角返回 -->
+<view class="returnBtn">
+  <image class="returnBtn-icon" style="width: {{ capsuleHeight }}px; height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;" src="../../images/haina/left_arrow.png" bindtap="returnBtn"></image>
+</view>
+<!-- 暂时无法处理订单信息占据一行的问题，故此将跳转函数放置在这 -->
+<!-- 顶部分页名称 -->
+<view class="primename" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;color: black;" bindtap="returnBtn">订单信息</view>
+<view style="height:{{ capsuleHeight+capsuleTop}}px;background-color: #ffffff;"></view>
+
+<!-- 顶部tab切换 -->
+<view class="topTabBox dis_flex-direction_row-aligin_center-justify-start" >
+  <view class="topTabBox-item" wx:for="{{tapList}}">
+    <view class="topTabBox-item-text {{currentTap==item?'currntTapcss':''}}" data-name="{{item}}" bindtap="exchangeTap">{{item}}</view>
+  </view>
+</view>
+
+
+<!-- 全部分页内容 -->
+<view class="PageItemBox" wx:if="{{currentTap=='全部'}}">
+  <block wx:for="{{orderList}}" wx:key="index">
+    <view class="allbox">
+      <view class="allbox-topbox">
+        <view class="allbox-topbox-goodsName">{{item.goodsName}}*1</view>
+        <view wx:if="{{item.type=='待收货'}}" class="allbox-topbox-type green">{{item.type}}</view>
+        <view wx:if="{{item.type=='已完成'}}" class="allbox-topbox-type">{{item.type}}</view>
+        <view wx:if="{{item.type=='已取消'}}" class="allbox-topbox-type red">{{item.type}}</view>
+        <view wx:if="{{item.type=='申请退款中'}}" class="allbox-topbox-type orange">{{item.type}}</view>
+      </view>
+      <view class="allbox-midbox" data-id="{{item.goodsId}}" bind:tap="gotogoodsDetail">
+        <image class="allbox-midbox-img" src="{{item.spe_url[0]}}"></image>
+        <view class="allbox-midbox-box">
+          <view class="allbox-midbox-box-spename">购买规格：{{item.spe_name}}</view>
+          <view class="allbox-midbox-box-shoptime">购买时间：{{item.shoptime}}</view>
+          <view class="allbox-midbox-box-deliverytime">发货时间：{{item.deliverytime}}</view>
+        </view>
+        <view class="allbox-midbox-spemoney">￥{{item.spe_money}}</view>
+      </view>
+      <view class="allbox-bottombox">
+        <view class="allbox-bottombox-left">商品内容</view>
+        <view class="allbox-bottombox-right">
+          <block wx:for="{{item.spe_list}}" wx:key="index">
+            <view class="allbox-bottombox-right-item">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="allbox-btnbox" wx:if="{{item.type!='已取消'&&item.type!='已完成'}}">
+        <view wx:if="{{item.type=='待收货'}}" class="receiptBtn" bind:tap="receiptBtn" data-id="{{item._id}}">确认收货</view>
+        <view wx:if="{{item.type=='待收货'}}" class="refundBtn" bind:tap="refundBtn" data-id="{{item._id}}">申请退款</view>
+        <view wx:if="{{item.type=='申请退款中'}}" class="cancelBtn" bind:tap="cancelBtn" data-id="{{item._id}}">取消申请退款</view>   
+      </view>
+      <view style="height: 30rpx;"></view>
+    </view>
+  </block>
+  <view wx:if="{{orderList.length==0}}" class="lackBox">
+    <image class="lackImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/null-img/lack_2.jpg"></image>
+  </view>
+  <view style="height: 100rpx;"></view>
+</view>
+
+<!-- 待付款分页内容 -->
+<!-- <view class="PageItemBox" wx:if="{{currentTap=='待付款'}}">
+  <view class="lackBox">
+    <image class="lackImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/null-img/lack_2.jpg"></image>
+  </view>
+</view> -->
+
+<!-- 待收货分页内容 -->
+<view class="PageItemBox" wx:if="{{currentTap=='待收货'}}">
+  <block wx:for="{{orderList}}" wx:key="index">
+    <view class="allbox" wx:if="{{item.type=='待收货'}}">
+      <view class="allbox-topbox">
+        <view class="allbox-topbox-goodsName">{{item.goodsName}}*1</view>
+        <view class="allbox-topbox-type green">{{item.type}}</view>
+      </view>
+      <view class="allbox-midbox" data-id="{{item.goodsId}}" bind:tap="gotogoodsDetail">
+        <image class="allbox-midbox-img" src="{{item.spe_url[0]}}"></image>
+        <view class="allbox-midbox-box">
+          <view class="allbox-midbox-box-spename">购买规格：{{item.spe_name}}</view>
+          <view class="allbox-midbox-box-shoptime">购买时间：{{item.shoptime}}</view>
+          <view class="allbox-midbox-box-deliverytime">发货时间：{{item.deliverytime}}</view>
+        </view>
+        <view class="allbox-midbox-spemoney">￥{{item.spe_money}}</view>
+      </view>
+      <view class="allbox-bottombox">
+        <view class="allbox-bottombox-left">商品内容</view>
+        <view class="allbox-bottombox-right">
+          <block wx:for="{{item.spe_list}}" wx:key="index">
+            <view class="allbox-bottombox-right-item">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="allbox-btnbox">
+        <view class="receiptBtn" bind:tap="receiptBtn" data-id="{{item._id}}">确认收货</view>
+        <view class="refundBtn" bind:tap="refundBtn" data-id="{{item._id}}">申请退款</view> 
+      </view>
+      <view style="height: 30rpx;"></view>
+    </view>
+  </block>
+</view>
+
+<!-- 已完成分页内容 -->
+<view class="PageItemBox" wx:if="{{currentTap=='已完成'}}">
+  <block wx:for="{{orderList}}" wx:key="index">
+    <view class="allbox" wx:if="{{item.type=='已完成'}}">
+      <view class="allbox-topbox">
+        <view class="allbox-topbox-goodsName">{{item.goodsName}}*1</view>
+        <view class="allbox-topbox-type">{{item.type}}</view>
+      </view>
+      <view class="allbox-midbox" data-id="{{item.goodsId}}" bind:tap="gotogoodsDetail">
+        <image class="allbox-midbox-img" src="{{item.spe_url[0]}}"></image>
+        <view class="allbox-midbox-box">
+          <view class="allbox-midbox-box-spename">购买规格：{{item.spe_name}}</view>
+          <view class="allbox-midbox-box-shoptime">购买时间：{{item.shoptime}}</view>
+          <view class="allbox-midbox-box-deliverytime">发货时间：{{item.deliverytime}}</view>
+        </view>
+        <view class="allbox-midbox-spemoney">￥{{item.spe_money}}</view>
+      </view>
+      <view class="allbox-bottombox">
+        <view class="allbox-bottombox-left">商品内容</view>
+        <view class="allbox-bottombox-right">
+          <block wx:for="{{item.spe_list}}" wx:key="index">
+            <view class="allbox-bottombox-right-item">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view style="height: 30rpx;"></view>
+    </view>
+  </block>
+</view>
+
+<!-- 已取消分页内容 -->
+<view class="PageItemBox" wx:if="{{currentTap=='已取消'}}">
+  <block wx:for="{{orderList}}" wx:key="index">
+    <view class="allbox" wx:if="{{item.type=='已取消'}}">
+      <view class="allbox-topbox">
+        <view class="allbox-topbox-goodsName">{{item.goodsName}}*1</view>
+        <view class="allbox-topbox-type red">{{item.type}}</view>
+      </view>
+      <view class="allbox-midbox" data-id="{{item.goodsId}}" bind:tap="gotogoodsDetail">
+        <image class="allbox-midbox-img" src="{{item.spe_url[0]}}"></image>
+        <view class="allbox-midbox-box">
+          <view class="allbox-midbox-box-spename">购买规格：{{item.spe_name}}</view>
+          <view class="allbox-midbox-box-shoptime">购买时间：{{item.shoptime}}</view>
+          <view class="allbox-midbox-box-deliverytime">发货时间：{{item.deliverytime}}</view>
+        </view>
+        <view class="allbox-midbox-spemoney">￥{{item.spe_money}}</view>
+      </view>
+      <view class="allbox-bottombox">
+        <view class="allbox-bottombox-left">商品内容</view>
+        <view class="allbox-bottombox-right">
+          <block wx:for="{{item.spe_list}}" wx:key="index">
+            <view class="allbox-bottombox-right-item">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view style="height: 30rpx;"></view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,43 @@
+.topBox{
+  width: 90%;
+  margin-left: 5%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 26rpx;
+  color: #7f7f7f;
+}
+/*  */
+.conversationBox-bottompart{
+  margin-top: 10rpx;
+  width: 100%;
+  height: auto;
+}
+.bottompartItem{
+  width: 100%;
+  height: auto;
+  margin-bottom: 30rpx;
+}
+.Nameandscore-name{
+  font-size: 26rpx;
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 30rpx;
+}
+.Nameandscore-score{
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 30rpx;
+}
+.starImg{
+  width: 28rpx;
+  height: 28rpx;
+}
+.bottompartItem-text{
+  font-size: 26rpx;
+  margin-top: 5rpx;
+  width: 96%;
+  height: auto;
+  color: #7f7f7f;
+}

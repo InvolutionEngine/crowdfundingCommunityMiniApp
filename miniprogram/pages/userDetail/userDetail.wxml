@@ -1,0 +1,178 @@
+<!--pages/userDetail/userDetail.wxml-->
+<!-- 返回按钮 -->
+<!-- <view class="backBtn" >
+  <image src="../../images/haina/left_arrow.png" class="backBtnImg" bindtap="goback"></image>
+</view> -->
+
+<!-- 用户与商户展示栏 user页面模式 -->
+<view class="ShowMessage">
+  <image class="ShowMessage-bcImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/bc2.jpeg"></image>
+  <view class="ShowMessage-contentBox">
+    <!-- 上面用户基本信息 -->
+    <view class="contentBox-userBanner dis_flex-direction_row-aligin_center-justify-start">
+      <image src="{{usermessage.avatarUrl}}" class="contentBox-userImg"></image>
+      <view style="width: 600rpx;height: 100rpx; margin-left: 20rpx;" class="dis_flex-direction_column-aligin_center-justify-start">
+        <!--  名字和性别标签 、等级 -->
+        <view class="dis_flex-direction_row-aligin_center-justify-start">
+          <text class="userBanner-userName">{{usermessage.nickName}}</text>
+          <!-- 身份 -->
+          <image wx:if="{{usermessage.status=='官方'}}" class="userBanner-status" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user_icon/gove.png"></image>
+          <image wx:if="{{usermessage.status=='个人'}}" class="userBanner-status" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user_icon/V.png"></image>
+          <!--性别 0是女性 1是男性 2是保密-->
+          <image wx:if="{{usermessage.gender==0}}" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user_icon/female.png" class="userBanner-sexicon"></image>
+          <image wx:if="{{usermessage.gender==1}}" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user_icon/male.png" class="userBanner-sexicon"></image>
+          <image wx:if="{{usermessage.gender==2}}" class="userBanner-sexicon" src=cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/user_icon/noknow.png"></image>
+          <!-- 等级 -->
+          <image class="level" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/lv/lv{{usermessage.level}}.png"></image>
+        </view>
+        <!-- 发布篇数 -->
+        <view class="dis_flex-direction_row-aligin_center-justify-start" style="height: 40rpx;">
+          <text class="useractionsLen">{{actionsList.length}}</text>
+          <text class="grayfont">动态气泡</text>
+
+        </view>
+      </view>
+    </view>
+    <!-- 下面用户个性信息 -->
+    <view class="contentBox-userpersonality">
+      {{usermessage.personality}}
+    </view>
+    <!-- 获奖、荣誉 -->
+    <view class="honorBox dis_flex-direction_row-aligin_center-justify-start" >
+      <block wx:for="{{usermessage.honor}}" wx:key="index">
+        <view class="honorBox-item">{{item}}</view>
+      </block>
+    </view>
+    <!-- 分区 -->
+    <!-- <view class="fieldBox dis_flex-direction_row-aligin_center-justify-start" >
+      <block wx:for="{{usermessage.field}}" wx:key="index">
+        <view class="fieldBox-item">{{item}}</view>
+      </block>
+    </view> -->
+    <!-- 个性标签 -->
+    <view class="contentBox-personalityIcon dis_flex-direction_row-aligin_center-justify-start">
+      <text>爱好：</text>
+      <!-- 紅蓮灰 -->
+      <text style="color: #c76079;">{{usermessage.hobby}}</text>
+      <text style="margin-left: 30rpx;">工作：</text>
+      <!-- 春蓝 -->
+      <text style="color: #7ba1a8;">{{usermessage.tagmessage}}</text>
+    </view>
+    
+  </view>
+</view>
+<!-- 暂时留空 -->
+<view style="height: 30rpx;"></view>
+<!-- 内容展示栏 -->
+<view style="padding-left: 10rpx;padding-right: 10rpx;" wx:if="{{actionsList.length>0}}">
+  <view class="dis_flex-direction_column-aligin_center-justify-center">
+  <scroll-view style="width:100%;height:100%;" scroll-y="true">
+    <block wx:for="{{actionsList}}" wx:key="index" wx:for-index="numm">
+            <view class="message pad_box">
+              <view class="top">
+              <!-- 头像 -->
+                <view class="left" bindtap="toUserDetail" data-openid="{{item._openid}}">
+                  <image class="face_img" src="{{item.faceImg}}"></image>
+                </view>
+                <view class="right">
+                  <view class="nickName">{{item.nickName}}</view>
+                  <view class="time-delete">
+                    <view class="time">{{item.time}}</view>
+                    <view class="delete" wx:if="{{myOpenid == item._openid}}" 
+                    catchtap="deleteAction" data-id="{{item._id}}">删除</view>
+                  </view>
+                </view>
+                <view class="topic dis_flex-direction_row-aligin_center-justify-end" wx:if="{{item.proposition}}">
+                  <text wx:if="{{item.topicName!='全部'}}">#{{item.topicName}}#</text>
+                </view>
+              </view>
+              <!-- proposition -->
+              <view class="proposition" wx:if="{{item.proposition}}">
+                  <text>##{{item.proposition}}##</text>
+              </view>
+              <!-- title -->
+              <view style="font-weight: 600;font-size: 38rpx;">{{item.title}}</view>
+              <view class="down">
+                <view style="margin-top:5rpx;  margin-bottom:20rpx" bindtap="Todetail"
+                 data-id="{{item._id}}">
+                {{item.text}}
+                </view>
+                
+                  <view class="images-wrap"  bindtap="Todetail" data-id="{{item._id}}">
+
+                  <!-- 单图 -->
+                  <!-- aspectFill -->
+                  <!-- 	缩放模式，保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。 -->
+                   <block wx:if="{{item.images.length == 1}}" wx:for="{{item.images}}"wx:for-item="imgItem" wx:for-index="indexx"> 
+                      <image class="image-1" src="{{imgItem}}" mode="aspectFill" bindtap="previewImg"
+                      data-src="{{imgItem}}" data-index="{{numm}}"></image>
+                    </block>
+
+                  <!-- 2-3图 -->
+                  <block wx:if="{{item.images.length == 2||item.images.length==3}}" wx:for="{{item.images}}" wx:for-item="imgItem">
+                      <image class="image-2-3" src="{{imgItem}}" mode="aspectFill" bindtap="previewImg"
+                      data-src="{{imgItem}}" data-index="{{numm}}"></image>
+                  </block> 
+                    
+                  
+                  <!-- 4图 -->
+                  <block wx:if="{{item.images.length == 4}}" wx:for="{{item.images}}" wx:for-item="imgItem">
+                      <image class="image-4" src="{{imgItem}}" mode="aspectFill" bindtap="previewImg"
+                      data-src="{{imgItem}}" data-index="{{numm}}"></image>
+                  </block> 
+                  
+                  <!-- 5-9图 -->
+                  <block wx:if="{{item.images.length > 4}}" wx:for="{{item.images}}" wx:for-item="imgItem">
+                      <image class="image-5-9" src="{{imgItem}}" mode="aspectFill" bindtap="previewImg"
+                      data-src="{{imgItem}}" data-index="{{numm}}"></image>
+                  </block>
+                    
+                  </view>
+            <!-- 视频 -->
+            <video style="width: 98%;" wx:if="{{item.videoUrl}}" src="{{item.videoUrl}}"></video>
+            <!-- 地址 -->
+            <view class="address" bindtap="openLocation" data-index="{{numm}}" wx:if="{{item.address}}">{{item.address}}
+            </view>
+                  <view class="hudong-box">
+                    <view class="hudong-cell-prize"  catchtap="prizeAction"
+                      data-id="{{item._id}}">
+                      <image class="hudong-img" src="{{item.isPrized?'/images/index_able/like_yellow.png':'/images/index_able/like.png'}}"></image>
+                      <view>{{item.prizeList.length>0?item.prizeList.length:'点赞'}}</view>
+                    </view>
+
+                    <view class="hudong-cell" >
+                      <image class="hudong-img" src="../../images/index_able/message.png"></image>
+                      <view>{{item.commentList.length>0?item.commentList.length:'评论'}}</view>
+                    </view>
+
+                    <button open-type="share" size="mini" class="share-button button_border_down"
+                    data-index="{{index}}">
+                      <view class="hudong-cell">
+                        <image class="hudong-img-out" src="../../images/index_able/out.png"></image>
+                        <view style="font-size: 30rpx;">转发</view>
+                      </view>
+                    </button>      
+                  </view>
+                  <!-- 评论 -->
+                  <view class="comment-box" wx:if="{{item.commentList.length > 0}}">
+                    <block wx:for="{{item.commentList}}" wx:for-item="comItem" wx:for-index="comIndex">
+                      <view class="comment" bindlongtap="{{myOpenid==comItem.openid?'deleteComment':''}}" data-id="{{item._id}}" data-index="{{comIndex}}">
+                        <text class="comment-nickName">{{comItem.nickName}}</text>
+                        <text wx:if="{{!comItem.toOpenid}}">：</text>
+                        <!-- <text style="margin-left: 8rpx;margin-right: 10rpx;">回复</text>
+                        <text class="comment-nickName">jjjj</text>
+                        <text>  : {{comItem.text}}</text> -->
+                        <text wx:if="{{comItem.toOpenid}}">  回复<text class="comment-obj">{{comItem.toNickname}} :</text></text>{{comItem.text}}
+                      </view>
+                    </block> 
+                  </view>
+              </view>      
+          </view>
+        </block> 
+  </scroll-view>
+  </view>
+</view>
+<!-- 显示为空 -->
+<!-- <view wx:if="{{!actionsList.length}}">
+  <image src="../../img/Qsimg/Message_null.jpg"></image>
+</view> -->

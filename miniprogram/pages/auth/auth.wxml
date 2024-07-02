@@ -1,0 +1,7 @@
+<!--pages/auth/auth.wxml-->
+<!-- <button open-type="getUserInfo" bindgetuserinfo="getInfo">授权登录</button> -->
+
+<image class="buttonImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/授权页背景.jpg" bindtap="getInfo">
+</image>
+<view style="height: 300rpx;background-color: #6845D4;"></view>
+<!-- <button bindtap="getInfo">授权登录</button> -->

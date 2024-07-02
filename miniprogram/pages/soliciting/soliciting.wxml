@@ -1,0 +1,135 @@
+<!--pages/soliciting/soliciting.wxml-->
+
+<!-- 基本信息介绍 -->
+<view class="infoBox">
+  <!-- 征集内容标题 -->
+  <view class="infoBox-title">征集2023年度鲸遇文创“潮玩音乐节”活动宣传海报！秉持“音乐潮玩”“新时代”双角度出发，突出C时代潮玩音乐魅力！</view>
+  <!-- 评分 -->
+  <view class="infoBox-numbers">评分<text class="infoBox-redfont">4.8</text>/ 5</view>
+  <!-- 标签组 -->
+  <view class="infoBox-label dis_flex-direction_row-aligin_center-justify-start">
+    <block wx:for="{{labelgroup}}" wx:key="index">
+      <view class="infoBox-labelItem">{{item}}</view>
+    </block>
+  </view>
+  <!-- 征集截至时间 -->
+  <view class="infoBox-ddltime">征集截至时间：2023-6-1</view>
+  <!-- 联系时间段 -->
+  <view class="infoBox-timeperiod">联系时间段：每周一至五 8点以后 周末全天</view>
+  <!-- 一同征集人数 -->
+  <view class="infoBox-surpport">现在有<text class="infoBox-greenfont">4</text>只鲸鱼一同征集</view>
+  <!-- 留白 -->
+  <view style="height: 30rpx;"></view>
+</view>
+
+<!-- 详细设计思路安排 -->
+<view class="detailcontextBox">
+  <view class="detailcontextBox-title">征集内容叙述</view>
+  <view class="detailcontextBox-text">{{detailcontext}}</view>
+  <!-- 留白 -->
+  <view style="height: 40rpx;"></view>
+</view>
+
+<!-- 征集评论 -->
+<view class="conversationBox">
+  <!-- 评论标题和全部链接 -->
+  <view class="conversationBox-toppart dis_flex-direction_row-aligin_center-justify-between">
+    <view class="toppart dis_flex-direction_row-aligin_center-justify-start">
+      <view class="toppart-title">评论</view>
+      <view class="toppart-Listnum">5条</view>
+    </view>
+    <image class="toppart-img" src="../../images/haina/right_arrow.png" bindtap="goto_remarks"></image>
+  </view>
+  <!-- 下方的评论列表 不展开只显示三条数据 -->
+  <view class="conversationBox-bottompart dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 每条评论个体 -->
+    <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">一只小虎鲸</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        期待本次音乐节的发布！没想过能从潮玩的角度出发，这是一个新的结合形式，期望能顺利进行！
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+    </view>
+    <!-- 暂时填充 -->
+    <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">不愿透露姓名是座头鲸妈妈</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=3}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-3)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        本想着带娃这种活动应该是参与不了的，但是采取征集的形式就想着来争取一些，其实我认为“潮玩音乐节”不一定要将人群局限在“青少年”，我们也很想融入！QAQ
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+    </view>
+    <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">临时抱佛脚设计师</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        {{Egconversation}}
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+    </view>
+    <!-- 展开所有评论 -->
+    <view class="bottompart-Btn" bindtap="goto_remarks">查看全部评价</view>
+    <view style="height: 30rpx;"></view>
+  </view>
+</view>
+
+<!-- 温馨提示 -->
+<view class="cueBox dis_flex-direction_column-aligin_center-justify-start">
+    <view class="cueBox-title">--温馨提示--</view>
+    <view class="cueBox-text">{{cueText}}</view>
+    <view class="cueBox-btn">如果有任何问题可以咨询鲸宝 <text class="cueBox-btnfont" bindtap="JBclerkbtn">鲸宝咨询专线</text></view>
+    <view class="cueBox-link" bindtap="goto_disclaimer">参与活动视为已同意遵守 <text style="color: #FFC80B;">《免责声明》</text></view>
+  </view>
+  <view style="height: 100rpx;"></view>

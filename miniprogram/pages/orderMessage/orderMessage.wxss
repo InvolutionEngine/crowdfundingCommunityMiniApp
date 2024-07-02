@@ -1,0 +1,205 @@
+/* pages/orderMessage/orderMessage.wxss */
+.topTabBox{
+  padding-left: 2%;
+  width: 98%;
+  height: 80rpx;
+  background-color: #ffffff;
+}
+.topTabBox-item{
+  /* 让长度自动分配 用子元素撑开 */
+  width: auto;
+  height: 70rpx;
+  text-align: center;
+}
+.topTabBox-item-text{
+  margin: 0rpx 25rpx;
+  line-height: 70rpx;
+}
+.currntTapcss{
+  border-bottom: 6rpx solid black;
+  font-weight: bold;
+}
+/* 分页盒子 */
+.PageItemBox{
+  width: 100%;
+  /* 先设置为1000rpx*/
+  height: auto;
+}
+
+/* 缺数据 */
+.lackBox{
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 10rpx;
+  height: auto;
+}
+.lackImg{
+  width: 100%;
+  height: 1400rpx;
+}
+
+
+/* 全部页 */
+.allbox{
+  margin: 40rpx 2%;
+  width: 96%;
+  height: auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: flex-start;
+  border-radius: 10rpx;
+}
+.allbox-topbox{
+  width: 100%;
+  height: 100rpx;
+  /* background-color: rgb(75, 139, 139); */
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.allbox-topbox-goodsName{
+  margin-left: 20rpx;
+  line-height: 100rpx;
+  font-size: 38rpx;
+}
+.allbox-topbox-type{
+  margin-right: 20rpx;
+  line-height: 100rpx;
+  font-size: 40rpx;
+}
+.orange{
+  color: orange;
+}
+.green{
+  color: #20894d;
+}
+.red{
+  color: rgb(238, 68, 68);
+}
+.allbox-midbox{
+  width: 100%;
+  height: 200rpx;
+  /* background-color: rgb(35, 119, 94); */
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+.allbox-midbox-img{
+  margin: 15rpx 15rpx;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 14rpx;
+}
+.allbox-midbox-box{
+  margin: 15rpx 0rpx;
+  width: 350rpx;
+  height: 160prx;
+  /* background-color: azure; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: flex-start;
+}
+.allbox-midbox-box-spename{
+  width: 350rpx;
+  height: 60prx;
+  line-height: 60rpx;
+}
+.allbox-midbox-box-shoptime{
+  width: 350rpx;
+  height: 50prx;
+  line-height: 50rpx;
+  color: #7f7f7f ;
+}
+.allbox-midbox-box-deliverytime{
+  width: 350rpx;
+  height: 50prx;
+  line-height: 50rpx;
+  color: #7f7f7f ;
+}
+.allbox-midbox-spemoney{
+  margin: 15rpx 10rpx;
+  width: 160rpx;
+  height: 160prx;
+  line-height: 160rpx;
+  text-align: center;
+  font-size: 50rpx;
+  font-weight: bold;
+  color:  rgb(223,124,116);
+  /* background-color: blueviolet; */
+}
+.allbox-bottombox{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.allbox-bottombox-left{
+  width: 24%;
+  height: auto;
+  /* background-color: cadetblue; */
+  text-align: center;
+}
+.allbox-bottombox-right{
+  width: 76%;
+  height: auto;
+  /* background-color: coral; */
+}
+.allbox-bottombox-right-item{
+  padding-left: 30rpx;
+  margin-bottom: 10rpx;
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+.allbox-btnbox{
+  margin-top: 10rpx;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.receiptBtn{
+  width: 180rpx;
+  margin-right: 50rpx;
+  /* padding: 30rpx; */
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  background-color: palegreen;
+  border-radius: 30rpx;
+}
+.refundBtn{
+  width: 180rpx;
+  margin-right: 10rpx;
+  /* padding: 30rpx; */
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  background-color: rgb(235, 58, 14);
+  color: #ffffff;
+  border-radius: 30rpx;
+}
+.cancelBtn{
+  width: 250rpx;
+  margin-right: 10rpx;
+  /* padding: 30rpx; */
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  background-color: orange;
+  color: #ffffff;
+  border-radius: 30rpx;
+}

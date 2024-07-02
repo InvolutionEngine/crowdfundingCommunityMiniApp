@@ -1,0 +1,347 @@
+<!--pages/haina_zcDetail/haina_zcsDetail.wxml-->
+<!-- 众筹商品详情 -->
+<!-- 返回上一级按钮 -->
+<navigator class="backbtn" url="../haina/haina">
+  <image class="backbtnImg" src="../../images/haina/left_arrow.png"></image>
+</navigator>
+
+<!-- <barrage  bind:done="barrageDone" top="200rpx" shakeSpeed="1000" rowSpacing="60rpx" list="{{barrageList}}"></barrage> -->
+
+<!-- 弹幕群 -->
+<view class="barrageBox">
+  <block wx:for="{{doomDatas}}" >
+    <view wx:if="{{item.display}}"class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}};color: {{item.color}}; animation-iteration-count: infinite;">
+             {{item.text}}
+    </view>
+  </block>
+</view>
+<!-- 详情轮播图展示 -->
+<view class="zcDetailSwiperBox">
+  <swiper class="zcDetailSwiper" autoplay="true"  	indicator-dots="true"  	indicator-color="#ffffff"  	indicator-active-color="#FFC80B">
+    <block wx:for="{{zcgoods.SwiperList}}" wx:key="index">
+      <swiper-item>
+        <image class="zcDetailSwiper_img" src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 商品详细介绍 -->
+<view class="detailShowBox">
+  <!-- 鲸遇图标--产品名称 -->
+  <view class="detailShowBox_goodsName">
+    <view class="tips">鲸遇</view>
+    {{zcgoods.goodsName}}
+  </view>
+  <!-- 产品种类category 和 发起人 -->
+  <view class="detailShowBox_cateAndpub dis_flex-direction_row-aligin_center-justify-between">
+    <view class="category">
+      <image class="categoryImg" src="../../images/haina/category.png"></image>
+      <text style="margin-left: 10rpx; font-size: 28rpx;" >{{zcgoods.category}}</text>
+    </view>
+    <view class="pub">
+      <image class="pubImg" src="{{zcgoods.publisher[0].faceImg}}"></image>
+      <text style="font-size: 30rpx; font-weight: 450;">{{zcgoods.publisher[0].nickName}}</text>
+      <view class="tips_pub">{{zcgoods.publisher[0].type}}</view>
+    </view>
+  </view>
+  <!-- 众筹完成条 -->
+  <view class="progressShow">
+    <view class="progressShow_barBox dis_flex-direction_row-aligin_center-justify-between">
+      <view class="progressShow_bar_bc">
+      <!-- completedPersonNum -->
+      <!-- zcgoods.completedMoneyTarge/zcgoods.moneyTarge -->
+        <view class="progressShow_bar_new" style="width:{{progressBarNum>100?'100%':progressBar}};"></view>
+      </view>  
+      <!-- 百分比 -->
+      <view class="percentage">{{progressBar}}</view>
+    </view>
+  </view>
+  <!-- 众筹金额数组显示 -->
+  <view class="moneyProcessShowBox">
+    <view class="moneyProcessShowBox_top dis_flex-direction_row-aligin_center-justify-between"> 
+      <view>
+        <text style="font-weight: 600;font-size: 45rpx;">￥{{zcgoods.completedMoneyTarge}}</text>
+        <view class="moneyProcessShowBox_top-leftBtn" bindtap="supportOpen">{{zcgoods.completedPersonNum}}人支持</view>
+        <image class="moneyProcessShowBox_top_icon" bindtap="supportOpen" src="../../images/haina/down_arrow.png"></image>
+      </view>
+      <view>
+        <text style="font-size: 34rpx;">￥{{zcgoods.moneyTarge}}</text>
+        <view class="moneyProcessShowBox_top-rightBtn"></view>
+        <view class="moneyProcessShowBox_top-leftBtn" bindtap="targeOpen">众筹目标</view>
+        <image class="moneyProcessShowBox_top_icon" bindtap="targeOpen" src="../../images/haina/down_arrow.png"></image>
+      </view>
+    </view>
+    <!-- <view class="moneyProcessShowBox_bottom">
+      <view style="margin-top: 10rpx;">开始于：{{zcgoods.stratTime}}</view>
+      <view style="margin-top: 10rpx;">截至于：{{zcgoods.endTime}}</view>
+    </view> -->
+  </view>
+  <!-- 项目更新进度 -->
+  <view class="updateProcessBox">
+    <scroll-view scroll-x="{{true}}" class="updateProcessBox_Item dis_flex-direction_row-aligin_center-justify-start">
+      <block wx:for="{{zcgoods.UpdateProcess}}" wx:key="index">
+        <view class="updateProcessBox_Item_item">
+          <view class="updateProcessBox_Item_item_indexAndtime">
+            <view class="dis_flex-direction_row-aligin_center-justify-start">
+              <text class="Item_item_index">第{{item.index}}次更新</text>
+              <text wx:if="{{item.index!=1}}" style="margin-left: 20rpx;  font-size: 23rpx;">向右滑动查看更多 》</text>
+              <text wx:if="{{item.index==1}}" style="margin-left: 20rpx;  font-size: 23rpx;">《 向左滑动查看更多</text>
+            </view>   
+            <view class="Item_item_time">{{item.updateTime}}</view>
+          </view>
+          <view class="updateProcessBox_Item_item_titleAndimg">
+            <view class="Item_item_title">{{item.content}}</view>
+            <image class="Item_item_img" src="{{item.img}}" mode="aspectFill"></image>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 阴影分割 -->
+  <!-- <view class="shadow-line"></view> -->
+
+  <!-- 开始时间and结束时间  留言栏  -->
+  <view class="TimeBoxAndCommentBox">
+    <!-- 左边时间展示 -->
+    <view class="TimeBox">
+    <!-- <view style="font-size: 26rpx;margin-left: 90rpx;">开始于</view>
+      <view class="startTime">{{zcgoods.stratTime}}</view>
+      <view style="font-size: 26rpx;margin-left: 90rpx;">结束于</view>
+      <view class="endTime">{{zcgoods.endTime}}</view>
+    </view> -->
+    
+    <view>
+      <view class="bc_Colorline"></view>
+      <view class="CommentList">计划时间</view>
+      
+    </view>
+      <view class="startTime">{{zcgoods.startTime}}开始</view>
+      <view class="endTime">{{zcgoods.endTime}}结束</view>
+    </view>
+    <view class="CommentBox" bindtap="commentOpen">
+      <view style="height: 50rpx;">
+          <view class="bc_Colorline"></view>
+          <view class="CommentList">
+            讨论中心 ({{zcgoods.commentList.length}})
+          </view>
+          <view class="moreComment_btn">
+          更多
+          <image style="width: 30rpx;height: 25rpx;" src="../../images/haina/right_arrow.png" />
+        </view>
+      </view>
+       
+      <!-- 最近一个留言 -->
+      <view class="newComment">
+        <view class="newComment_top">
+          <image class="newComment-faceImg" src="{{zcgoods.commentList[0].faceImg}}"></image>
+          <view class="newComment-text">{{zcgoods.commentList[0].contentText}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 右边留言栏 -->
+  </view>
+  <!-- 详情图展示  -->
+  <view class="DetailListShowBox">
+    <block wx:for="{{zcgoods.DetailList}}" wx:key="index">
+      <image class="DetailListShowBox_ItemImg" src="{{item}}" mode="widthFix"></image>
+    </block>
+  </view>
+</view>
+
+<!-- if_showSupport -->
+<!-- 查看支持者弹窗弹窗   55 -->
+<van-popup show="{{ if_showSupport }}" round position="bottom" closeable custom-style="{{zcgoods.supportList.length>5?'height:90%':'height:70%'}}" bind:close="supportClose">
+  <view class="supportPopup-title">支持者</view>
+  <view style="height: 2rpx;width: 80%;border-bottom: 1rpx solid #c9c9c9;margin-left: 9.5vw;"></view>
+  <view style="width: 100%;height: auto;">
+    <scroll-view scroll-y="{{true}}">
+      <block wx:for="{{zcgoods.supportList}}" wx:key="index">
+        <view class="dis_flex-direction_row-aligin_center-justify-between supportPopup-Item">
+          <!--头像 名称 支持了什么项目  -->
+          <view class="dis_flex-direction_row-aligin_center-justify-start" style="width: 70%;height: 110rpx;">
+            <!-- 头像 -->
+            <image class="supportPopup-faceImg" src="{{item.faceImg}}"></image>
+            <!-- 名称 支持了什么项目 -->
+            <view class="supportPopup-rightBox dis_flex-direction_column-aligin_center-justify-start">
+              <text class="rightBox-nickName">{{item.nickName}}</text>
+              <text class="rightBox-support_spe">支持了{{item.support_spe}}*{{item.num}}</text>
+            </view>
+          </view>
+          <!-- 按钮预订 -->
+          <view class="attentionBtn">+ 关注</view>
+        </view>
+        <view style="height: 2rpx;width: 80%;border-bottom: 1rpx solid #c9c9c9;margin-left: 9.5vw;"></view>
+      </block>
+    </scroll-view>
+  </view>
+</van-popup>
+
+<!-- 查看众筹目标弹窗 61 -->
+<van-popup show="{{ if_showmoneyTarge }}" round position="bottom" closeable custom-style="height:70%;" bind:close="targeClose">
+  <view  class="supportPopup-title">众筹目标</view>
+  <view style="height: 2rpx;width: 80%;border-bottom: 1rpx solid #c9c9c9;margin-left: 9.5vw;margin-bottom: 30rpx;"></view>
+  <view style="width: 100%;height: auto;">
+    <block wx:for="{{zcgoods.TargeList}}" wx:key="index">
+      <view class="targeBox dis_flex-direction_column-aligin_center-justify-start">
+        <view class="targeBox-stage dis_flex-direction_row-aligin_center-justify-between"> 
+          <!-- 小黄点阶段 完成情况icon  -->
+          <view>
+            <view class="yellow_bc"></view>
+            <text class="targeBox-stage-title">{{item.title}}</text>
+            <!-- 事实证明 js表达式完不成 就去写数据库吧 -->
+            <view wx:if="{{item.type=='已完成'}}" class="targeBox-stage-success">已完成</view>
+            <!-- <view wx:if="{{(zcgoods.completedMoneyTarge<item.money&&zcgoods.completedMoneyTarge>=(index-1>=0?[]:0.money))||(index==0&&zcgoods.completedMoneyTarge<item.money)}}" class="targeBox-stage-null">进行中</view>
+            <view wx:if="{{index!=0&&zcgoods.completedMoneyTarge<item.money&&zcgoods.completedMoneyTarge<[item-1].money}}" class="targeBox-stage-null">未开始</view> -->
+             <view wx:if="{{item.type=='未开始'}}" class="targeBox-stage-null">未开始</view>
+             <view wx:if="{{item.type=='进行中'}}" class="targeBox-stage-ing">进行中</view>
+             <view wx:if="{{!item.type}}" class="targeBox-stage-ing">进行中</view>
+          </view>
+          <!-- 当前阶段的需要金额 -->
+          <view style="font-weight: 600;font-size: 34rpx;margin-right: 10rpx;">￥{{item.money}}</view>
+        </view>
+        <view class="targeBox-contentBox dis_flex-direction_column-aligin_center-justify-start">
+          <view class="targeBox-contentBox-tips">
+            <view wx:if="{{index==0}}">在众筹时间截止前，众筹金额达到规定金额标准</view>
+            <view wx:if="{{index!=0}}">众筹金额达到解锁项目标后，将解锁额外奖励</view>
+          </view>
+          <view class="targeBox-contentBox-content">
+            <view class="targeBox-contentBox-contentItem"> {{item.content}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</van-popup>
+ 
+<!--查看发言弹窗 111  if_showComment-->
+<van-popup show="{{ if_showComment }}" round position="bottom" closeable custom-style="height:80%;" bind:close="commentClose">
+  <view  class="supportPopup-title">讨论中心</view>
+  <!-- <view style="height: 2rpx;width: 80%;border-bottom: 1rpx solid #c9c9c9;margin-left: 9.5vw;margin-bottom: 30rpx;">
+  </view> -->
+  <!-- 评论内容展示Box -->
+  <scroll-view class="commentPopupBox dis_flex-direction_column-aligin_center-justify-start"  enhanced="true" show-scrollbar="false" scroll-y="true">
+  <!-- 评论涮选栏 -->
+    <view class="commentPopupBox-banner dis_flex-direction_row-aligin_center-justify-between">
+      <view style="width: 180rpx;height: 70rpx;line-height: 70rpx; color: #4a4a4a ;">讨论列表</view>
+      <view class="commentPopupBox-chooseBox dis_flex-direction_row-aligin_center-justify-start">
+        <view class="chooseBox_left" style="background-color: {{choose=='全部'?'#ffffff':'#c9c9c9 '}};border:{{choose=='最新'?'6rpx solid #c9c9c9':''}} ;">
+          <view bindtap="chooseBox" class="chooseBoxItem">全部</view>
+        </view>
+        <view class="chooseBox_right" style="background-color: {{choose=='精选'?'#ffffff':'#c9c9c9 '}};border:{{choose=='最热'?'6rpx solid #c9c9c9':''}} ;">
+          <view bindtap="chooseBox" class="chooseBoxItem">精选</view>
+        </view>
+      </view>
+    </view>
+    <!-- 讨论信息区 -->
+    <view class="commentPopupBox-content dis_flex-direction_column-aligin_center-justify-start">
+      <block wx:for="{{zcgoods.commentList}}" wx:key="index" class="">
+        <view class="boxboxbox">
+        <!-- 头像 -->
+        <view style="width: 100rpx;height: auto;align-content: flex-start;justify-content: flex-start;"  >
+          <image src="{{item.faceImg}}" class="commentPopupBox-content-Img"></image>
+        </view>   
+        <!-- nickName 是否支持 评论内容 发布时间 -->
+        <view class="commentPopupBox-content-rightBox dis_flex-direction_column-aligin_center-justify-start">
+          <!-- 姓名nickName -->
+          <view style="width: 100%;height: auto;">
+            <text class="content-nickName">{{item.nickName}}</text>
+            <view class="content-support" wx:if="{{item.support_spe&&item.num}}">
+              <text style="padding:15rpx 10rpx;">已支持 {{item.support_spe}}*{{item.num}}</text>
+            </view>
+          </view>
+          <!-- 讨论内容 -->
+          <view class="content-contentText">
+            {{item.contentText}}
+            {{item.contentText}}
+            {{item.contentText}}
+          </view>
+          <!-- 发布时间 -->
+          <view class="content-time">{{item.time}}</view>
+          <view style="height:20rpx;width:100%;border-bottom: 1rpx solid #4a4a4a;"></view>
+          <view style="height:20rpx;width:100%;"></view>
+         
+        </view>
+      </view>
+      </block>
+    </view>
+  </scroll-view>
+</van-popup>
+
+
+
+
+<view class="Open_pubSuportBtn" wx:if="{{!switch}}" bindtap="switchBtn">
+  <!-- <view style="margin-left: 15rpx;margin-top: 10rpx;">展</view>
+  <view style="margin-left: 15rpx;margin-top: 5rpx;">开</view> -->
+  <image class="Open_pubSuportBtn_img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/默认_发光.jpg"></image>
+</view>
+
+<!-- 支付界面还没写 -->
+<view class="pubSuportBtn" wx:if="{{switch}}">
+  <view class="pubSuportBtn_top" bindtap="switchBtn">隐藏</view>
+  <view class="pubSuportBtn_bottom" bindtap="pubSuportBtn">
+    <text class="pubSuportBtn_bottom_font">支持一下</text>
+  </view>
+</view>
+
+
+<!-- 查看支持一下弹窗弹窗 272  if_supportBtn-->
+<van-popup show="{{ if_supportBtn }}" round position="bottom" closeable custom-style="height:88%;" bind:close="pubSuportBtn">
+  <view style="height: 80rpx;"></view>
+ 
+  <scroll-view style="width: 100%;height: 58vh;" scroll-y="True">
+    <block wx:for="{{zcgoods.goods_speList}}" wx:key="index"  >
+      <view wx:if="{{item.goodsName==choosebtnContent}}">
+        <!-- 价格 与当前支持份数 -->
+        <view class="moneyAndSupportBox dis_flex-direction_row-aligin_center-justify-between">
+          <!-- 价格 -->
+          <view class="moneyAndSupportBox-money">
+            ￥{{item.goodsMoney}}
+          </view>
+          <!-- 支持份数 -->
+          <view class="moneyAndSupportBox-support">
+            目前共支持了{{item.goodsNum}}份
+          </view>
+        </view> 
+        <!-- 该规格商品的icon列表展示 -->
+        <view class="iconListBox dis_flex-direction_row-aligin_center-justify-start" >   
+            <text wx:for-items="{{item.goodsIconList}}" wx:for-item="iconList" class="iconListBoxItem">{{iconList}}</text>
+        </view>
+        <!-- 商品名称   和  预计发货时间？？ -->
+        <view class="goodsNameBox">
+          <text class="goodsNameBox-text">{{item.goodsName}}</text>
+        </view>
+        <!-- 图片展示 -->
+        <view class="goodsImgBox" wx:if="{{item.goodsUrlList.length}}">
+          <block wx:for-items="{{item.goodsUrlList}}" wx:for-item="urlList" >
+            <image src="{{urlList}}" class="goodsImgBoxItem"></image>
+          </block>
+        </view>
+        <!--  -->
+        <view style="margin-top: 20rpx;margin-left: 25rpx; font-size: 24rpx;">具体内容</view>
+
+        <!-- 内容展示 -->
+        <view class="goodsContentBox">
+          <block wx:for-items="{{item.goodsContent}}" wx:for-item="contentList">
+            <view class="goodsContentBoxItem">-- {{contentList}}</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view style="width: 96%;margin-left: 2vw; height: 50rpx;">
+    <text style="font-size: 28rpx;font-weight: 600;">挑选你的回报哦</text> 
+    <text style="font-size: 20rpx;margin-left: 50rpx;color: #7f7f7f;">目前共有{{zcgoods.goods_speList.length}}种选择</text>
+  </view>
+  <!-- 选择回报 挑选规格栏 -->
+  <scroll-view class="chooseSpeBox" scroll-y="True">
+  
+    <block wx:for="{{zcgoods.goods_speList}}" wx:key="index">
+      <text style="background-color:{{item.goodsName==choosebtnContent ? 'coral' : '' }};border: {{item.goodsName==choosebtnContent ? '2rpx solid black' : '' }};" class="goodsNameItem" bindtap="chooseSpeBox_choosebtn" data-goodsname="{{item.goodsName}}" data-money="{{item.goodsMoney}}" data-list="{{item.goodsContent}}"
+      data-speurl="{{item.goodsUrlList}}" data-deliverytime="{{item.deliveryTime}}">{{item.goodsName}}</text>
+    </block>
+  </scroll-view>
+  
+  <view class="finalBtn" bind:tap="Zfbtn">支持一下吧~</view>
+</van-popup>

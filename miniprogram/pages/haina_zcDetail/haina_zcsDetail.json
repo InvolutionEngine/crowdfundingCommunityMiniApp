@@ -1,0 +1,7 @@
+{
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "barrage": "/components/barrage"
+  }
+
+}

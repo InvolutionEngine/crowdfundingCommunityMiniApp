@@ -1,0 +1,116 @@
+page {
+  /* background: #ffffff; */
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.dis_flex-direction_row-aligin_center-justify-start{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dis_flex-direction_row-aligin_center-justify-end{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dis_flex-direction_row-aligin_center-justify-between{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.dis_flex-direction_row-aligin_center-justify-center{
+  width: 100%;
+  display: flex;
+  flex-direction: row;  /* 左右 */
+  align-items: center;
+  justify-content: center;
+}
+/* ------------------- */
+.dis_flex-direction_column-aligin_center-justify-start{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.dis_flex-direction_column-aligin_center-justify-end{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dis_flex-direction_column-aligin_center-justify-between{
+  width: 100%;
+  display: flex;
+  flex-direction: column;/* 垂直 */
+  align-items: center;
+  justify-content: space-between;
+}
+.dis_flex-direction_column-aligin_center-justify-center{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* ------------------- */
+.pad_box{
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+/* 可以让flex 一整行换行 */
+.warp{
+  flex-wrap: wrap;
+}
+.textSingleLine{
+  flex: 1;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+.primename{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 40rpx;
+  color: #ffffff;
+  flex-wrap: nowrap;
+}
+.returnBtn{
+  margin-left: 3%;
+}
+.returnBtn-icon{
+  position: absolute;
+}
+.onehangtext{
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis; 
+}
+/* text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  display: -moz-box;
+  -moz-line-clamp: 1;
+  -moz-box-orient: vertical;
+
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden; 
+  */

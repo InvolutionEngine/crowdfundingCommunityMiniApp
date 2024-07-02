@@ -1,0 +1,81 @@
+<!--pages/jlDetail/jlDetail.wxml-->
+<!-- 顶部用户信息 -->
+<view class="userMessage">
+  <image src="{{action.faceImg}}" class="userFaceImg"></image>
+  <text class="userNickname">{{action.nickName}}</text>
+</view>
+
+<!-- 中心图片展示  因为是Jl所以必然有图片或者视频 -->
+<view class="showBox" wx:if="{{action.images[0]}}">
+  <swiper class="showSwiper" indicator-active-color="#FFE200" indicator-color="white" indicator-dots='true'  circular='true' >
+  <!-- style="height: {{Height}};" -->
+    <block wx:for="{{action.images}}" wx:key="index" style="width: 100%;height: auto;">
+      <swiper-item>
+        <image src="{{item}}" class="showImg" mode="aspectFill" ></image>
+        <!-- bindload="imgHeight" -->
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 中心视频展示 -->
+<view class="showBox_video" wx:if="{{action.videoUrl}}">
+  <video src="{{action.videoUrl}}" class="showVideo" autoplay="true" loop="true" ></video>
+</view>
+
+<!-- 内容文本 -->
+<view class="contentBox">
+  <view class="titleText">{{action.title}}</view>
+  <text class="contentText">{{action.text}}</text>
+  <view class="topicBox" wx:if="{{action.topicName!='全部' && action.topicName.length>0}}">
+    <text class="topicName" >#{{action.topicName}}#</text>
+    <text class="proposition">#{{action.proposition}}#</text>
+  </view>
+</view>
+
+<!-- 编辑时间 -->
+<view class="writeTime">
+  <text class="time">于   {{action.time}}  在 发布{{action.provinces}}</text>
+  <!-- <text>{{action.address}}</text> -->
+</view>
+
+<!-- 分割线 -->
+<view class="borderline"></view>
+<text wx:if="{{action.commentList.length}}" style="margin-left: 4vh;font-size: 28rpx;color: gray;">一共有{{action.commentList.length}}个鲸鱼泡泡哦~</text>
+
+<!-- 评论 -->
+<view class="commentBox">
+  <view>
+    <block wx:for="{{action.commentList}}" wx:key="index">
+      <view class="commentItembox dis_flex-direction_row-aligin_center-justify-between">
+        <image class="comment_faceImg" src="{{item.faceImg}}"></image>
+        <view class="comment_content">
+          <view class="topBox dis_flex-direction_row-aligin_center-justify-between">
+            <view class="comment_nickName">{{item.nickName}}</view>
+            <view class="comment_time">{{item.time}}</view>
+          </view>
+          <view class="comment_text">{{item.text}}</view>
+          <view class="commentItemline"></view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- end标签 -->
+<view class="end dis_flex-direction_column-aligin_center-justify-center">
+  <text>---鲸落 孤独海洋里最温暖的绿洲---</text>
+</view>
+
+<view style="height: 150rpx;"></view>
+
+<!-- 发布评论 -->
+<view class="pub-comment">
+  <view class="pub-left">
+    <input class="pub-input" placeholder="{{plcaceHolder}}" bindinput="getInputValue" value="{{inputValue}}"></input>
+  </view>
+  <view class="pub-button" bindtap="publishComment">发送</view>
+  <image class="JL_love_Img" src="{{action.isPrized?'../../images/index_able/like_yellow.png':'../../images/index_able/like.png'}}" bindtap="prizeAction" data-id="{{action._id}}"></image>
+</view>
+
+

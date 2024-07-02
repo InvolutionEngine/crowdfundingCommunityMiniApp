@@ -1,0 +1,240 @@
+/* pages/wansheng/wansheng.wxss */
+/* 文创大盒子 */
+page{
+  background-color: rgb(34,37,37);
+}
+.ImgBox{
+  width: 100%;
+  height: auto;
+}
+.topbox{
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.toplabel{
+  margin-top: 40rpx;
+  margin-left: 30rpx;
+  padding: 0rpx 16rpx;
+  position: absolute;
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: rgba(151, 151, 151, 0.6);
+  border-radius: 10rpx;
+  color: #ffffff;
+}
+
+.midbox{
+  width: 100%;
+  height: auto;
+  margin: 30rpx 0rpx;
+}
+.workname{
+  width: 100%;
+  height: auto;
+  color: #ffffff;
+  font-size: 46rpx;
+  margin-bottom: 20rpx;
+}
+.tagbox{
+  margin-left: 30rpx;
+  width: 600rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-size: 34rpx;
+}
+.tagbox-official{
+  background-color: rgb(243,224,188);
+}
+.official-text{
+  padding: 0rpx 20rpx;
+}
+.tagbox-category{
+  margin-left: 15rpx;
+  background-color: rgb(75,75,75);
+}
+.category-text{
+  padding: 0rpx 20rpx;
+  color: rgb(243,224,188);
+}
+.busimg{
+  width: 100rpx;
+  height: 50rpx;
+}
+.busname{
+  margin-left: 20rpx;
+  width: auto ;
+  height: 40rpx;
+  font-size: 32rpx;
+  color: #ffffff;
+  line-height: 40rpx;
+}
+
+.bottombox{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bottombox_img{
+  width: 230rpx; 
+  height: 230rpx; 
+  margin-left: 16rpx;
+  margin-bottom: 16rpx;
+}
+.choose{
+  border:4rpx solid #FFE200;
+  width: 222rpx; 
+  height: 222rpx; 
+}
+
+.title{
+  margin-top: 20rpx;
+  width: 94%;
+  margin-left: 3%;
+  color: #ffffff;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+
+.detailbox{
+  margin-top: 20rpx;
+  width: 94%;
+  margin-left: 3%;
+  height: auto;
+  /* background-color: aqua; */
+  color: #ffffff;
+  font-size: 40rpx;
+}
+
+
+/* 展开 */
+.unfold{
+  /* height:auto 会使transition无效  采用 max-height */
+  max-height: auto;
+  overflow-y: hidden;
+  transition: max-height 0.4s linear;
+}
+/* 折叠 */
+.fold{
+  width: 94%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.unfold_button{
+  margin-top: 10rpx;
+  width: 40%;
+  margin-left: 28%;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #FFE200;
+  text-align: center;
+  font-size: 36rpx;
+}
+.fold_button{
+  margin-top: 10rpx;
+  width: 40%;
+  margin-left: 28%;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #7ba1a8;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+/* ---- */
+.mebox{
+  width: 100%;
+  height: auto;
+}
+.shang{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mebox_leftbox{
+  width: 260rpx;
+  height: 260rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.faceImg{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+.nickname{
+  width: 260rpx;
+  height: 100rpx;
+  color: #ffffff;
+  line-height: 100rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.mebox_midbox{
+  width: 180rpx;
+  height: 300rpx;
+  color: #ffffff;
+  line-height: 200rpx;
+}
+.mebox_rightbox{
+  width: 300rpx;
+  height: 180rpx;
+  color: #ffffff;
+}
+
+
+.xia{
+  width: 80%;
+  height: 300rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.tips{
+  margin-left: 20rpx;
+  width: 200rpx;
+  height: 100rpx;
+  text-align: center;
+  color: #ffffff;
+}
+
+.xia_item{
+  width: 190rpx;
+  height: 300rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.artwork_img{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10%;
+}
+.artwork_name{
+  width: 180rpx;
+  height: 140rpx;
+  text-align: center;
+  color: #ffffff;
+}

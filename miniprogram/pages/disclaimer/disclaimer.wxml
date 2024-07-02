@@ -1,0 +1,9 @@
+<!--pages/disclaimer/disclaimer.wxml-->
+<view class="title">免责声明</view>
+<view class="statementbox">
+  <block wx:for="{{statementList}}" wx:key="index">
+    <view class="Item">
+      {{item}}
+    </view>
+  </block>
+</view>

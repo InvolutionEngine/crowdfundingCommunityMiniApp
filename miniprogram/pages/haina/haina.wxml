@@ -1,0 +1,589 @@
+<!-- 缺少返回按钮  简单信息显示按钮 ？ logo ? -->
+<view style="width:100%;height: {{ capsuleHeight+capsuleTop+10 }}px;background-color: #ffffff;position: fixed;z-index: 2;"></view>
+<!-- 最上方的白色背景 -->
+<view style="width:100%;height: {{ capsuleHeight+capsuleTop+60 }}px;background-color: #ffffff;">
+</view>
+
+<!-- 返回logo按钮 -->
+<view class="returnservice" style="top:{{capsuleTop}}px">
+  <image style="width: {{capsuleHeight}}px;height: {{capsuleHeight}}px;" src="../../images/haina/left_arrow.png" bindtap="return_service"></image>
+</view>
+
+<!-- 搜索栏 -->
+<view class="searchbarBox dis_flex-direction_row-aligin_center-justify-start" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; margin-left: {{capsuleHeight*1.5}}px;">
+  <image src="../../images/index/index.png" class="searchbarBox-image"></image>
+  <input class="defalttext" style="height: {{ capsuleHeight }}px; line-height: {{capsuleHeight}}px" value="{{value}}" bind:change="search" bindfocus="searchfocus" bindblur="searchnofocus" maxlength="20"></input>
+</view>
+<!-- 搜索栏焦点显示面板 -->
+<view wx:if="{{iffocus}}" style="top: {{capsuleTop+capsuleHeight+10}}px" class="comeoutbox">
+  <view wx:if="{{search_list}}" wx:for="{{search_list}}" class="comeoutbox-Item" bind:tap="gotogoodsDetail" data-id="{{item._id}}">
+    <image class="comeoutbox-Item-img" src="{{item.SwiperList[0]}}"></image>
+    <view class="comeoutbox-Item-title">{{item.goodsName}}</view>
+  </view>
+</view>
+
+<!-- <view class='header_content' bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="tochend">
+{{内容}}
+ </view>
+ -->
+<!-- 上方的选择分区Box -->
+<view class="choose-banner-box" style="top:{{ capsuleHeight+capsuleTop+9 }}px">
+  <scroll-view class="choose-banner dis_flex-direction_row-aligin_center-justify-start" scroll-x="{{true}}">
+    <block wx:for="{{category_box}}" wx:key="index">
+      <view class="choose-banner-shadow {{new_choose_category==item?'underline':''}}" bindtap="changeChooseItem" data-name="{{item}}">
+        {{item}}
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<!-- 中间展示内容的整体展示界面 -->
+<!-- <推荐> -->
+<view wx:if="{{new_choose_category=='推荐'}}" class="ShowBox-tuijianBox dis_flex-direction_column-aligin_center-justify-center">
+  <!-- 推荐轮播图 -->
+  <view class="tuijianBox-bannerBox">
+    <swiper class="tuijianBox-bannerBox-swiper">
+      <block wx:for="{{tuijianSwiperList}}" wx:key="index">
+        <swiper-item>
+          <image class="tuijianBox-bannerBox-swiper-img" src="{{item}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 主打内容 Title -->
+  <view class="bannerBox-ColorFontBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="bannerBox-ColorFontBox-left">
+      <view class="FontBox">主打内容</view>
+    </view>
+    <!-- <view class="bannerBox-ColorFontBox-right">
+      <view class="right-font">查看更多</view>
+      <image class="right-icon" src="../../images/haina/right_arrow.png"></image>
+    </view> -->
+  </view>
+  <!-- 三块分区 -->
+  <view class="tuijianBox-threebox dis_flex-direction_row-aligin_center-justify-between">
+    <image class="threebox-leftone" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/left.jpg" mode="aspectFill"
+    bind:tap="gotogoodsDetail" data-id="0601950565ec63fe017fe45d487f834f">
+    </image>
+    <view class="threebox-rightbox dis_flex-direction_column-aligin_center-justify-center">
+      <image class="threebox-rightbox-item" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/top.jpg" mode="aspectFill"
+      bind:tap="gotogoodsDetail" data-id="2da1518365e6e0df00ddfc050595ade6">
+      </image>
+      <image class="threebox-rightbox-item" style="margin-top: 20rpx;" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/bottom.jpg" mode="widthFix"
+      bind:tap="gotogoodsDetail" data-id="63ca5b1365ec67bb018016376a68b4cb">
+      </image>
+    </view>
+  </view>
+
+
+  <!-- 主打内容 Title -->
+  <view class="bannerBox-ColorFontBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="bannerBox-ColorFontBox-left">
+      <view class="FontBox">商品内容</view>
+    </view>
+  </view>
+  <!-- 推荐商品展示区 -->
+  <!-- bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="tochend" data-before="文创中心" data-next="众筹" -->
+  <view class="tuijianBox-shopBox">
+    <view class="tuijianBox-shopBox-Item">
+      <block wx:for="{{crowdfundingList}}" wx:key="index">
+        <navigator class="tuijianBox-shopBox-Item-nav" url="../haina_zcDetail/haina_zcsDetail?id={{item._id}}" >
+          <image class="tuijianBox-shopBox-Item-img" src="{{item.SwiperList[0]}}"></image>
+          <!-- 进度条 -->
+          <view class="tuijianBox-shopBox-Item-progressBar-bac">
+          <!-- 加个括号 三元表达式就能添加字符了(item.completedMoneyTarge/item.moneyTarge*100+'%')-->
+            <view style="width:{{item.completedMoneyTarge/item.moneyTarge*100>100?'100%':(item.completedMoneyTarge/item.moneyTarge*100+'%')}};" class="tuijianBox-shopBox-Item-progressBar"></view>
+          </view>
+          <!-- 众筹便签与文本介绍 -->
+          <view class="tuijianBox-shopBox-Item-introduction">
+            <view class="tips">{{item.type}}</view>
+            {{item.goodsName}}
+          </view>
+          <!-- 已经众筹金额 与 支持者数量 -->
+          <view class="tuijianBox-shopBox-Item-text">已筹:￥{{item.completedMoneyTarge}}   支持:{{item.completedPersonNum}}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <view style="width: 100%;height: 50rpx;"></view>
+</view>
+
+<view wx:if="{{new_choose_category=='众筹'}}" class="ShowBox-zhognchouBox dis_flex-direction_column-aligin_center-justify-center">
+  <!-- 商品轮播图凸显 -->
+  <!-- 兑换显示轮播图 -->
+  <view style="width: 100%;  height: auto; border-radius: 50rpx;">
+   <view class="exchangeBox-topSwiperBox">
+      <swiper class="topSwiperBox-swiper" bindchange="handleChange"  previous-margin='60' next-margin='60'  circular='true' interval="4000" autoplay='true'>
+        <block wx:for="{{crowdfundingList}}" wx:key="{{index}}" style="width: 400rpx;">
+          <swiper-item class="topSwiperBox-swiperItem">
+            <!-- 类别标签 -->
+            <text class="swiperItem-tap" wx:if="{{currentIndex == index}}">{{item.category}}</text>
+            <!-- 图片展示 -->
+            <image class="swiperItem-img {{currentIndex == index ? 'active': ''}}" src="{{item.SwiperList[0]}}"></image>     
+            <!-- <image class="swiperItem-img {{currentIndex == index ? 'active': ''}}" src="{{item.SwiperList[0]}}"></image>  -->
+            <!-- 下方介绍 -->
+            <view class="swiperItem-content " wx:if="{{currentIndex == index}}">
+               <view class="swiperItem-content-title onehangtext">{{item.goodsName}}</view>
+               <!-- 待修正 这里最后要换成商品文本详情介绍 -->
+               <view class="swiperItem-content-text">{{item.detail}}</view>
+            </view>
+            <view class="swiperItem-clickBtn " wx:if="{{currentIndex == index}}" bind:tap="gotogoodsDetail" data-id="{{item._id}}">点击查看</view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!-- 好物推荐 Title -->
+  <view class="bannerBox-ColorFontBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="bannerBox-ColorFontBox-left">
+      <view class="FontBox">好物推荐</view>
+    </view>
+    <!-- <view class="bannerBox-ColorFontBox-right">
+      <view class="right-font">查看更多</view>
+      <image class="right-icon" src="../../images/haina/right_arrow.png"></image>
+    </view> -->
+  </view>
+  <!-- 众筹推荐 -->
+  <view class="ShowBox-zhognchouBox-bannerBox dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 字体title -->
+    <!-- 四分栏图片 wx:if="{{crowdfundingList.type=='众筹中'}}" -->
+    <block wx:for="{{zhongchouBanner}}" wx:key="index" wx:if="{{index<4}}" class="bannerBox_imgBox">
+      <view class="bannerBox_imgItem">
+        <image src="{{item.url}}"class="bannerBox_img" bind:tap="gotogoodsDetail" data-id="{{item.id}}"></image>
+      </view>
+    </block>
+  </view>
+
+  <!-- 搜索栏 -->
+  <!-- <van-search style="width:100%;" value="{{ value }}" placeholder="请输入搜索关键词" /> -->
+
+  <!-- 热门榜单 Title -->
+  <view class="bannerBox-ColorFontBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="bannerBox-ColorFontBox-left">
+      <view class="FontBox">热门榜单</view>
+    </view>
+    <!-- <view class="bannerBox-ColorFontBox-right">
+      <view class="right-font">去看看</view>
+      <image class="right-icon" src="../../images/haina/right_arrow.png"></image>
+    </view> -->
+  </view>
+  <!-- 排行榜单 -->
+  <view class="rankTotalBox">
+    <scroll-view class="rankBox" scroll-x="true">
+      <block wx:for="{{crowdfundingList}}" wx:key="index">
+        <view class="rankBox-Item dis_flex-direction_column-aligin_center-justify-center" bind:tap="gotogoodsDetail" data-id="{{item._id}}">
+          <image class="rankBox-Item-Img" src="{{item.SwiperList[0]}}"></image>
+          <view class="rankBox-Item-text">{{item.goodsName}}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <!-- 即将开始 Title -->
+  <view class="bannerBox-ColorFontBox dis_flex-direction_row-aligin_center-justify-between" style="margin-top: 60rpx;">
+    <view class="bannerBox-ColorFontBox-left">
+      <view class="FontBox">即将开始</view>
+    </view>
+  </view>
+  <view class="tuijianBox-shopBox" style="margin-top: -10rpx;">
+    <view class="tuijianBox-shopBox-Item">
+      <block wx:for="{{comingList}}" wx:key="index">
+        <navigator class="tuijianBox-shopBox-Item-nav" url="../haina_zcDetail/haina_zcsDetail?id={{item._id}}" >
+          <image class="tuijianBox-shopBox-Item-img" src="{{item.SwiperList[0]}}"></image>
+          <!-- 进度条 -->
+          <view class="tuijianBox-shopBox-Item-progressBar-bac">
+          <!-- 加个括号 三元表达式就能添加字符了(item.completedMoneyTarge/item.moneyTarge*100+'%')-->
+            <view style="width:{{item.completedMoneyTarge/item.moneyTarge*100>100?'100%':(item.completedMoneyTarge/item.moneyTarge*100+'%')}};" class="tuijianBox-shopBox-Item-progressBar"></view>
+          </view>
+          <!-- 众筹便签与文本介绍 -->
+          <view class="tuijianBox-shopBox-Item-introduction">
+            <view class="tips">{{item.type}}</view>
+            {{item.goodsName}}
+          </view>
+          <!-- 已经众筹金额 与 支持者数量 -->
+          <view class="tuijianBox-shopBox-Item-text">{{item.likeList.length}}只小鲸鱼看好这个项目</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <view style="width: 100%;height: 50rpx;"></view>
+</view>
+
+<!-- 鲸遇商城 -->
+<view wx:if="{{new_choose_category=='鲸遇商城'}}" class="ShowBox-shopBox dis_flex-direction_column-aligin_center-justify-center">
+  <!-- 鲸遇商城轮播图 -->
+  <!-- <view class="ShowBox-shopBoxSwiper">
+    <swiper class="ShowBox-shopBoxSwiper-swiper" autoplay="true">
+      <block wx:for="{{jingyushopList}}" wx:key="index">
+        <swiper-item>
+          <image class="ShowBox-shopBoxSwiper-img" src="{{item.url}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view> -->
+  <!-- 左上置顶商品 左上角top1 左下流动留言两条 -->
+  <!-- 右边 流动鲸点兑换链接活动告示  -->
+  <!-- 单个置顶商品 与 鲸点兑换链接 -->
+  <view class="topGoodsAndJDBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="topGoodsAndJDBox-leftBox dis_flex-direction_column-aligin_center-justify-center">
+      
+      <view class="leftBox-Top">
+        <image class="leftBox-Top-img" src="{{jyshopList[0].SwiperList[0]}}" mode="aspectFill"></image>
+        <view class="tophead">置顶</view>
+      </view>
+      <view class="leftBox-Down">
+        <swiper style="width: 330rpx;height: 90rpx;" autoplay="true">
+          <block wx:for="{{jyshopList[0].commentList}}" wx:key="index" wx:if="{{index<2}}">
+            <swiper-item style="width: 330rpx;height: 90rpx;">
+              <view class="leftBox-Down-commentBox">
+                  <!-- <view class="commentBox-first dis_flex-direction_row-aligin_center-justify-between">
+                    <image class="commentBox-first-img">{{item.faceImg}}</image>
+                    <view class="commentBox-text">{{item.contentText}}</view>
+                  </view> -->
+                  <view class="commentBox-first dis_flex-direction_row-aligin_center-justify-between">
+                    <image class="commentBox-first-img" src="{{item.faceImg}}"></image>
+                    <view class="commentBox-first-text">{{item.contentText}}</view>
+                  </view>
+              </view>   
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <view class="topGoodsAndJDBox-rightBox dis_flex-direction_column-aligin_center-justify-start" style="background-color: #ffffff; border-radius: 10rpx;" >
+      <swiper style="width: 360rpx;height: 110rpx;margin-bottom: 10rpx;" autoplay="true">
+        <block wx:for="{{JDexchangeList}}" wx:key="index">
+          <swiper-item style="width: 360rpx;height: 110rpx;margin-bottom: 10rpx;" class="dis_flex-direction_column-aligin_center-justify-center">
+            <view class="userBox dis_flex-direction_row-aligin_center-justify-start" >
+              <image class="userBox-img" src="{{item.faceImg}}"></image>
+              <view class="userBox-nickName">
+                {{item.nickName}}
+              </view>
+            </view>
+            <view class="exchangeBox-shop dis_flex-direction_row-aligin_center-justify-between" >
+              <view class="exchangeBox-goods">兑换了{{item.goodsName}}</view>
+              <!-- <view class="exchangeBox-time">{{item.exchangetime}}</view> -->
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <swiper style="width: 360rpx;height: 180rpx;" autoplay="true"  	interval="10000">
+        <block wx:for="{{jingyuJDswiper}}" wx:key="index">
+          <swiper-item style="width: 360rpx;height: 180rpx;">
+            <image style="width: 360rpx;height: 180rpx;border-radius: 10rpx;" src="{{item}}" mode="aspectFit"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <!-- 分类mini跳转栏 -->
+  <!-- <view class="dis_flex-direction_row-aligin_center-justify-start cateBox"style="margin-top: 20rpx; margin-left: 20rpx;margin-right: 20rpx;" >
+      <navigator class="dis_flex-direction_column-aligin_center-justify-start"style="width: 140rpx;margin-left:20rpx;">
+        <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/1.jpg" style="width: 90rpx;height: 90rpx;"></image>
+        <text style="font-size:26rpx;color: #6b6b6b;">传统文化</text>
+      </navigator>
+      <navigator class="dis_flex-direction_column-aligin_center-justify-start"style="width: 140rpx;">
+        <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/2.jpg" style="width: 90rpx;height: 90rpx;"></image>
+        <text style="font-size:26rpx;color: #6b6b6b;">影视周边</text>
+      </navigator>
+      <navigator class="dis_flex-direction_column-aligin_center-justify-start"style="width: 140rpx;">
+        <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/默认_发光.jpg" style="width: 90rpx;height: 90rpx;"></image>
+        <text style="font-size:26rpx;color: #6b6b6b;">联名作品</text>
+      </navigator>
+      <navigator class="dis_flex-direction_column-aligin_center-justify-start"style="width: 140rpx;">
+        <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/3.jpg" style="width: 90rpx;height: 90rpx;"></image>
+        <text style="font-size:26rpx;color: #6b6b6b;">艺术设计</text>
+      </navigator>
+      <navigator class="dis_flex-direction_column-aligin_center-justify-start"style="width: 140rpx;">
+        <image src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/新绘制特色icon/4.jpg" style="width: 90rpx;height: 90rpx;"></image>
+        <text style="font-size:26rpx;color: #6b6b6b;">潮玩好物</text>
+      </navigator>
+  </view> -->
+  <!-- 众筹商品展示区 -->
+  <view class="tuijianBox-shopBox">
+    <view class="tuijianBox-shopBox-Item">
+      <block wx:for="{{crowdfundingList}}" wx:key="index">
+        <navigator class="tuijianBox-shopBox-Item-nav" url="../haina_zcDetail/haina_zcsDetail?id={{item._id}}" >
+          <image class="tuijianBox-shopBox-Item-img" src="{{item.SwiperList[0]}}"></image>
+          <!-- 众筹便签与文本介绍 -->
+          <view class="tuijianBox-shopBox-Item-introduction">
+            <view class="tips">{{item.type}}</view>
+            {{item.goodsName}}
+          </view>
+          <!-- 销售金额 与 已购数量 -->
+            <view class="dis_flex-direction_row-aligin_center-justify-between" style="margin-top: 10rpx;">
+            <!-- ￥{{item.goods_speList[0].price}} -->
+              <view style="color: red;font-size: 36rpx;font-weight: bold;margin-left: 10rpx;margin-bottom: 20rpx;">￥{{item.goods_speList[0].goodsMoney}}</view>
+              <view style="color: #7f7f7f;font-size: 26rpx;margin-left: 10rpx;margin-bottom: 20rpx;">共{{item.completedPersonNum}}人购买过</view>
+            </view>
+          <!-- <view class="tuijianBox-shopBox-Item-text">已筹:￥{{item.completedMoneyTarge}}   支持:{{item.completedPersonNum}}</view> -->
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <view style="width: 100%;height: 50rpx;"></view>
+</view>
+
+<!-- <限时发售> -->
+<view wx:if="{{new_choose_category=='限时发售'}}" class="ShowBox-tuijianBox dis_flex-direction_column-aligin_center-justify-center">
+  <!-- 限时发售宣传图 -->
+  <view class="FlashsalesBox">
+    <image class="FlashsalesBox_Img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/haina/限时发售banner.jpg"></image>
+  </view>
+  <!-- 排行限时选择按钮  eg 综合 数量 时间  -->
+  <view class="FlashsalesBox_ChooseBox">
+    <view class="FlashsalesBox_ChooseBox_Box">
+      <block wx:for="{{salesBtn}}" wx:key="index">
+        <view class="ChooseBox_Box_Item {{current_salesBtn==item?'borderline':''}}" bindtap="choosecurrentSalesBtn" data-name="{{item}}">
+          <text class="ChooseBox_Box_Item_text">{{item}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 下方限时发售商品展示 -->
+  <view class="ShowFlashSalesBox" >
+    <view class="ShowFlashSalesBox-FlashSalesBox">
+      <block wx:for="{{crowdfundingList}}" wx:key="index">
+        <view class="FlashSalesBox-ItemSalesgoods">
+          <!-- 左边半部分 -->
+          <view class="ItemSalesgoods-leftBox">
+            <image src="{{item.SwiperList[0]}}" class="ItemSalesgoods-leftBox-img"></image>
+          </view>
+          <!-- 右边半部分 -->
+          <view class="ItemSalesgoods-rightBox dis_flex-direction_column-aligin_center-justify-start">
+            <view class="rightBox-goodsName ">{{item.goodsName}}</view>
+            <view style="height: 40rpx;" class="dis_flex-direction_row-aligin_center-justify-between">
+              <view class="rightBox-category ">{{item.category}}</view>
+              <view class="rightBox-like ">当前有{{item.likeList.length+item.completedPersonNum}}人看好</view>
+            </view>
+            <!-- 单条评论  wx:if-->
+            <swiper style="width: 100%;height: 40rpx; margin-top: 10rpx;" wx:if="{{item.commentList.length>0}}" autoplay="true">
+                <block wx:for="{{item.commentList}}" wx:for-item="commentList" wx:key="index">
+                  <swiper-item>
+                    <view class="rightBox-commentText">{{commentList.nickName}}: {{commentList.contentText}}</view>
+                  </swiper-item>
+                </block>     
+            </swiper>
+            <!-- 单条评论  wx:else-->
+            <!-- <view wx:else style="width: 100%;height: 40rpx;font-size: 20rpx;line-height: 40rpx;">暂时还没有小鲸鱼们的气泡哦~</view> -->
+            <view wx:else style="width: 100%;height: 20rpx;"></view>
+
+            <view style="margin-top: 10rpx; width: 100%; height: 120rpx;" class="dis_flex-direction_row-aligin_center-justify-start">
+              <!-- 剩余天数区 -->
+              <view style="width: 60%;height: 100%;">
+                <view style="font-size: 40rpx;height: 60rpx;line-height: 60rpx;">剩余</view>
+                <view class="dis_flex-direction_row-aligin_center-justify-end" style="color: rgb(252, 111, 139);font-size: 42rpx;font-weight: bold;">{{item.hournum}}小时</view>
+              </view>
+              <!-- 购买按钮区 -->
+              <view style="width: 35%;height: 120rpx;margin-left: 5%;">
+                <view style="width: 100%;height: 60rpx;"></view>
+                <!-- 按钮 -->
+                <view style="width: 100%;height: 60rpx;text-align: center;line-height: 60rpx;background-color: #34c472;border-radius: 10rpx;font-size: 26rpx;">去看看~</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 每个商品分割 -->
+        <view style="height: 40rpx;"></view>
+        
+      </block>
+    </view>
+  </view>
+
+  <view style="width: 100%;height: 80rpx;text-align: center;font-size: 30rpx;color: #7f7f7f;line-height: 80rpx;">-------- 下面没有了哦 ~ ------</view>
+</view>
+
+<!-- <鲸点兑换> -->
+<view wx:if="{{new_choose_category=='鲸点兑换'}}" class="ShowBox-tuijianBox dis_flex-direction_column-aligin_center-justify-center">
+  <!--兑换上半区  鲸点信息面板      兑换显示轮播图+藏品轮播图-->
+  <view class="exchangeBox">
+    <!-- 鲸点数据 -->
+    <view class="exchangeBox-midareabox dis_flex-direction_column-aligin_center-justify-start">
+      <!-- 用户头像 用户昵称 获取鲸点方式列表 -->
+      <view class="midareabox-userinfo dis_flex-direction_row-aligin_center-justify-between">
+        <!--用户头像 用户昵称 盒子 -->
+        <view class="userinfo-userMessage dis_flex-direction_row-aligin_center-justify-start">
+          <image class="userMessage-faceImg" src="https://thirdwx.qlogo.cn/mmopen/vi_32/hQoOP719jaojPib8wB50opmU3YE0qrlSItcnboFofCdKibXIVSNZd0Wib4RA7wZ9rMHEKsxHoY5vgpREx4UvvIiaWg/132"></image>
+          <text class="userMessage-nickname">Hi~我不是黑猫警长</text>
+        </view>
+        <!-- 获取鲸点方式列表 -->
+        <view class="getNumberfunction">
+          去获取鲸点
+        </view>
+      </view>
+      <!-- 用户鲸点数值与鲸点获取记录查询 已兑换记录（已兑换、已申请）  -->
+      <view class="midareabox-numberinfo dis_flex-direction_row-aligin_center-justify-between">
+        <!-- 现有鲸点数 -->
+        <view class="numberinfo-nownumbox dis_flex-direction_column-aligin_center-justify-center">
+          <view class="numberinfo-nownum">
+          4222<text style="font-size: 28rpx;">点</text>
+          </view>
+          <view class="numberinfo-nownumBtn">我的鲸点 ></view>
+        </view>
+        <!-- 兑换数据 -->
+        <view class="numberinfo-exchangedata dis_flex-direction_row-aligin_center-justify-end">
+          <!-- 已兑换 -->
+          <view class="exchangedata-exchanged dis_flex-direction_column-aligin_center-justify-center">
+           <view class="exchanged-number">1<text style="font-size: 28rpx;">件</text></view>
+           <view class="exchanged-text">已兑换 ></view>
+          </view>
+          <!-- 已申请 -->
+          <view class="exchangedata-exchanged dis_flex-direction_column-aligin_center-justify-center">
+           <view class="exchanged-number">1<text style="font-size: 28rpx;">件</text></view>
+           <view class="exchanged-text">已申请 ></view>
+          </view>
+        </view>
+      </view>
+      <!-- 下方两个导航去向 签到领点数 称呼兑换专区 -->
+      <view class="twonavibox dis_flex-direction_row-aligin_center-justify-between">
+        <!-- 签到领点数 -->
+        <view class="twonavibox-partbox" style="margin-left: 20rpx;">
+          <!-- 导航标题 -->
+          <view class="partbox-title">签到领积分</view>
+            
+          <!-- 下方简介与前往按钮  介绍图片 -->
+          <view class="partbox-bottombox dis_flex-direction_row-aligin_center-justify-start">
+            <!-- 左边部分的下方简介与前往按钮 -->
+            <view class="bottombox-left">
+              <!-- 下方详细简介 -->
+              <view class="bottombox-left-detailtext">每日签到领积分福利</view>
+              <view class="bottombox-left-btn">去签到 ></view>
+            </view>
+            <!-- 右边图标 -->
+            <image class="bottombox-rightimg" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/iconbox/coloricon/daily.png"></image>
+          </view>
+        </view>
+        <!-- 称呼兑换专区 -->
+        <view class="twonavibox-partbox" style="margin-right: 20rpx;">
+           <!-- 导航标题 -->
+           <view class="partbox-title">称呼专区</view>    
+            <!-- 下方简介与前往按钮  介绍图片 -->
+            <view class="partbox-bottombox dis_flex-direction_row-aligin_center-justify-start">
+              <!-- 左边部分的下方简介与前往按钮 -->
+              <view class="bottombox-left">
+                <!-- 下方详细简介 -->
+                <view class="bottombox-left-detailtext">换取您喜欢的称呼吧</view>
+                <view class="bottombox-left-btn">去兑换 ></view>
+              </view>
+              <!-- 右边图标 -->
+              <image class="bottombox-rightimg" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/iconbox/coloricon/sign.png"></image>
+            </view>
+        </view>
+      </view>
+    </view>
+    <!-- 留白 -->
+    <!-- <view style="height: 20rpx;"></view> -->
+    <!-- 兑换显示轮播图 -->
+    <!-- <view class="exchangeBox-topSwiperBox">
+      <swiper class="topSwiperBox-swiper" bindchange="handleChange" indicator-dots='true' interval="4000"  	 previous-margin='100' next-margin='100' autoplay='true' circular='true' indicator-active-color="white">
+        <block wx:for="{{crowdfundingList}}" wx:key="{{index}}" style="width: 400rpx;">
+          <swiper-item class="topSwiperBox-swiperItem">
+            <image class="swiperItem-img {{currentIndex == index ? 'active': ''}}" src="{{item.SwiperList[0]}}"></image>     
+          </swiper-item>
+        </block>
+      </swiper>
+    </view> -->
+    <!-- 留白 -->
+    <!-- <view style="height: 30rpx;"></view> -->
+  </view>
+  <!-- 背景转换 -->
+  <view class="middlebox dis_flex-direction_row-aligin_center-justify-start">
+    <view class="middlebox-bc dis_flex-direction_row-aligin_center-justify-center">
+      <block  wx:for="{{middlebox}}" wx:key="index">
+        <view class="middleboxItem" >
+            <view class="middleboxItem-text {{currentmiddle==item?'choosetext':''}}" bindtap="changeCurrentmiddle" data-currentdata="{{item}}">{{item}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 兑换 -->
+  <view class="ablegoodsbox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="ablegoodsbox-goodsItempart">
+      <!-- 左上角标签 -->
+      <view class="topgoodslabel">
+        鲸遇文创
+      </view>
+      <view class="leftgoodslabel">
+        手办
+      </view>
+      <!-- 显示兑换商品背景 -->
+      <image class="goodsItempart-img" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/crowdfunding/swiper/swiper_2_01.jpg">
+      </image>
+      <!-- 商品名称 -->
+      <view class="goodsItempart-goodsname">
+        姜子牙动画Q版手办 - 姜子牙
+      </view>
+      <!-- 进度条上方数字比例 -->
+      <view class="number-contrast">
+        <view class="number-contrast-text">5139<text style="margin-left:10rpx;color: #7f7f7f;">/ 23310</text></view>
+        <!-- 进度条 #bcbcbc-->
+        <view class="number-contrast-barbc">
+          <view class="number-contrast-bar"></view>
+        </view>
+      </view>
+      <!-- 兑换按钮 -->
+      <view class="needexchangeBtn">还需要16171点</view>
+    </view>
+    <!-- 暂时填充 -->
+    <view class="ablegoodsbox-goodsItempart">
+      <!-- 左上角标签 -->
+      <view class="topgoodslabel">
+        鲸遇文创
+      </view>
+      <view class="leftgoodslabel">
+        手办
+      </view>
+      <!-- 显示兑换商品背景 -->
+      <image class="goodsItempart-img" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/crowdfunding/swiper/swiper_2_01.jpg">
+      </image>
+      <!-- 商品名称 -->
+      <view class="goodsItempart-goodsname">
+        姜子牙动画Q版手办 - 姜子牙
+      </view>
+      <!-- 进度条上方数字比例 -->
+      <view class="number-contrast">
+        <view class="number-contrast-text">5139<text style="margin-left:10rpx;color: #7f7f7f;">/ 23310</text></view>
+        <!-- 进度条 #bcbcbc-->
+        <view class="number-contrast-barbc">
+          <view class="number-contrast-bar"></view>
+        </view>
+      </view>
+      <!-- 兑换按钮 -->
+      <view class="needexchangeBtn">还需要16171点</view>
+    </view>
+    <!-- 暂时填充 -->
+    <view class="ablegoodsbox-goodsItempart">
+      <!-- 左上角标签 -->
+      <view class="topgoodslabel">
+        鲸遇文创
+      </view>
+      <view class="leftgoodslabel">
+        手办
+      </view>
+      <!-- 显示兑换商品背景 -->
+      <image class="goodsItempart-img" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/crowdfunding/swiper/swiper_2_01.jpg">
+      </image>
+      <!-- 商品名称 -->
+      <view class="goodsItempart-goodsname">
+        姜子牙动画Q版手办 - 姜子牙
+      </view>
+      <!-- 进度条上方数字比例 -->
+      <view class="number-contrast">
+        <view class="number-contrast-text">5139<text style="margin-left:10rpx;color: #7f7f7f;">/ 23310</text></view>
+        <!-- 进度条 #bcbcbc-->
+        <view class="number-contrast-barbc">
+          <view class="number-contrast-bar"></view>
+        </view>
+      </view>
+      <!-- 兑换按钮 -->
+      <view class="needexchangeBtn">还需要16171点</view>
+    </view>
+  </view>
+
+
+  <view style="width: 100%;height: 100rpx;"></view>
+</view>
+
+
+
+
+		

@@ -1,0 +1,1017 @@
+/* pages/haina/haina.wxss */
+.searchbarBox{
+  position: fixed;
+  width: 450rpx;
+  margin-left: 50rpx;
+  border-radius: 50rpx;
+  background-color: #f1f1f1;
+  opacity: 0.5;
+  z-index: 3;
+}
+.searchbarBox-image{
+  margin-left: 10rpx;
+  width: 55rpx;
+  height: 55rpx;
+  z-index: 3;
+}
+.defalttext{
+  width: 320rpx;
+  margin-left: 10rpx;
+  color: #7f7f7f;
+}
+.comeoutbox{
+  position: fixed;
+  width: 650rpx;
+  height: 600rpx;
+  margin-left: 50rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  box-shadow: 2rpx 2rpx 6rpx 2rpx #7f7f7f;
+  z-index: 10;
+}
+.comeoutbox-Item{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.comeoutbox-Item-img{
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 30rpx;
+}
+.comeoutbox-Item-title{
+  line-height: 120rpx;
+}
+/*  */
+
+.returnservice{
+  left: 20rpx;
+  position: fixed;
+  z-index: 2;
+}
+
+.choose-banner-box{
+  background-color: #ffffff;
+  position: fixed;
+  width: 100%;
+  height: 95rpx;
+  z-index: 4;
+  /* background-color: pink; */
+}
+.choose-banner{
+  /* 因为子集元素超过宽度后就换行了 */
+  white-space: nowrap;/*加上这句，使其内部不会换行，才可以实现效果  */
+  width: 100%;
+  height: 95rpx;
+  /* height: auto; */
+}
+.choose-banner-shadow{
+  position:relative;
+  display: inline;
+  width: 100%;
+  height: 80rpx;
+  /* border-radius: 10%; */
+  /* background-color: gray; */
+  line-height: 80rpx;
+  padding: 10rpx 10rpx;
+  padding-right: 0rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+/* box h 95rpx  留下15rpx 做下划线 */
+/* .choose-banner-text{
+  width: 100%;
+  height: 80rpx;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  align-items: center;
+} */
+.underline{
+  font-size: 34rpx;
+  font-weight: bold;
+  border-bottom: 5rpx solid black;
+  /* transform: translateX(-50%); */
+}
+
+/* .choose-banner-shadow::after{
+  content: " ";
+ height: 5rpx;
+ background: red;
+ position: absolute;
+ /* bottom: -0.1rem; */
+ /* bottom: 3rpx;
+ left: 50%;
+ transform: translateX(-50%);
+} */
+/* ---------------ShowBox-tuijianBox------------------ */
+.ShowBox-tuijianBox{
+  width: 100%;
+  height: auto;
+}
+.tuijianBox-bannerBox{
+  width: 100%;
+  height: auto;
+}
+.tuijianBox-bannerBox-swiper{
+  width: 100%;
+  height: 350rpx;
+}
+.tuijianBox-bannerBox-swiper-img{
+  width: 100%;
+  height: 350rpx;
+  
+}
+/* -------------tuijianBox-threebox------------ */
+.tuijianBox-threebox{
+  width: 96%;
+  height: 360rpx;
+}
+.threebox-leftone{
+  width: 49%;
+  height: 350rpx;
+  background-color: palevioletred;
+  border-radius: 10rpx;
+}
+.threebox-rightbox{
+  width: 49%;
+  height: 360rpx;
+}
+.threebox-rightbox-item{
+  width: 350rpx;
+  height: 165rpx;
+  background-color: rgb(170, 150, 131);
+  border-radius: 10rpx;
+}
+/* ---------------tuijianBox-shopBox */
+.tuijianBox-shopBox{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tuijianBox-shopBox-Item{
+  /* 这里的宽度不能设置为单个nav的宽度，不然就单行单个 */
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.tuijianBox-shopBox-Item-nav{
+  width: 350rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+
+  background-color: #ffffff;
+  /* box-shadow: 5rpx 5rpx 10rpx #888888; */
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  margin-top: 20rpx;
+}
+.tuijianBox-shopBox-Item-img{
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  width: 350rpx;
+  height: 350rpx;
+  /* margin-bottom: 2rpx; */
+}
+.tuijianBox-shopBox-Item-progressBar-bac{
+  width: 350rpx;
+  height: 6rpx;
+  background-color: #bcbcbc;
+}
+.tuijianBox-shopBox-Item-progressBar{
+  height: 6rpx;
+  background-color: #FFC80B;
+  z-index: 1;
+}
+.tips{
+  /* display 属性的属性值 inline-block 可以将元素强制转换为行内块元素，inline-block 既具有 block 能够设置宽高的特性又具有 inline 不独占一行的特性 */
+  display: inline-block;
+  width: 70rpx;
+  height: 28rpx; 
+  line-height: 28rpx;
+  border-radius: 7rpx;
+  /* 水平居中 */
+  color: #FFC80B;
+  text-align:center;
+  /* align-items: center; */
+  border: 1rpx solid #FFC80B;
+  font-size: 20rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  margin-bottom: 7rpx;
+}
+.tuijianBox-shopBox-Item-introduction{
+  /* margin-top: 2rpx; */
+  margin-top: 10rpx;
+  width: 90%;
+  height: 75rpx;
+  /* background-color: indigo; */
+  font-size: 26rpx;
+  
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  display: -moz-box;
+  -moz-line-clamp: 2;
+  -moz-box-orient: vertical;
+
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden;
+}
+.tuijianBox-shopBox-Item-text{
+  margin-top: 10rpx;
+  width: 90%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 20rpx;
+  /* margin-left: 20rpx; */
+  color: #7f7f7f;
+}
+/* ShowBox-zhognchouBox */
+.bannerBox-ColorFontBox{
+  margin-top: 20rpx;
+  /* margin-left: 30rpx; */
+  width: 96%;
+  height: 50rpx;
+  margin-bottom: 10rpx;
+}
+.bannerBox-ColorFontBox-left{
+  height: 50rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.FontBox{
+  /* font-size: 28rpx; */ 
+  padding-left: 12rpx;
+  border-left: 14rpx solid #FFC80B;
+  height: 40rpx;
+  line-height: 38rpx;
+  display: inline-block;
+}
+.bannerBox-ColorFontBox-right{
+  height: 50rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.right-font{
+  height: 50rpx;
+  line-height: 50rpx;
+  display: inline-block;
+  font-size: 30rpx;
+  color: #7f7f7f;
+}
+.right-icon{
+  width: 30rpx;
+  height: 30rpx;
+}
+/*  */
+.ShowBox-zhognchouBox{
+  width: 100%;
+  height: auto;
+}
+.ShowBox-zhognchouBox-bannerBox{
+  width: 100%;
+  height: 420rpx;
+  flex-wrap: wrap;
+}
+.bannerBox_imgBox{
+  margin-top: 20rpx;
+  width: 96%;
+  height: 420rpx;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.bannerBox_imgItem{
+  display: flex;
+  
+}
+.bannerBox_img{
+  margin-top: 10rpx;
+  width: 345rpx;
+  height: 190rpx;
+  border-radius: 10rpx;
+}
+/*  */
+.rankTotalBox{
+  margin-top: 10rpx;
+  width: 98%;
+  height: 200rpx;
+}
+.rankBox{
+  width: 100%;
+  height: 250rpx;
+  white-space: nowrap;
+}
+.rankBox-Item{
+  display: inline-block;
+  width: 180rpx;
+  height: 250rpx;
+}
+.rankBox-Item-Img{
+  margin-left: 10rpx;
+  /* align-items: center; */
+  width: 160rpx;
+  height: 160rpx;
+  
+}
+.rankBox-Item-text{
+  margin-left: 10rpx;
+  width: 160rpx;
+  height: 70rpx;
+  font-size: 26rpx;
+  
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  display: -moz-box;
+  -moz-line-clamp: 2;
+  -moz-box-orient: vertical;
+
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden;
+}
+/*  */
+.comingBox{
+  width: 98%;
+  height: auto;
+}
+.ShowBox-shopBoxSwiper{
+  width: 100%;
+  height: 1000rpx;
+  background-color: #dbac12;
+  background: -webkit-linear-gradient(top,transparent,#dbac12,transparent);
+}
+.ShowBox-shopBoxSwiper-swiper{
+  width: 100%;
+  height: 1000rpx;
+}
+.ShowBox-shopBoxSwiper-img{
+  width: 80%;
+  height: 1000rpx;
+  margin-left: 10%;
+  border-radius: 5%;
+}
+
+
+/*  */
+.topGoodsAndJDBox{
+  padding-top: 40rpx;
+  width: 94%;
+  /* height: 500rpx; */
+  height: auto;
+  /* position: relative; */
+}
+
+.topGoodsAndJDBox-leftBox{
+  width: 330rpx;
+  height: 300rpx;
+  background-color: #ffffff;
+  border-radius: 10rpx;
+}
+.leftBox-Top{
+  position: relative;
+  width: 330rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.tophead{
+  position: absolute;
+  padding: 2rpx 4rpx;
+  left: 268rpx;
+  top: 0rpx;
+  background-color: #FFC80B;
+  border-radius:  0rpx 10rpx 0rpx 10rpx;
+  font-size: 28rpx;
+}
+.leftBox-Top-img{
+  width: 330rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.leftBox-Down{
+  margin-top: 5rpx;
+  width:330rpx;
+  height: 90rpx;
+  /* background-color: #888; */
+}
+.leftBox-Down-commentBox{
+  width: 330rpx;
+  height: 90rpx;
+}
+.commentBox-first{
+  width: 330rpx;
+  height: 90rpx;
+}
+.commentBox-first-img{
+  margin-left: 10rpx;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.commentBox-first-text{
+  display: inline-block;
+  margin-top: 15rpx;
+  margin-left: 10rpx;
+  width: 260rpx;
+  height: 60rpx;
+  font-size: 20rpx;
+  /* line-height: 90rpx; */
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  display: -moz-box;
+  -moz-line-clamp: 2;
+  -moz-box-orient: vertical;
+
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden;
+}
+/*  */
+.topGoodsAndJDBox-rightBox{
+  /* width: 330rpx; */
+  width: 360rpx;
+  height: 300rpx;
+  /* background-color: #888; */
+}
+/*  */
+.userBox{
+  width: 360rpx;
+  height: 50rpx;
+}
+.userBox-img{
+  /* display: inline-block; */
+  margin-left: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+.userBox-nickName{
+  margin-left: 10rpx;
+  /* display: inline-block; */
+  width: 310rpx;
+  height: 40rpx;
+  line-height:40rpx;
+  font-size: 24rpx;
+}
+.exchangeBox-shop{
+  width: 360rpx;
+  height: 60rpx;
+}
+.exchangeBox-goods{
+  margin-left: 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #7f7f7f;
+  font-size: 26rpx;
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  display: -moz-box;
+  -moz-line-clamp: 1;
+  -moz-box-orient: vertical;
+
+  overflow-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden;
+}
+.exchangeBox-time{
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #7f7f7f;
+  font-size: 20rpx;
+}
+
+.cateBox{
+  width: 100%;
+  height: 140rpx;
+  background-color: #ffffff;
+}
+
+/* 限时发售 */
+.FlashsalesBox{
+  margin-top: 20rpx;
+  width: 90%;
+  height: 250rpx;
+  /* background-color: #f3f3f3; */
+}
+.FlashsalesBox_Img{
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+.FlashsalesBox_ChooseBox{
+  margin-top: 30rpx;
+  width: 100%;
+  height: 105rpx;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #ebebeb;
+}
+.FlashsalesBox_ChooseBox_Box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.ChooseBox_Box_Item{
+  margin-top: 20rpx;
+  /* 控制按钮间的间隔 */
+  margin-left: 30rpx;
+  width: auto;
+  height: 60rpx;
+  background-color: #f3f3f3;
+  border-radius: 20rpx;
+  /* 这个text-align: center;是需要加在父元素上，作用于子元素 */
+  text-align: center;
+
+}
+.ChooseBox_Box_Item_text{
+  width: 100%;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  padding: 0rpx 20rpx;
+}
+.borderline{
+  border: 2rpx solid #858585;
+}
+.ShowFlashSalesBox{
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+}
+.ShowFlashSalesBox-FlashSalesBox{
+  width: 94%;
+  margin-left: 3%;
+  height: 100%;
+}
+.FlashSalesBox-ItemSalesgoods{
+  width: 100%;
+  height: 330rpx;
+  display: flex;
+  flex-direction: row;
+}
+.ItemSalesgoods-leftBox{
+  width: 330rpx;
+  height: 330rpx;
+}
+.ItemSalesgoods-leftBox-img{
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 20rpx;
+}
+.ItemSalesgoods-rightBox{
+  width: 370rpx;
+  height: 330rpx;
+}
+.rightBox-goodsName{
+  font-weight: bold;
+  width: 370rpx;
+  margin-top: 10rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  word-break: break-all;    
+  text-overflow: ellipsis;    
+  display: -webkit-box;
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 2; /** 显示的行数 **/
+  overflow: hidden;  /** 隐藏超出的内容 **/
+}
+.rightBox-category{
+  width: 120rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #dbac12;
+}
+.rightBox-like{
+  width: 240rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #7f7f7f;
+}
+.rightBox-commentText{
+  font-size: 20rpx;
+  line-height: 40rpx;
+  word-break: break-all;    
+  text-overflow: ellipsis;    
+  display: -webkit-box;
+  -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+  -webkit-line-clamp: 1; /** 显示的行数 **/
+  overflow: hidden;  /** 隐藏超出的内容 **/
+}
+
+
+/* 鲸点兑换 */
+.exchangeBox{
+  width: 100%;
+  height: auto;
+  /* 渐变色背景 */
+  /* background: -webkit-linear-gradient(bottom,rgb(244,157,4),rgb(244,157,4),#FACF94,#ffffff); */
+  background-color: rgb(255, 120, 96);
+}
+.exchangeBox-topSwiperBox{
+  height: auto;
+  /* background-color: blueviolet; */
+  border-radius: 50rpx;
+}
+.topSwiperBox-swiper{
+  height:640rpx;
+}
+.topSwiperBox-swiperItem{
+  display: flex;
+  width: 600rpx;
+  height: 640rpx;
+}
+.swiperItem-img{
+  position: relative;
+  margin: 70rpx auto;
+  width: 420rpx;
+  height: 420rpx;
+  border-radius: 10rpx;
+} 
+.swiperItem-tap{
+  top: 5%;
+  left: 4%;
+  position: absolute;
+  padding: 8rpx 16rpx;
+  /* background-color: rgb(243,224,188); */
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border-radius: 10rpx;
+
+  z-index: 2;
+}
+.swiperItem-content{
+  position: absolute;
+  left: 38rpx;
+  top: 400rpx;
+  width: 450rpx;
+  height: 200rpx;
+  background-color: #ffffff;
+  z-index: 2;
+  border-radius: 20rpx ;
+  box-shadow: 2rpx 5rpx 10rpx  #8a8a8a;
+  /* ------ */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.swiperItem-clickBtn{
+  position: absolute;
+  left: 366rpx;
+  top: 380rpx;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  /* background-color: rgb(254, 244, 202);
+  color: rgb(248, 181, 65); */
+  background-color: #fdcb26;
+  z-index: 3;
+  border-radius: 40rpx;
+  box-shadow: 2rpx 5rpx 10rpx  #8a8a8a;
+}
+.swiperItem-content-title{
+  margin-left: 5%;
+  width: 65%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: bold;
+}
+.swiperItem-content-text{
+  margin-left: 5%;
+  width: 90%;
+  height: auto;
+  font-size: 26rpx;
+  color: #adadad;
+  /*  */
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  /* 这里控制行数 */
+  -webkit-line-clamp: 3;
+}
+/* 轮播图指示点修正 */
+/* .wx-swiper-dots {
+  position: relative;
+  left: unset !important;
+  right: 28%;
+} */
+/* .wx-swiper-dots.wx-swiper-dots-horizontal {
+  margin-bottom: -20rpx;
+} */
+.active {
+  margin: 20rpx auto;
+  opacity: 1;
+  z-index: 10;
+  width: 520rpx;
+  height: 520rpx;
+  /* transition: all .2s ease-in .1s; */
+  z-index: 1;
+}
+/*  */
+.exchangeBox-bottomSwiperBox{
+  margin-top: 30rpx;
+  width: 100%;
+  height: 300rpx;
+}
+/* 鲸点兑换-中间切换栏 */
+.exchangeBox-midareabox{
+  margin-top: 20rpx;
+  width: 100%;
+  height: auto;
+}
+/*鲸点兑换 用户信息 */
+.midareabox-userinfo{
+  margin-left: 3%;
+  width:97%;
+  height: 80rpx;
+}
+.userinfo-userMessage{
+  width: 500rpx;
+  height: 80rpx;
+}
+.userMessage-faceImg{
+  /* 上 右 下 左 */
+  margin: 10rpx 20rpx 10rpx 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+.userMessage-nickname{
+  width: 400rpx;
+  color: #ffffff;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+/* 查询鲸点获取方式 */
+.getNumberfunction{
+  width: 200rpx;
+  margin-right: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 0rpx 50rpx 0rpx 50rpx;
+  /* border-radius: 20rpx 0rpx 0rpx 20rpx; */
+  background-color: #FFC80B;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+}
+.midareabox-numberinfo{
+  margin-top: 10rpx;
+  width: 100%;
+  height: 120rpx;
+}
+.numberinfo-nownumbox{
+  margin-left: 4%;
+  width: 180rpx;
+  height: 120rpx;
+}
+.numberinfo-nownum{
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+}
+.numberinfo-nownumBtn{
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #f1f1f1;
+}
+.exchangedata-exchanged{
+  width: 160rpx;
+  height: 120rpx;
+}
+.exchanged-number{
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 46rpx;
+  color: #ffffff;
+}
+.exchanged-text{
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #f1f1f1;
+  padding-left: 10rpx;
+  text-align: center;
+}
+.twonavibox{
+  margin-top: 20rpx;
+  width: 100%;
+  height: 180rpx;
+}
+.twonavibox-partbox{
+  width: 346rpx;
+  height: 180rpx;
+  border-radius: 20rpx;
+  background-color: #ffffff;
+}
+.partbox-title{
+  margin-left: 6%;
+  width: 94%;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #f0c63e;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+.partbox-bottombox{
+  width: 100%;
+  height: 100rpx;
+}
+.bottombox-left{
+  margin-left: 6%;
+  width: 220rpx;
+  height: 100rpx;
+}
+.bottombox-left-detailtext{
+  height: 60rpx;
+  font-size: 24rpx;
+  color: #bcbcbc;
+}
+.bottombox-left-btn{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: #dbac12;
+  font-weight: bold;
+}
+.bottombox-rightimg{
+  margin-right: 10rpx;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50rpx;
+}
+/* 中间切换器区 */
+.middlebox{
+  width: 100%;
+  height: 160rpx;
+  background: linear-gradient(rgb(255, 120, 96),#f6f6f6);
+}
+.middlebox-bc{
+  width: 96%;
+  margin-left: 2%;
+  height: 110rpx;
+  background-color: rgba(212, 212, 212, 0.4);
+  z-index: 1;
+  border-radius: 50rpx;
+}
+.middleboxItem{
+  width: 24%;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+}
+.middleboxItem-text{
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  margin: 10rpx 10rpx;
+  color: #8a8a8a;
+}
+.choosetext{
+  font-weight: bold;
+  color: rgb(77, 221, 149);
+  background-color: #ffffff;
+  font-size: 32rpx;
+}
+
+
+/* 下方兑换区 */
+.ablegoodsbox{
+  margin-top: 20rpx;
+  padding: 0rpx 3%;
+  width: 94%;
+  height: auto;
+  flex-wrap: wrap;
+}
+.ablegoodsbox-goodsItempart{
+  margin: 10rpx 0rpx;
+  width: 340rpx;
+  height: 600rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+}
+.topgoodslabel{
+  padding: 8rpx 12rpx;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  position: absolute;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10rpx;
+  color: #ffffff;
+  font-size: 24rpx;
+}
+.leftgoodslabel{
+  padding: 8rpx 12rpx;
+  margin-top: 64rpx;
+  margin-left: 10rpx;
+  position: absolute;
+  width: auto;
+  background-color: rgba(243,224,188, 0.6);
+  border-radius: 10rpx;
+  color: break;
+  font-size: 20rpx;
+  font-weight: bold;
+}
+.goodsItempart-goodsname{
+  width: 84%;
+  margin: 0rpx 7%;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+}
+.goodsItempart-img{
+  width: 340rpx;
+  height: 340rpx;
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+}
+.number-contrast{
+  width: 84%;
+  height: 70rpx;
+  margin: 0rpx 7%;
+}
+.number-contrast-text{
+  color: rgb(77, 221, 149);
+  font-size: 28rpx;
+  /* 在CSS中通过line-height属性来实现行间距的设置，line-height的值表示的是两行文字之间基线的距离。 */
+  /* CSS中通过letter-spacing属性来调整字间距，这个属性同样可以设置相对数值和绝对数值。 */
+  letter-spacing:-2rpx
+}
+.number-contrast-barbc{
+  margin-top: 16rpx;
+  width: 100%;
+  height: 10rpx;
+  background-color: #e4e4e4;
+  border-radius: 10rpx;
+
+}
+.number-contrast-bar{
+  margin-top: 16rpx;
+  width: 30%;
+  height: 10rpx;
+  background-color: rgb(62, 238, 150);
+  border-radius: 20rpx;
+  z-index: 1;
+}
+.needexchangeBtn{
+  width: 84%;
+  height: 60rpx;
+  margin: 10rpx 7%;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  background-color: rgba(109, 255, 182, 0.3);
+  color: rgb(127, 230, 178);
+  text-align: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}

@@ -1,0 +1,402 @@
+<!--pages/service/service.wxml-->
+<!-- video -->
+<!-- <view class="dis_flex-direction_row-aligin_center-justify-start" style="margin-top: 20rpx;">
+  <view class="subject_bg"></view>
+  <text class="subject_text">最新预告</text>
+</view> -->
+<!-- 这个暂时停掉 项目审阅时开起来 -->
+<!-- <swiper class="swiper_video" indicator-active-color="#FFE200" indicator-color="white" indicator-dots='true' autoplay='true' interval='33000' duration='1000' circular='true'>
+  <swiper-item>
+    <video src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/service_video/可莉.mp4" loop="false" controls="true" autoplay="false" muted="true" object-fit="contain"   play-btn-position="center" show-bottom-progress="false"  	show-mute-btn="true" class="service_video">
+    </video>
+  </swiper-item>
+  <swiper-item>
+    <video src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/service_video/可莉2.mp4" loop="false" controls="true" autoplay="false" muted="true" object-fit="contain" play-btn-position="center" show-bottom-progress="false"  	show-mute-btn="true" class="service_video">
+    </video>
+  </swiper-item>
+</swiper> -->
+<!-- <view style="background-color:black ;width: 100%;height: 20rpx;"></view> -->
+
+<!-- <video src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/service_video/可莉.mp4" 
+loop="true" controls="false" autoplay="true" class="service_video">
+</video> -->
+<!--四大模块  -->
+<!-- 每四个另起一行 -->
+<!-- <view class="dis_flex-direction_row-aligin_center-justify-start" style="margin-top: 30rpx;">
+  <view class="subject_bg"></view>
+  <text class="subject_text">服务模块</text>
+</view>
+<view class="service_banner dis_flex-direction_row-aligin_center-justify-start pad_box">
+  <navigator class=" dis_flex-direction_column-aligin_center-justify-start service_banner" url="../../pages/haina/haina">
+    <image class="service_banner_image" src="../../images/service_banner/jinglou.png"></image>
+    <text class="service_banner_text">海纳</text>
+  </navigator>
+  <navigator class=" dis_flex-direction_column-aligin_center-justify-start service_banner" url="../../pages/wansheng/wansheng">
+    <image class="service_banner_image" src="../../images/service_banner/yanxiang.png"></image>
+    <text class="service_banner_text">万生</text>
+  </navigator>
+</view> -->
+
+<!-- 配合最上方切换栏置顶的背景 -->
+<view style="width:100%;height: {{ capsuleHeight+capsuleTop+10 }}px;background-color: #ffffff;position: fixed;z-index: 2;"></view>
+<!-- 最上方的白色背景 -->
+<view style="width:100%;height: {{ capsuleHeight+capsuleTop+10 }}px;background-color: #ffffff;">
+</view>
+<!-- Toptap区域 -->
+<view class="topTapBox dis_flex-direction_row-aligin_center-justify-start" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;color: black;" >
+  <view class="topTapBox-item" wx:for="{{topTapList}}">
+    <view class="topTapBox-item-text {{currenttopTap==item?'currenttopTap':''}}" style="height: {{ capsuleHeight }}px;" bindtap="exchangeTopTap" data-name="{{item}}">{{item}}</view>
+  </view>
+</view>
+
+<!-- ===============分页============== -->
+<!-- 找众筹分页内容 -->
+<view class="PageItemBox" wx:if="{{currenttopTap=='找众筹'}}">
+  <!-- 活动轮播图
+  <swiper class="imageContainer" bindchange="handleChange" previous-margin="80rpx" next-margin="80rpx" circular  autoplay 	indicator-dots="true" indicator-active-color="rgb(223,124,116)">
+      <block wx:for="{{swiper}}" wx:key="{{index}}">
+        <swiper-item class="item">
+          <image class="itemImg {{currentIndex == index ? 'active': ''}}" src="{{item.url}}" ></image>
+        </swiper-item>
+      </block>
+  </swiper> -->
+  <!-- 领取优惠卷 -->
+  <view class="cardBanner"> 
+    <image class="cardBanner-img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/service/cardBanner.jpg"></image>
+  </view>
+  <!-- 优惠卷中心 -->
+  <view class="cardBox-title">卷卷中心</view>
+  <view class="cardBox">
+    <view class="cardItem">
+      <view class="cardItem-discountNum">10</view>
+      <view class="cardItem-discondition">满59元可用</view>
+      <view class="cardItem-name">鲸遇1.0发布特惠卷卷~~</view>
+      <view class="cardItem-limit">有效期</view>
+      <view class="cardItem-time">2023.03.15-2023.06.15</view>   
+      <view class="cardItem-button" bindtap="cardBtn">立即使用</view>
+      <!-- 右上角三角形 -->
+      <view class="cardItem-triangle"></view>
+      <!-- 右上角文本 -->
+      <view class="state">系统发送</view>
+    </view>
+  </view>
+  <!-- 猜你喜欢 -->
+  <view class="expectionBox dis_flex-direction_column-aligin_center-justify-start" style="margin-top: 30rpx;">
+    <!-- 猜你喜欢栏目名 -->
+    <view class="expectionBox-columnName dis_flex-direction_row-aligin_center-justify-between">
+      <view class="columnName-name">猜你喜欢</view>
+      <view class="columnName-rightpart" style="width: 180rpx;">
+        <view class="rightpart-text" style="width: 140rpx;" bindtap="goto_haina">更多内容</view>
+        <image class="rightpart-img" src="../../images/haina/right_arrow.png"></image>
+      </view>
+    </view>
+    <!-- 猜你喜欢内容 -->
+    <view class="showlikesgoodsBox">
+      <view class="tuijianBox-shopBox">
+        <view class="tuijianBox-shopBox-Item">
+          <block wx:for="{{likesgoodsList}}" wx:key="index">
+            <navigator class="tuijianBox-shopBox-Item-nav" url="../haina_zcDetail/haina_zcsDetail?id={{item._id}}" >
+              <image class="tuijianBox-shopBox-Item-img" src="{{item.SwiperList[0]}}"></image>
+              <!-- 进度条 -->
+              <view class="tuijianBox-shopBox-Item-progressBar-bac">
+              <!-- 加个括号 三元表达式就能添加字符了(item.completedMoneyTarge/item.moneyTarge*100+'%')-->
+               <view style="width:{{item.completedMoneyTarge/item.moneyTarge*100>100?'100%':(item.completedMoneyTarge/item.moneyTarge*100+'%')}};" class="tuijianBox-shopBox-Item-progressBar"></view>
+             </view>
+             <!-- 众筹便签与文本介绍 -->
+             <view class="tuijianBox-shopBox-Item-introduction">
+               <view class="tips">{{item.type}}</view>
+               {{item.goodsName}}
+              </view>
+             <!-- 已经众筹金额 与 支持者数量 -->
+             <view class="tuijianBox-shopBox-Item-text">已筹:￥{{item.completedMoneyTarge}}   支持:{{item.completedPersonNum}}</view>
+            </navigator>
+         </block>
+       </view>
+      </view>
+      <view style="width: 100%;height: 50rpx;"></view>
+    </view>
+  </view>
+ </view>
+
+
+<!-- ------------------------------------------------------ -->
+<!-- 话题广场分页内容 -->
+<view class="PageItemBox" wx:if="{{currenttopTap=='广场'}}">
+  <!-- 商户分类圈子 -->
+  <view class="cateArea dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 栏目名称 全部查看 -->
+    <view class="cateArea-columnName dis_flex-direction_row-aligin_center-justify-between">
+      <view class="columnName-name">分类圈子</view>
+      <!-- <view class="columnName-rightpart">
+        <view class="rightpart-text">全部</view>
+        <image class="rightpart-img" src="../../images/haina/right_arrow.png"></image>
+      </view> -->
+    </view>
+    <!-- 商户显示 -->
+    <view class="cateArea-topicItem ">
+      <scroll-view class="dis_flex-direction_row-aligin_center-justify-start topicItemBox"	scroll-x="{{true}}" >
+        <block wx:for="{{propositionpRate}}" wx:key="index">
+          <view class="topicItemBox-item" bindtap="goto_topic" data-topicName="{{item.topicName}}" data-proposition="{{item.proposition}}">
+            <view class="item-topimgbox">
+              <image class="topimgbox-img" mode="aspectFill" src="{{item.url}}"></image>
+            </view>
+            <view class="item-bottombox warp">
+              <view class="bottombox-name">{{item.busName}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 官方话题热议 -->
+  <view class="subjectArea dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 栏目名称 全部查看 -->
+    <view class="cateArea-columnName dis_flex-direction_row-aligin_center-justify-between" >
+      <view class="columnName-name">话题热议</view>
+      <!-- <view class="columnName-rightpart">
+        <view class="rightpart-text">全部</view>
+        <image class="rightpart-img" src="../../images/haina/right_arrow.png"></image>
+      </view> -->
+    </view>
+    <!-- 话题信息及对应图片 -->
+    <view class="subjectArea-subjectItem ">
+      <scroll-view class="dis_flex-direction_row-aligin_center-justify-start subjectItemBox"	scroll-x="{{true}}" >
+        <block wx:for="{{subjectList}}" wx:key="index">
+          <view class="subjectItemBox-item" bindtap="goto_subject" data-id="{{item.goto}}">
+            <view class="item-selfimgbox">
+              <image class="selfimgbox-img" src="{{item.url}}" mode="aspectFill" ></image>
+            </view>
+            <!-- subject名称 -->
+            <view class="item-subjectname">#{{item.proposition}}#</view>
+            <!-- subject点击 -->
+            <view class="item-subjectclick">共有{{item.clicknum}}人来过</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- section分类 -->
+  <view class="square-tapexchangeBox">
+    <view class="tapexchangeBox-sectionBox dis_flex-direction_row-aligin_center-justify-start">
+      <view class="sectionBox-item" wx:for="{{sectiontapList}}">
+        <view class="sectionBox-item-text {{currentsection==item?'currentsection':''}}" bindtap="exchangeSection" data-name="{{item}}">{{item}}</view>
+        </view>
+    </view>
+  </view>
+  <!-- 精华帖部分 -->
+  <view wx:if="{{currentsection=='精华'}}" class="squareItembox">
+    <view class="squareItem" wx:for="{{greatActions}}">
+      <view class="bcsetting">
+        <view style="height: 24rpx;"></view>
+        <!-- 用户栏 -->
+        <view class="squareItem-userbanner dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 用户头像 -->
+          <view class="userbanner-userfaceImg">
+              <image class="userfaceImg" src="{{item.faceImg}}"></image>
+          </view>
+          <!-- 用户信息 -->
+          <view class="userbanner-userMessage dis_flex-direction_column-aligin_center-justify-center">
+            <view class="userMessage-nickandlv dis_flex-direction_row-aligin_center-justify-start">
+             <view class="userMessage-nickname">{{item.nickName}}</view>
+              <image class="userMessage-lv" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/lv/lv{{item.lv}}.png" mode="aspectFill"></image>
+          </view>
+          <view class="userMessage-pubtime">{{item.time}}</view>
+          </view>
+        </view>
+        <!-- 标题信息 -->
+        <view class="squareItem-title">{{item.title}}</view>
+        <!-- 正文信息 -->
+        <view class="squareItem-content">
+          <textarea class="content-text">{{item.text}}</textarea>
+        </view>
+        <!-- 图片布局 -->
+        <view class="squareItem-imageSwiper">
+          <view class="imageSwiper-SwiperBox">
+            <swiper class="SwiperBox" 	indicator-dots="true">
+              <block wx:for="{{item.images}}" wx:for-item="itemkid" wx:for-index="numm">
+                <swiper-item>
+                  <image class="SwiperBox-image" src="{{itemkid}}" mode="aspectFill" bindtap="previewImg" data-src="{{itemkid}}" data-index="{{numm}}"></image>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <!-- 下方互动框 -->
+        <view class="interactbox dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 点赞及其文本信息 -->
+          <view class="interactbox-Item" >
+            <image class="interactbox-Itemicon" src="../../images/index_able/like.png"></image>
+            <view class="interactbox-text">{{item.prizeList.length}}</view>
+          </view>
+          <!-- 评论及其文本信息 -->
+          <view class="interactbox-Item" style="margin-left: 50rpx;">
+            <image class="interactbox-Itemicon" src="../../images/index/message.png"></image>
+            <view class="interactbox-text">{{item.commentList.length}}</view>
+          </view>
+          <!-- 最近一次评论内容 -->
+          <view class="interactbox-showcomment" style="margin-left: 30rpx;">
+            <!-- 评论用户 -->
+            <view class="showcomment-faceImg">
+              <image class="faceImgsize" src="{{item.commentList[0].faceImg}}"></image>
+            </view>
+            <!-- 评论内容 -->
+            <view class="onehangtext" style="color: #646464;">
+              {{item.commentList[0].text}}
+            </view>
+          </view>
+        </view>
+        <!-- 留白 -->
+        <view style="height: 20rpx;"></view>
+      </view>
+
+
+    </view>
+  </view>
+  <!-- 征集部分 -->
+  <view wx:if="{{currentsection=='征集'}}" class="squareItembox" bindtap="goto_soliciting">
+      <view class="squareItem">
+        <view class="solicitingItem">
+        <!-- 头部标题和标签 -->
+        <view class="solicitingItem-topbox">
+          <!-- 征集标题 -->
+          <view class="solicitingItem-topbox-title">
+            征集本次潮玩音乐节活动海报！
+          </view>
+          <!-- 右侧蓝色主题 -->
+          <view class="solicitingItem-topbox-toptip">
+            平面设计
+          </view>
+        </view>
+        <!-- 人数 与 热度 -->
+        <view class="solicitingItem-hotbox dis_flex-direction_row-aligin_center-justify-start">
+          <view ><text class="hotbox-redfont"style="margin-left: 0rpx;">4</text>人征集</view>
+          <view style="margin-left: 30rpx;">评分<text class="hotbox-redfont">5</text>/5</view>
+        </view>
+        <!-- 标签组 -->
+        <view class="solicitingItem-labelgroupbox dis_flex-direction_row-aligin_center-justify-start">
+          <block wx:for="{{labelgroup}}" wx:key="index">
+            <view class="labelgroupItem">
+              {{item}}
+            </view>
+          </block>
+        </view>
+        <!-- 时间限制 -->
+        <view class="solicitingItem-timehorizon">
+          希望在2023年6月1日前做好!
+        </view>
+        <!-- 基本叙述 -->
+        <view class="solicitingItem-content">
+          {{anticontent}}
+        </view>
+        <!-- 留白 -->
+        <view style="height: 50rpx;"></view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+  <!-- 设计师有话说部分 -->
+  <view wx:if="{{currentsection=='设计师有话说'&&currenttopTap=='广场'}}" class="squareItembox">
+    <view class="squareItem">
+      <!-- 第二个案例 -->
+      <view class="dialogItem">
+        <!-- 顶部类别分属栏 -->
+        <view class="dialogItem-infobox dis_flex-direction_row-aligin_center-justify-between">
+          <!-- 左边头部栏 -->
+          <view class="infobox-info">
+            设计看法
+          </view>
+          <!-- 右边 有用按钮 -->
+          <view class="infobox-usefulBtn" bindtap="if_helpfulBtn" wx:if="{{if_helpful}}">
+            是否有帮助？
+          </view>
+          <view class="helpfulBtn" bindtap="if_helpfulBtn" wx:else>
+            有帮助!
+          </view>
+        </view>
+
+        <!-- 提问部分 -->
+        <view class="dialogItem-questioner">
+          <!-- 提问内容 -->
+          <view class="questioner-contentbox">
+            <view class="questioner-content">
+              请问您对“雕塑艺术”这一词语是如何理解呢？
+            </view>
+          </view>
+          <view class="questioner-nickname">小黑猫yyy</view>
+          <!--提问者头像 -->
+          <view class="questioner-faceImgbox">
+            <image class="questioner-faceImg" src="https://thirdwx.qlogo.cn/mmopen/vi_32/hQoOP719jaojPib8wB50opmU3YE0qrlSItcnboFofCdKibXIVSNZd0Wib4RA7wZ9rMHEKsxHoY5vgpREx4UvvIiaWg/132"></image>
+          </view>
+        </view>
+        <!-- 设计师回答部分 -->
+        <view class="dialogItem-designer">
+          <!-- 设计师头像 -->
+          <view class="designer-faceImgbox">
+            <view class="designer-nickname">不是小黑猫</view>
+            <image class="designer-faceImg" src="https://thirdwx.qlogo.cn/mmopen/vi_32/hQoOP719jaojPib8wB50opmU3YE0qrlSItcnboFofCdKibXIVSNZd0Wib4RA7wZ9rMHEKsxHoY5vgpREx4UvvIiaWg/132"></image>
+          </view>
+          <!-- 设计师交谈内容 -->
+          <view class="designer-contentbox">
+            <view class="designer-content">
+              {{designerMessage}}
+            </view>
+          </view>
+        </view>
+        <!-- 分割留白 -->
+        <view style="height: 30rpx;border-bottom: 10rpx solid #FFC80B;border-left: 10rpx solid #FFC80B;border-right: 10rpx solid #FFC80B;border-radius:0rpx 0rpx 10rpx 10rpx;"></view>
+        </view>
+  </view>
+</view>
+
+<!-- ------------------------------------------------------ -->
+<!-- 看万生分页内容 -->
+<view class="PageItemBox" wx:if="{{currenttopTap=='看万生'}}">
+  <block wx:for="{{wanshengList}}">
+    <!-- 注意 最后要将box的高度换成auto -->
+  <view class="ws-bc" style="background-color:{{currentGifBc}};">
+    <!-- <view style="height: 30rpx;"></view> -->
+    <view class="creativityBox">
+    <!-- 上半部分盒子 状态标签和图片或者商品 -->
+    <view class="creativityBox-topbox">
+      <!-- 状态标签 -->
+      <view class="topbox-toplabel">
+        <view class="toplabel-text">{{item.toplabel}}</view>
+      </view>
+      <!-- 图片 -->
+      <image class="topbox-image" src="{{item.list[0].url}}"> </image>
+      <!-- 视频 -->
+      <!-- <video class="topbox-video"></video> -->
+    </view>
+    <!-- 下半部分盒子 文创标签tag、作者信息、收录内容等 -->
+    <view class="creativityBox-bottombox">
+      <!-- 名称 -->
+      <view class="bottombox-worksname">{{item.worksname}}</view>
+      <!-- 文创标签 -->
+      <view class="bottombox-tagbox dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 官方认证 黄底黑字标签 -->
+        <view class="tagbox-official">
+          <text class="official-text">{{item.officialtip}}</text>
+        </view>  
+        <!-- 类别认证 灰底黄子标签 -->
+        <view class="tagbox-category">
+          <text class="category-text">{{item.categorytip}}</text>
+        </view>
+      </view>
+      <!-- 发布者行列 这里要考虑多重发布者 因此 设置成list较为合适 -->
+    <view class="bottombox-publisherbox dis_flex-direction_row-aligin_center-justify-start">
+       <!-- 先商户头像后名称 -->
+       <image class="publisherbox-img" src="{{item.busimg}}"></image>
+       <view class="publisherbox-busname">{{item.busname}}</view>
+    </view>
+      <!-- 按钮 -->
+      <view class="bottombox-checkbtn">
+        <text class="checkbtn-text" bindtap="gotows" data-id="{{item._id}}">立即查看</text>
+     </view>
+    </view>
+    </view>
+    <view style="height: 30rpx;"></view>
+  </view>
+  </block>
+  
+</view>

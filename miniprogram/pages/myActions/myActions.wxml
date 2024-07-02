@@ -1,0 +1,25 @@
+<!--  -->
+<view class="showBox">
+  <block wx:for="{{actionsList}}" wx:key="index">
+    <view class="showBoxItem">
+      <image src="{{item.images[0]}}" class="showBoxItem_img"></image>
+      <view class="showBoxItem-contentBox">
+        <view class="topicAndtime">
+          <view class="topicBox">#{{item.proposition}}#</view>
+          <view class="timeBox">{{item.time}}</view>
+        </view>
+        <view class="textAndnum">
+          <view class="textBox">{{item.text}}</view>
+          <view class="numBox">
+            <view>
+              <text class="numBox-text">共计{{item.commentList.length}}条评论</text>
+              <text class="numBox-text">共有{{item.prizeList.length}}点赞</text>
+            </view>
+            <text class="deleteBtn">删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+  </block>
+</view>

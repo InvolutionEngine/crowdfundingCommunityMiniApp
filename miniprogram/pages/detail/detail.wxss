@@ -1,0 +1,252 @@
+/* pages/detail/detail.wxss */
+.nullMessage{
+  align-items: center;
+  margin-top: 80rpx;
+  
+}
+.nullMessageImg{
+  width: 100%;
+}
+.nullMessageText{
+  text-align: center;
+}
+
+.message{
+  padding: 20rpx 20rpx 40rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+.face_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+}
+.left{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  margin-right: 15rpx;
+}
+.niceTotal-btn{
+  width: 30rpx;
+}
+.user-btn-box{
+  display: flex;
+  /* margin-bottom: 20rpx; */
+  width: 590rpx;
+  flex-direction: row;
+  justify-content:space-between
+}
+.nickName{
+  color: #586B94;
+  font-weight: 550;
+  font-size: 34rpx;
+  margin-bottom: 15rpx;
+}
+.change-btn{
+  padding-right: 10rpx;
+  font-weight: 450;
+  font-size: 33rpx;
+  margin-top: -5rpx;
+}
+.time-delete{ 
+  display: flex;
+  flex-direction: row;
+  font-size: 28rpx;
+  margin: 10rpx 0rpx 10rpx 0rpx;
+}
+.time{
+  /* color: #b7b7b7; */
+  color: #7f7f7f;
+  margin-right: 20rpx;
+}
+.delete{
+  color: #586B94;
+}
+
+.hudong-box{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.hudong-cell-prize{
+  width: 190rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.hudong-cell{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+/* 点赞互动 */
+.hudong-img{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 5rpx;
+}.hudong-img-out{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+}
+.images-wrap{
+  margin-top: 10rpx;
+}
+.image-1{
+  width: 500rpx;
+  height: 500rpx;
+}
+.image-2-3{
+  width: 192rpx;
+  height: 192rpx;
+  margin-right: 6rpx;
+}
+.image-4{
+  width: 280rpx;
+  height: 280rpx;
+  margin-right: 6rpx;
+}
+.image-5-9{
+  width: 192rpx;
+  height: 192rpx;
+  margin-right: 6rpx;
+  margin-top: 6rpx;
+}
+.image-fill{
+  width: 580rpx;
+  margin-bottom: 6rpx;
+}
+
+.nice-box{
+  display: flex;
+  flex-direction: row;
+  background-color: #F7F7F7;
+  padding: 10rpx 10rpx;
+  margin: 0rpx 10rpx;
+}
+.nice-blue-img{
+  width: 62rpx;
+  height: 62rpx;
+  /* color: #586B94; */
+  margin-right: 20rpx;
+  margin-top: 20rpx;
+}
+.nice-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin: 10rpx 5rpx;
+}
+.nick-img-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.nice-text-box{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 30rpx;
+  color: #586B94;
+}
+/* 评论 */
+.comment-box{
+  display: flex;
+  flex-direction: row;
+  background-color: #F7F7F7;
+  padding: 20rpx 10rpx;
+  margin: 0rpx 10rpx;
+}
+.comment-log{
+  width: 62rpx;
+  height: 62rpx;
+  margin-top: 12rpx;
+  margin-right: 20rpx;
+}
+.comment-one{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30rpx;
+}
+.comment-face{
+  margin-right: 25rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+}
+.nickname-time{
+  display: flex;
+  flex-direction: row;
+  width: 500rpx;
+  justify-content: space-between;
+}
+.comment-nickName{
+  font-weight: 550;
+  color: #586B94;
+}
+.comment-time{
+  font-size: 28rpx; 
+  color: #7f7f7f;
+}
+.comment-text{
+  width: 500rpx;
+  margin-top: 15rpx;
+}
+.comment-obj{
+  font-weight: 450;
+  color: #586B94;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+/* 发布评论 */
+.pub-comment{
+  /* 固定在最下方 */
+  position: fixed;
+  bottom: 0;
+  /*  */
+  background-color: #F7F7F7;
+  padding: 20rpx 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.pub-left{
+  background-color: #fff;
+  color: #7F7F7f;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.pub-input{
+  padding: 10rpx 20rpx;
+  width: 500rpx;
+}
+.pub-button{
+  color: #7f7f7f;
+  border: solid 1rpx #7f7f7f;
+  padding: 10rpx 20rpx;
+}
+.tips{
+  height: 42rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+/* ----------------- */
+.share-button{ 
+  background-color: #f6f6f6;
+  margin: 0 0 ;
+  padding: 0rpx ;
+  /* border-color: #f6f6f6; */
+}
+.button_border_down::after{
+  border: none;
+  margin: 0 0 ;
+  padding: 0rpx ;
+}

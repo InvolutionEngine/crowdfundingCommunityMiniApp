@@ -1,0 +1,66 @@
+<!--pages/topicDetail/topicDetail.wxml-->
+<!-- #+话题标题  分享按钮-->
+<!-- 给topic 添加点击次数 借此显示浏览量的效果 -->
+
+
+<view class="TitleBox">
+  <view class="TitleBox-busBox dis_flex-direction_row-aligin_center-justify-start">
+    <image class="TitleBox-busBox-busImg" mode="aspectFill" src="{{url}}" ></image>
+    <view class="TitleBox-busBox-Meg dis_flex-direction_column-aligin_center-justify-start">
+      <text class="TitleBox-proposition">#{{proposition}}#</text>
+      <view style="width: 520rpx;height: 40rpx;">
+        <text class="TitleBox-flowNum">{{clicknum}} 浏览</text>
+        <text class="TitleBox-length">有{{actionsList.length}}只鲸鱼在吐泡泡</text>
+      </view>
+      <view style="width: 520rpx;height: 60rpx;" class="dis_flex-direction_row-aligin_center-justify-start">
+        <text class="TitleBox-busName" bindtap="gotobusDetail" data-openid="{{bus_openid}}">{{busName}}</text>
+        <text class="TitleBox-pubTime">{{pubTime}} 发布</text>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="TitleBox-topicName">#{{topicName}}</view>
+   -->
+  
+  <view wx:if="{{!if_open_content}}" class="TitleBox-content" bindtap="contentSwicth">{{content}}</view>
+  <view wx:if="{{if_open_content}}" class="TitleBox-content_open" bindtap="contentSwicth">{{content}}</view>
+  <!-- 留白 -->
+  <view style="height: 50rpx; "></view>
+</view>
+
+<!-- 折叠栏效果？ 话题公告？ -->
+<view></view>
+
+<!-- 显示效果 -->
+<view class="content">
+        <view class="left">
+          <block wx:for="{{actionsList}}" wx:key="index">
+            <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+          </block>
+        </view>
+        <view class="right">
+          <block wx:for="{{actionsList}}" wx:key="index">
+            <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+          </block>
+        </view>
+      </view>
+      <template name="item" >
+        <view class="item" wx:if="{{images[0]||videoUrl}}">
+          <image wx:if="{{images.length>0}}" class="item-img"  src="{{images[0]}}" mode="widthFix"  bindtap="toJLDetail" data-id="{{_id}}"></image>
+          <video wx:if="{{videoUrl.length>0}}" class="item-video"  src="{{videoUrl}}"   bindtap="toJLDetail" data-id="{{_id}}"></video>
+          <view   class="item-title-box" wx:if="{{title.length>0||text.length>0}}">
+            <view bindtap="toJLDetail" data-id="{{_id}}" class="{{title?'item-title':'item-title-weight'}}">{{title?title:text}}</view>
+          </view>
+          <view class="name">
+            <image class="item-ava" src="{{faceImg}}" bindtap="toUserDetail" data-openid="{{_openid}}"></image>
+            <text class="name-title" bindtap="toUserDetail" data-openid="{{_openid}}">{{nickName}}</text>
+            <view class="heart">
+              <!-- <text style="margin-left: -20rpx;margin-right: 20rpx;">{{commentList.length}}</text> -->
+              <image src="../../images/index_able/like.png" style="width: 40rpx; height: 40rpx;margin-left: -20rpx;" bindtap="prizeAction" data-id="{{_id}}"></image>
+              <text>{{prizeList.length}}</text>
+            </view>
+          </view>
+        </view>
+      </template>
+
+<!-- 发布按钮 按钮点击后会跳转到add页面 并附带好topic分类 -->
+<!-- <button></button> -->

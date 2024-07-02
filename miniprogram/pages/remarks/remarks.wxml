@@ -1,0 +1,147 @@
+<!--pages/remarks/remarks.wxml-->
+<!-- 平均分、评价条数 -->
+<view class="topBox dis_flex-direction_row-aligin_center-justify-between">
+  <!-- 平均分 -->
+  <view>平均评分 <text style="color: rgb(223,124,116); font-size: 30rpx;margin-right: 10rpx;" >4.8</text>/ 5</view>
+  <!-- 评价数 -->
+  <view>目前讨论5条</view>
+</view>
+
+<!-- 全部评价 -->
+<view style="width: 90%;margin-left: 5%;height: auto;">
+  <view class="conversationBox-bottompart dis_flex-direction_column-aligin_center-justify-start">
+  <!-- 每条评论个体 -->
+  <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">一只小虎鲸</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        期待本次音乐节的发布！没想过能从潮玩的角度出发，这是一个新的结合形式，期望能顺利进行！
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+    </view>
+  <!-- 暂时填充 -->
+  <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">不愿透露姓名是座头鲸妈妈</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=3}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-3)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        本想着带娃这种活动应该是参与不了的，但是采取征集的形式就想着来争取一些，其实我认为“潮玩音乐节”不一定要将人群局限在“青少年”，我们也很想融入！QAQ
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+  </view>
+  <view class="bottompartItem">
+    <!-- 姓名和评分 -->
+    <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">临时抱佛脚设计师</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        {{Egconversation}}
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+    </view>
+
+
+  <!-- 每天评论个体 -->
+  <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">初出茅庐小虾米</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        这个我能参加吗？感觉还蛮有意思的！
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+  </view>
+  <!-- 暂时填充 -->
+  <view class="bottompartItem">
+      <!-- 姓名和评分 -->
+      <view class="bottompartItem-Nameandscore dis_flex-direction_row-aligin_center-justify-start">
+        <!-- 姓名 -->
+        <view class="Nameandscore-name">日渐成熟小螺号</view>
+        <!-- 评分 -->
+        <view class="Nameandscore-score dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 循环一个数字 eg 3，那么就从0开始 0 1 2 ...  -->
+          <!-- 这里的3最后要换成评论本身的评分数 分数限制0-4  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=4}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数 -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-4)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+      </view>
+      <!-- 评论内容 -->
+      <view class="bottompartItem-text">
+        活动海报更新三版了，感觉还是第一版的更好些，不过这个也还行
+      </view>
+      <!-- 留白 -->
+      <view style="height: 10rpx;"></view>
+  </view>
+
+  <view style="height: 30rpx;"></view>
+  </view>
+</view>
