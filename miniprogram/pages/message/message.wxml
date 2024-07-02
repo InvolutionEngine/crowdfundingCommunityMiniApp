@@ -1,0 +1,335 @@
+<!--pages/message/message.wxml-->
+<!-- 搜索栏 -->
+<!-- 搜索栏默认值清除采用双函数处理，一个是焦点函数（失焦函数） 一个是输入函数   通过焦点函数的setData时清空默认值从而达到获取输入值时能删去默认选项 -->
+<view class="searchbarBox dis_flex-direction_row-aligin_center-justify-start" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px">
+  <image src="../../images/index/index.png" class="searchbarBox-image"></image>
+  <input class="defalttext" style="height: {{ capsuleHeight }}px; line-height: {{capsuleHeight}}px" value="{{value}}" bindinput="search" bindfocus="searchfocus" bindblur="searchnofocus" maxlength="20"></input>
+</view>
+<!-- 搜索栏焦点显示面板 -->
+<view wx:if="{{iffocus}}" style="top: {{capsuleTop+capsuleHeight+10}}px" class="comeoutbox">
+  <view wx:if="{{search_list}}" wx:for="{{search_list}}" class="comeoutbox-Item" bind:tap="detailOpen" data-id="{{item._id}}">
+    <image class="comeoutbox-Item-img" src="{{item.imageurl[0]}}"></image>
+    <view class="comeoutbox-Item-title">{{item.worksname}}</view>
+  </view>
+</view>
+
+<!-- 图片背景 -->
+<view style="width: 100%;height: 150rpx;background-color: #6586F1;"></view>
+<view class="TopBC">
+  <image class="TopBC-img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/message/message-banner.png"></image>
+</view>
+
+<view class="Bot">
+  <!-- <image class="BotBC" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/yanxiangBox/BotBC.png"></image> -->
+  
+  <!-- 显示信息的白色框框  先分上下两层 上面的那层再分三块 下面的那层文本居中显示 width: 86%;-->
+  <view class="messageWhiteBox dis_flex-direction_column-aligin_center-justify-center">
+    <!-- 上面的那层 Toparea -->
+    <view class="messageWhiteBox-Toparea dis_flex-direction_row-aligin_center-justify-center">
+      <!-- 参赛人数 -->
+      <view class="Toparea-apart dis_flex-direction_column-aligin_center-justify-center">
+        <!-- 蓝色数字统计区 -->
+        <view class="Toparea-apart-NumCount" style="color: rgb(101,134,241);font-weight: bold;">
+          {{yanxiang.length}}
+        </view>
+        <!-- 灰色文字标识 -->
+        <view class="Toparea-apart-NumCount" style="color: #6c6c6c;">
+          作品展数
+        </view>
+      </view>
+      <!-- 累计投票 两条灰边在这里 -->
+      <view class="Toparea-apart dis_flex-direction_column-aligin_center-justify-center">
+        <view class="Toparea-apart-NumCount"style="border-left: 1rpx solid #6c6c6c;border-right: 1rpx solid #6c6c6c;color: rgb(101,134,241);font-weight: bold;">
+          {{allNum}}
+        </view>
+        <view class="Toparea-apart-NumCount" style="color: #6c6c6c;">
+          累计投票
+        </view>
+      </view>
+      <!-- 投票人数 -->
+      <view class="Toparea-apart dis_flex-direction_column-aligin_center-justify-center">
+        <view wx:if="{{doommData.length>0}}" class="Toparea-apart-NumCount" style="color: rgb(101,134,241);font-weight: bold;">
+          {{doommData.length}}
+        </view>
+        <view wx:else class="Toparea-apart-NumCount" style="color: rgb(101,134,241);font-weight: bold;">
+           0
+        </view>
+        <view class="Toparea-apart-NumCount" style="color: #6c6c6c;">
+          祈愿次数
+        </view>
+      </view>
+    </view>
+
+    <!-- 下面的那层 Botarea -->
+    <view class="messageWhiteBox-Botarea " wx:if="{{countdown!='已截止'}}">
+      距投票截至时间 ：<text>{{days}}</text> 天
+      <text>{{hours}}</text> 时
+      <text>{{minutes}}</text> 分
+      <text>{{seconds}}</text> 秒
+    </view>
+    <view class="messageWhiteBox-Botarea " wx:else>
+      投票活动结束啦~  下次再来哦~
+    </view>
+  </view>
+
+  <!-- 双项切换专题 -->
+  <view class="TwochooseBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="TwochooseBox-tap {{tapchoose=='赛品评估'?'tapchoose':''}}" data-name='赛品评估' bindtap='tapchange'>赛品评估</view>
+    <view class="TwochooseBox-tap {{tapchoose=='文创鉴赏'?'tapchoose':''}}" data-name='文创鉴赏' bindtap='tapchange'>文创鉴赏</view>
+  </view>
+
+  <!-- tab切换栏 - 赛品评估 -->
+  <view wx:if="{{tapchoose=='赛品评估'}}" class="Tabswitch dis_flex-direction_row-aligin_center-justify-between">
+    <view class="Tabswitch-apart {{currentchoose=='作品展示'?'currentchoose':''}}" data-name='作品展示' bindtap='switchover'>作品展示</view>
+    <view class="Tabswitch-apart {{currentchoose=='主题介绍'?'currentchoose':''}}" data-name='主题介绍' bindtap='switchover'>主题介绍</view>
+    <view class="Tabswitch-apart {{currentchoose=='时排行榜'?'currentchoose':''}}" data-name='时排行榜' bindtap='switchover'>时排行榜</view>
+  </view>
+  <!-- tab切换栏 - 文创鉴赏 -->
+  <view wx:if="{{tapchoose=='文创鉴赏'}}" class="Tabswitch dis_flex-direction_row-aligin_center-justify-between">
+    <view class="Tabswitch-apart {{currentchooseSec=='祝福祈愿'?'currentchoose':''}}" data-name='祝福祈愿' bindtap='switchoverSec'>祝福祈愿</view>
+    <view class="Tabswitch-apart {{currentchooseSec=='词云速览'?'currentchoose':''}}" data-name='词云速览' bindtap='switchoverSec'>词云速览</view>
+    <view class="Tabswitch-apart {{currentchooseSec=='创意亮点'?'currentchoose':''}}" data-name='创意亮点' bindtap='switchoverSec'>创意亮点</view>
+  </view>
+
+  <!--赛品评估tab切换栏1-作品展示    投票作品展示区域 -->
+  <view wx:if="{{tapchoose=='赛品评估'&&currentchoose=='作品展示'}}" class="WorksBox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="WorksBox-Item" wx:for="{{yanxiang}}" wx:key="{{index}}">
+        <image class="WorksBox-Item-worksimg" src="{{item.imageurl[0]}}" mode="aspectFill"  bind:tap="detailOpen" data-id="{{item._id}}">
+        <!-- data-index="{{item.index}}" -->
+        </image>
+        <view class="WorksBox-Item-Votearea dis_flex-direction_row-aligin_center-justify-between">
+            <view class="Votearea-creator">
+              <!-- 作品名 -->
+              <view class="Votearea-creator-worksname">
+                {{item.worksname}}
+              </view>
+              <view class="Votearea-creator-worksname" style="color: #6c6c6c; font-size: 20rpx;">
+                {{item.worker}}
+              </view>
+            </view>
+            <!-- 图片下方的投票信息区 -->
+            <view class="Votearea-vote">
+              <!-- 显示投票数 -->
+              <view class="Votearea-vote-showNum dis_flex-direction_row-aligin_center-justify-start">
+                <view style="margin-left: 18rpx;">累计</view>
+                <view style="color: rgb(223,124,116);margin-left: 5rpx;margin-right: 8rpx;">{{item.voteNum}}</view>
+                <view>票</view>
+              </view>
+              <!-- 投票按钮 -->
+              <view class="voteBtn" bindtap="voteBtn" data-id="{{item._id}}" data-num="{{item.voteNum}}">
+                投票
+              </view>
+            </view>
+        </view>
+    </view>
+    <!-- 留白 -->
+    <view style="width: 100%;height: 100rpx;background: -webkit-linear-gradient(top,#E1F2FF,#ffffff);color: #6c6c6c;text-align: center;line-height: 100rpx;">暂无更多咯~</view>
+  </view>
+
+  <!--赛品评估tab切换栏2-主题介绍    活动文字说明展示区域 -->
+  <view wx:if="{{tapchoose=='赛品评估'&&currentchoose=='主题介绍'}}" class="descriptionBox">
+    <!-- 主题信息封面 -->
+    <view class="descriptionBox-posters">
+      <image class="posters" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/message/messageBox/banner.jpg" mode="aspectFill"></image>
+    </view>
+    <!-- 主题内容标题 title -->
+    <view class="descriptionBox-title">
+      《创意无限：玩偶VS公仔》
+    </view>
+    <!-- 主题内容标题 活动介绍 -->
+    <view class="descriptionBox-description">
+      {{qianyan}}
+    </view>
+    <view class="descriptionBox-description">
+      <text style="font-size: 36rpx;font-weight: bold;">活动背景：</text>
+      {{beijing}}
+    </view>
+    <view class="descriptionBox-description">
+      <text style="font-size: 36rpx;font-weight: bold;">活动介绍：</text>
+      {{introduce}}
+    </view>
+
+     <!-- 主题内容标题 投票规则 -->
+    <view class="descriptionBox-rules">
+      <text style="font-size: 36rpx;font-weight: bold;">投票规则:</text>
+      {{rule}}
+    </view>
+    <view class="descriptionBox-rules">
+      <text style="font-size: 36rpx;font-weight: bold;">结语:</text>
+      {{jieyu}}
+    </view>
+    <!-- 留白 -->
+    <view style="width: 100%;height: 50rpx;"></view>
+  </view>
+
+  <!--赛品评估tab切换栏3-时排行榜    排行榜展示区域 -->
+  <view wx:if="{{tapchoose=='赛品评估'&&currentchoose=='时排行榜'}}" class="ranklist">
+    <!-- 分成上下两个部分，上面的1-3名row排列 -->
+    <view class="ranklist-topbox dis_flex-direction_row-aligin_center-justify-start">
+      <view class="ranklist-itembox dis_flex-direction_column-aligin_center-justify-start" >
+        <view style="width: 100%;height: 75rpx;background-color: transparent;"></view>
+        <!-- 第二名位置 -->
+        <view class="ranklist-second" style="border-right: 1rpx solid #6c6c6c">
+          <image class="ranklist-secondimg" src="{{yanxiang[1].imageurl[0]}}"></image>
+          <view class="ranklist-worksname" style="margin-top: 15rpx;">{{yanxiang[1].worksname}}</view>
+          <view class="ranklist-worker" style="margin-top: 10rpx;">{{yanxiang[1].worker}}</view>
+          <view class="ranklist-votenum" style="font-size: 36rpx;"><text>{{yanxiang[1].voteNum}}</text>票</view>
+        </view>
+      </view>
+      <view class="ranklist-itembox dis_flex-direction_column-aligin_center-justify-start" style="width: 34%;">
+        <!-- 第一名位置 -->
+        <view class="ranklist-first">
+          <image class="ranklist-firstimg" src="{{yanxiang[0].imageurl[0]}}"></image>
+          <view class="ranklist-worksname" style="margin-top: 15rpx;">{{yanxiang[0].worksname}}</view>
+          <view class="ranklist-worker" style="margin-top: 15rpx;">{{yanxiang[0].worker}}</view>
+          <view class="ranklist-votenum" style="font-size: 50rpx;margin-top: 26rpx;"><text style="color: rgb(223,124,116);">{{yanxiang[0].voteNum}}</text>票</view>
+        </view>
+      </view>
+      <view class="ranklist-itembox dis_flex-direction_column-aligin_center-justify-start">
+        <view style="width: 100%;height: 115rpx;background-color: transparent;"></view>
+        <!-- 第三名位置 -->
+        <view class="ranklist-third">
+          <image class="ranklist-thirdimg" src="{{yanxiang[2].imageurl[0]}}"></image>
+          <view class="ranklist-worksname" style="margin-top: 10rpx;">{{yanxiang[2].worksname}}</view>
+          <view class="ranklist-worker" style="margin-top: 10rpx;">{{yanxiang[2].worker}}</view>
+          <view class="ranklist-votenum"><text>{{yanxiang[3].voteNum}}</text>票</view>
+        </view>
+      </view>
+    </view>
+    <!-- 下半部分 第4到最后一名 -->
+    <view class="ranklist-bottombox" wx:for="{{yanxiang}}" wx:key="{{index}}">
+      <view class="bottombox-rankitem dis_flex-direction_row-aligin_center-justify-start" wx:if="{{yanxiang[index+3]}}">
+        <!-- 排名序号 -->
+        <view class="rankitem-indexnum">{{index+4}}</view>
+        <!-- 作品头像 -->
+        <view class="rankitem-worksimgbox">
+          <image class="worksimgbox-img" src="{{yanxiang[index+3].imageurl[0]}}"></image>
+        </view>
+        <!-- 作品信息 -->
+        <view class="rankitem-messagebox">
+          <view class="messagebox-worksname">{{yanxiang[index+3].worksname}}</view>
+          <view class="messagebox-worker">{{yanxiang[index+3].worker}}</view>
+        </view>
+        <!-- 投票数 -->
+        <view class="rankitem-votenum">{{yanxiang[index+3].voteNum}}票</view>
+      </view>
+
+    </view>
+
+    <!-- 留白 -->
+    <view style="width: 100%;height: 100rpx;text-align: center;line-height: 100rpx;color: #7f7f7f;">暂无更多咯~</view>
+  </view>
+
+
+  <!-- ----------------------- -->
+  <!--赛品评估tab切换栏3-祝福祈愿    祝福祈愿展示区域 -->
+  <view wx:if="{{tapchoose=='文创鉴赏'&&currentchooseSec=='祝福祈愿'}}" class="ranklist">
+    <!-- <view class="lackBox">
+      <image class="lackImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/null-img/lack_1.jpg" mode="aspectFill"></image>
+    </view> -->
+    <view style="height: 400rpx;">
+      
+    </view>
+
+    <view class="doommview">
+      <block wx:for="{{doommData}}" wx:key="id">
+        <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;color: {{item.color}};top: {{item.top+'%'}};">
+            {{item.text}}time
+        </text>
+      </block>
+    </view>
+    <view class="button">
+      <button bindtap="bindbt">祝福一下吧~</button>
+    </view>
+    
+    <view style="height: 200rpx;"></view>
+
+  </view>
+
+
+  <!--赛品评估tab切换栏3-词云速览    词云速览 -->
+  <view wx:if="{{tapchoose=='文创鉴赏'&&currentchooseSec=='词云速览'}}" class="ranklist">
+
+    <view wx:if="{{!if_chiyun}}" style="margin-bottom:80rpx">目前暂无生成的词云，点击下方按钮生成活动介绍词云吧，快速了解活动内容，参与互动~</view>
+
+
+    <image wx:if="{{if_chiyun}}" class="chiyun_img" src="{{list[temp]}}" mode="widthFix"></image>
+
+    <view wx:if="{{!if_chiyun}}" class="chiyun_btn" bindtap="chiyun_open">根据主题介绍内容生成词云介绍</view>
+    <view wx:if="{{if_chiyun}}"  class="chiyun_btn" bindtap="chiyun_next">再次生成其他词云</view>
+  </view>
+  
+
+  <!--赛品评估tab切换栏3-创意亮点    -->
+  <view wx:if="{{tapchoose=='文创鉴赏'&&currentchooseSec=='创意亮点'}}" class="ranklist">
+
+    <view style="width: 100%;height: auto;">
+      <!-- <view style="height: 20rpx;"></view> -->
+      <view class="showlightBox">
+        <view class="showlightBoxItem" wx:for="{{yanxiang}}" wx:key="index" bind:tap="ideaOpen" 
+        data-id="{{item._id}}">
+            <image class="showlightBoxItem-img" src="{{yanxiang[index].imageurl[0]}}">
+            </image>
+            <view class="showlightBoxItem-midbox">
+              <view class="showlightBoxItem-midbox-num">{{yanxiang[index].voteNum}}票</view>
+              <view class="showlightBoxItem-midbox-worksname">{{yanxiang[index].worksname}}</view>
+              <view class="showlightBoxItem-midbox-tips">{{yanxiang[index].tips}}</view>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view style="width: 100%;height: 80rpx;"></view>
+  </view>
+</view>
+
+
+<!--作品展示弹窗 -->
+<van-popup show="{{ if_showdetail }}" round position="bottom" closeable custom-style="height:80%;" bind:close="detailClose">
+  <view style="height: 100rpx;line-height: 100rpx;text-align: center;font-size: 36rpx;">作品详情</view>
+  <view class="detailBox" >
+      <block wx:for="{{yanxiang}}" wx:key="index" wx:if="{{currentIndex == yanxiang[index]._id}}">
+        <view class="detailBox-worksname" >{{item.worksname}}<text class="detailBox-worker">-{{item.worker}}</text></view>
+        <swiper class="detailBox-swiper" indicator-color='#7ba1a8' autoplay="true" indicator-dots="true"
+        indicator-active-color="#FFC80B">
+         <block wx:for="{{yanxiang[index].imageurl}}" wx:key="index">
+           <swiper-item>
+              <image class="detailBox-swiper-img" src="{{item}}" mode="widthFix"></image>
+           </swiper-item>
+         </block>
+        </swiper>
+        <view class="detailBox-voteNumbox"><text class="detailBox-voteNumbox-red">{{item.voteNum}}</text><text style="color: #7f7f7f;font-size: 30rpx;">票</text></view>
+        <view style="font-size: 36rpx;margin-top: 20rpx;">作品简介</view>
+        <view class="detailBox-content">{{item.content}}</view>
+      </block>
+  </view> 
+</van-popup>
+
+<!--创意亮点弹窗 -->
+<van-popup show="{{ if_showIDEA }}" round position="bottom" closeable custom-style="height:auto;" bind:close="ideaClose">
+  <view style="height: 100rpx;line-height: 100rpx;text-align: center;font-size: 36rpx;">创意亮点</view>
+  <block wx:for="{{yanxiang}}" wx:key="index" >
+    <view wx:if="{{currentIdea==item._id}}" class="IdeaBox">
+      <view class="IdeaBox-top">
+        <view class="IdeaBox-facebox">
+        <image class="IdeaBox-facebox-img" src="{{item.faceImg}}"></image>
+        <view class="IdeaBox-facebox-worker">{{item.worker}}</view>
+      </view>
+      <view class="IdeaBox-contentbox">
+        <view class="IdeaBox-contentbox-worksname">作品名称：{{item.worksname}}</view>
+        <view class="IdeaBox-contentbox-tips">设计口号：{{item.tips}}</view>
+        <view class="IdeaBox-contentbox-title">设计亮点：</view>
+        <block wx:for="{{yanxiang[index].list}}">
+          <view class="IdeaBox-contentbox-list-add" wx:if="{{index!=0}}">+</view>
+          <view class="IdeaBox-contentbox-list">{{item}}</view>
+        </block>
+      </view>
+      </view>
+      <view class="IdeaBox-bottom warp">
+        <block wx:for="{{item.imageurl}}">
+          <image class="IdeaBox-bottom-img" src="{{item}}"></image>
+        </block>
+      </view>
+  </view>
+  </block>
+  <view style="height: 40rpx;"></view>
+</van-popup>

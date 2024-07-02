@@ -1,0 +1,432 @@
+<!-- 最上方的白色背景 -->
+<view style="width:100%;height: {{ capsuleHeight+capsuleTop+10 }}px;background-color: #ffffff;z-index: -999;">
+</view>
+<!-- 背景 -->
+<view class="bcbox" wx:if="{{currentEx!='详情'}}">
+  <image class="bcbox-img" src="{{all.detailSwiper[0].url}}"></image>
+</view>
+
+<!-- 返回键、头部切换栏 -->
+<view class="topBox dis_flex-direction_row-aligin_center-justify-between" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;color: black;">
+  <!-- 返回键 -->
+  <image wx:if="{{currentEx!='详情'}}" style="width: {{ capsuleHeight -4}}px;height: {{ capsuleHeight-4 }}px;" src="../../images/haina/left-fff.png" bindtap="return_service"></image>
+  <image wx:else style="width: {{ capsuleHeight -4}}px;height: {{ capsuleHeight-4 }}px;" src="../../images/haina/left-000.png" bindtap="return_service"></image>
+
+  <!-- 头部切换栏 不是详情-->
+  <view class="topBox-exchange dis_flex-direction_row-aligin_center-justify-between">
+    <block wx:for="{{topexchangeList}}" wx:key="index">
+      <view wx:if="{{currentEx!='详情'}}" class="exchangeItme {{currentEx==item?'currentEx':''}} " bindtap="exchangeCurrent" data-name="{{item}}">{{item}}</view>
+      <view wx:else="" class="exchangeItme {{currentEx==item?'currentEx_black':'defult_black'}} " bindtap="exchangeCurrent" data-name="{{item}}">{{item}}</view>
+    </block>
+  </view>
+</view>
+
+
+<!-- ====================详情部分===================== -->
+<!-- 详情页上方的轮播图 -->
+<view style="height: 600rpx;" wx:if="{{currentEx=='详情'}}">
+  <!-- 这里的current="{{currntIndex}}" 意思是 将决定轮播图当前页的索引用currntIndex代替 -->
+  <!-- bindchange="handleChange" bindchange是官方规定的轮播图切换函数前缀 -->
+  <swiper class="detailSwiper" bindchange="handleChange" current="{{currentIndex}}">
+    <block wx:for="{{all.detailSwiper}}">
+      <swiper-item class="detailSwiperItem" >
+        <image class="detailSwiperItem-img" src="{{item.url}}" mode="aspectFill"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="downsrollbox dis_flex-direction_row-aligin_center-justify-start">
+    <block wx:for="{{all.detailSwiper}}">
+      <view class="downsrollboxItem" currentIndex>
+        <!-- 如果刚启动时没有出现黄色边框，是因为页面加载时数据没刷新完成 在onload函数中设置启动时就赋值可以解决这个问题-->
+        
+        <!-- 测试代码没有问题  假如没有黄色框 看看是不是数据库出现问题了  detailSwiper 中要有url和id -->
+        <image class="downsrollboxItem-img {{currentIndex==item.id?'currntdownsroll':''}}" src="{{item.url}}" mode="aspectFill" data-id="{{item.id}}" bindtap="exdownsroll"></image>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 中间详细介绍部分 -->
+<view class="panelBox" wx:if="{{currentEx=='详情'}}">
+  <!-- 名称 -->
+  <view class="panelBox-name">{{all.subjectsName}}</view>
+  <!-- 宣发部门 时间 奖金 加入什么计划 -->
+  <view class="panelBox-detailpart dis_flex-direction_row-aligin_center-justify-start">
+    <!-- 宣发部门 -->
+    <view class="detailpart-text">
+      {{all.section}}
+    </view>
+    <!-- 时间 -->
+    <view class="detailpart-text">
+      {{all.time}}
+    </view>
+    <!-- 奖金 -->
+    <view class="detailpart-text">
+      {{all.reward}}
+    </view>
+    <!-- 加入计划 -->
+    <view class="detailpart-text">
+      <!-- 预计于2023-12-31前加入海纳计划 -->
+      {{all.plan}}
+    </view>
+  </view>
+  <!-- 标签组 -->
+  <view class="panelBox-tagpart dis_flex-direction_row-aligin_center-justify-start">
+    <block wx:for="{{all.tagList}}" wx:key="index">
+      <view class="tagpart-tagItem">
+        <!-- {{item}} -->
+        <view class="tagpart-tagItem-text">{{item}}</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮阴影版 -->
+  <view class="panelBox-scorepart dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 评分信息 评分表 -->
+    <view class="scorepart-toppart dis_flex-direction_row-aligin_center-justify-start">
+      <!--左半边 评分信息 -->
+      <view class="scorepart-toppart-leftpart dis_flex-direction_column-aligin_center-justify-start">
+        <!-- 评分信息和人数信息 -->
+        <view class="numberdata_person">
+          {{all.score}}<text class="toppart-leftpart-text">{{all.allperson}}人群</text>
+        </view>
+        <!-- 评分星星 这里的两个三才是真正的分数 starList只是模拟五个星星的数据而已-->
+        <view class="starList">
+        <!-- starList 是页面值 js中已经有了  starNum才是数据库值  -->
+          <block wx:for="{{starList}}" wx:if="{{item<=all.starNum}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_yellow.png"></image>
+          </block>
+          <!-- 这里的4是分数上限，3最后要换成评论本身的评分数  -->
+          <block wx:for="{{starList}}" wx:if="{{item<(4-all.starNum)}}" wx:key="index">
+            <image class="starImg" src="../../images/JL/star_null.png"></image>
+          </block>
+        </view>
+        <!-- 按钮数据 -->
+        <view class="toppart-leftpart-btndata">
+          {{all.commentNum}}人点评<text style="margin-left: 20rpx;">{{all.likeNum}}人喜欢</text>
+        </view>
+      </view>
+      <!--右半边 评分表 -->
+      <view class="scorepart-toppart-rightpart">
+       <block wx:for="{{all.barList}}" wx:key="index">
+          <view class="scorepart-scoreItem dis_flex-direction_row-aligin_center-justify-start">
+            <!-- 几星 -->
+            <view class="scorepart-scoreItem-name" style="margin-right: 20rpx;">{{item.name}}星</view>
+            <!-- 进度条 -->
+            <view class="bar_bc">
+              <view class="scoreItem-bar" style="width: {{item.bar}};"></view>
+            </view>
+            <!-- 百分比 -->
+            <view class="scorepart-scoreItem-name" style="margin-left: 10rpx;">{{item.bar}}</view>
+          </view>
+       </block>
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="scorepart-bottompart dis_flex-direction_row-aligin_center-justify-between">
+      <!-- 点评 -->
+      <view class="bottompart-btn">
+        <image class="bottompart-btn-icon" src="../../images/index/message.png"></image>
+        <view class="bottompart-btn-text">点评</view>
+      </view>
+      <!-- 喜欢 -->
+      <view class="bottompart-btn">
+        <image class="bottompart-btn-icon" src="../../images/index/message.png"></image>
+        <view class="bottompart-btn-text">喜欢</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 活动介绍 -->
+<view class="introductionbox dis_flex-direction_column-aligin_center-justify-start" wx:if="{{currentEx=='详情'}}">
+  <view class="blackbodyTitle">活动介绍</view>
+  <view class="introductionbox-text-part {{if_unfold?'unfold':'fold'}}">{{all.introduction}}</view>
+  <view wx:if="{{!if_unfold}}" class="introductionbox-btn" bindtap="introduction_btn">查看更多介绍</view>
+  <view wx:if="{{if_unfold}}" class="introductionbox-btn" bindtap="introduction_btn">收回</view>
+</view>
+
+<!-- 相关文章 -->
+<view class="articlebox" wx:if="{{currentEx=='详情'}}">
+  <!-- 标题 -->
+  <view class="rulesbox-Title dis_flex-direction_row-aligin_center-justify-between">
+    <view class="rulesbox-Title-left">相关文章</view>
+    <view class="rulesbox-Title-right">更多 ></view>
+  </view>
+  <view style="height: 10rpx;"></view>
+  <!-- 文章单体 -->
+  <view class="articlebox-Item dis_flex-direction_row-aligin_center-justify-start" wx:for="{{all.rules}}">
+    <!-- 左半边 -->
+    <view class="articlebox-Item-left">
+      <!-- 标题 -->
+      <view class="articlebox-Item-left-title">
+        {{item.name}}
+      </view>
+      <!-- 数据 -->
+      <view class="articlebox-Item-left-data">
+        <text>{{item.time}}</text>
+        <text style="margin-left: 30rpx;">{{item.personnum}}人留言</text>
+      </view>
+    </view>
+    <!-- 右半边 -->
+    <view class="articlebox-Item-right">
+      <image class="articlebox-Item-right-img" src="{{item.img}}" mode="aspectFill"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 玩家点评 -->
+<view class="reviewsbox" wx:if="{{currentEx=='详情'}}">
+  <!-- 标题 -->
+  <view class="rulesbox-Title dis_flex-direction_row-aligin_center-justify-between">
+    <view class="rulesbox-Title-left">玩家点评</view>
+    <view class="rulesbox-Title-right">更多 ></view>
+  </view>
+  <view style="height: 10rpx;"></view>
+
+  <!-- 点评单体 -->
+  <view class="reviewsbox-Item" wx:for="{{all.commentList}}">
+    <view class="reviewsbox-Item-top dis_flex-direction_row-aligin_center-justify-start">
+      <!-- 头像 -->
+      <image class="reviewsbox-Item-top-leftImg" src="{{item.faceImg}}"></image>
+      <!-- 信息栏 -->
+      <view class="reviewsbox-Item-top-right dis_flex-direction_column-aligin_center-justify-start">
+        <!-- 用户名和等级 -->
+        <view class="Item-top-right-toppart dis_flex-direction_row-aligin_center-justify-start">
+          <view class="Item-top-right-toppart-name">{{item.nickName}}</view>
+          <image class="Item-top-right-toppart-img" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/lv/lv{{item.lv}}.png" mode="aspectFill"></image>
+        </view>
+        <!-- 是否参与过 和 评分星级 -->
+        <view class="Item-top-right-bottompart dis_flex-direction_row-aligin_center-justify-start">
+          <view class="Item-top-right-bottompart-text">{{item.type}}</view>
+          <view class="Item-top-right-bottompart-star dis_flex-direction_row-aligin_center-justify-start">
+            <block wx:for="{{starList}}" wx:if="{{item<=3}}" wx:key="index">
+              <image class="ministarimg" src="../../images/JL/star_yellow.png"></image>
+            </block>
+            <!-- 这里的4是分数上限，3最后要换成评论本身的评分数  -->
+            <block wx:for="{{starList}}" wx:if="{{item<(4-3)}}" wx:key="index">
+              <image class="ministarimg" src="../../images/JL/star_null.png"></image>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="reviewsbox-Item-bottom">
+      {{item.comment}}
+    </view>
+    <view style="margin-left:20%;width: 60%;height: 20rpx;border-bottom: 1rpx solid #cecece;"></view>
+  </view>
+</view>
+
+<!-- 详情快速评论 -->
+<view class="bottom-comomentbox dis_flex-direction_row-aligin_center-justify-between" wx:if="{{currentEx=='详情'}}">
+  <view class="bottom-comomentbox-inputbox">喜欢就评论吧</view>
+  <view class="bottom-comomentbox-gobtn">了解相关</view>
+</view>
+
+
+<!-- ====================圈子部分===================== -->
+<!-- 中间基本信息部分 "详情","攻略","圈子" -->
+<view class="middleBox dis_flex-direction_row-aligin_center-justify-start" wx:if="{{currentEx=='圈子'}}">
+  <!-- 左边的图像 -->
+  <view class="middleBox-left">
+    <image class="middleBox-left-img" src="{{all.detailSwiper[0].url}}" mode="aspectFill"></image>
+  </view>
+  <!-- 中间的信息面板 -->
+  <view class="middleBox-center dis_flex-direction_column-aligin_center-justify-start">
+    <!-- 话题名称 -->
+    <view class="center-name">{{all.subjectsName}}</view>
+    <!-- 热度 -->
+    <view class="center-firebox">
+      <image class="firebox-img" src="../../images/haina/fire.png"></image>
+      <view class="firebox-text">热度：{{all.hotnum}}</view>
+    </view>
+    <!-- 浏览人数与帖子数量 -->
+    <view class="center-figures">
+      <view class="figures-comeData">浏览：{{all.browse}}</view>
+      <view>帖子：{{greatActions.length}}</view>
+    </view> 
+  </view>
+  <!-- 右边的按键 -->
+  <view class="middleBox-right">
+    <view class="right-remark">留言</view>
+    <view class="right-search">
+      <image class="right-search-img" src="../../images/index/index.png"></image>
+      <view class="right-search-text">查询</view>
+    </view>
+  </view>
+</view>
+<view style="height: 40rpx;"></view>
+<!-- 下方的分页展示栏 -->
+<view class="bottomBox" wx:if="{{currentEx=='圈子'}}"> 
+  <!-- 中间最多讨论banner图片部分 -->
+  <view class="bottomBox-circleBanner">
+    <!-- 黄色标题 -->
+    <view class="circleBanner-title">最多讨论</view>
+    <!-- 图片本体 -->
+    <image class="circleBanner-img" src="{{all.centerbanner.img}}"></image>
+    <!-- 下方子话题名称 -->
+    <view class="circleBanner-sonname">{{all.centerbanner.title}}</view>
+    <!-- 子话题数据 -->
+    <view class="circleBanner-sondata">{{all.centerbanner.personnum}}人参与讨论</view>
+  </view>
+  <!-- 中间图片多人重叠链接 -->
+  <view class="imgarrbox dis_flex-direction_row-aligin_center-justify-between">
+    <view class="imgarrbox-text">看看大佬们都是怎么设计的！</view>
+    <view class="imgarrbox-right">
+      <view class="imgarrbox-arr">
+        <view wx:for="{{all.imgarr}}" wx:key="id" style="transform:translateX({{-index*30}}rpx);">
+          <image class="arrimg" src="{{item}}"></image>
+        </view>
+      </view>
+      <view class="imgarrbox-right-arrow">></view>
+    </view>
+  </view>
+  <!-- 留白 -->
+  <view style="height: 40rpx;"></view>
+
+  <!-- 用的精华帖的数据到时候记得换掉 -->
+  <!-- 下方的讨论留言部分 -->
+  <view style="width: 94%;margin-left: 3%;height: auto;">
+    <view class="squareItem" wx:for="{{greatActions}}">
+      <view class="bcsetting">
+        <view style="height: 24rpx;"></view>
+        <!-- 用户栏 -->
+        <view class="squareItem-userbanner dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 用户头像 -->
+          <view class="userbanner-userfaceImg">
+              <image class="userfaceImg" src="{{item.faceImg}}"></image>
+          </view>
+          <!-- 用户信息 -->
+          <view class="userbanner-userMessage dis_flex-direction_column-aligin_center-justify-center">
+            <view class="userMessage-nickandlv dis_flex-direction_row-aligin_center-justify-start">
+             <view class="userMessage-nickname">{{item.nickName}}</view>
+              <image class="userMessage-lv" src="cloud://cloud1-8glnu2cm852a2315.636c-cloud1-8glnu2cm852a2315-1309854973/ImageCollection/lv/lv{{item.lv}}.png" mode="aspectFill"></image>
+          </view>
+          <view class="userMessage-pubtime">{{item.time}}</view>
+          </view>
+        </view>
+        <!-- 标题信息 -->
+        <view class="squareItem-title">{{item.title}}</view>
+        <!-- 正文信息 -->
+        <view class="squareItem-content">
+          <textarea class="content-text">{{item.text}}</textarea>
+        </view>
+        <!-- 图片布局 -->
+        <view class="squareItem-imageSwiper">
+          <view class="imageSwiper-SwiperBox">
+            <swiper class="SwiperBox" 	indicator-dots="true">
+              <block wx:for="{{item.images}}" wx:for-item="itemkid" wx:for-index="numm">
+                <swiper-item>
+                  <image class="SwiperBox-image" src="{{itemkid}}" mode="aspectFill" bindtap="previewImg" data-src="{{itemkid}}" data-index="{{numm}}"></image>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <!-- 下方互动框 -->
+        <view class="interactbox dis_flex-direction_row-aligin_center-justify-start">
+          <!-- 点赞及其文本信息 -->
+          <view class="interactbox-Item" >
+            <image class="interactbox-Itemicon" src="../../images/index_able/like.png"></image>
+            <view class="interactbox-text">{{item.prizeList.length}}</view>
+          </view>
+          <!-- 评论及其文本信息 -->
+          <view class="interactbox-Item" style="margin-left: 50rpx;">
+            <image class="interactbox-Itemicon" src="../../images/index/message.png"></image>
+            <view class="interactbox-text">{{item.commentList.length}}</view>
+          </view>
+          <!-- 最近一次评论内容 -->
+          <view class="interactbox-showcomment" style="margin-left: 30rpx;">
+            <!-- 评论用户 -->
+            <view class="showcomment-faceImg">
+              <image class="faceImgsize" src="{{item.commentList[0].faceImg}}"></image>
+            </view>
+            <!-- 评论内容 -->
+            <view class="onehangtext" style="color: #646464;">
+              {{item.commentList[0].text}}
+            </view>
+          </view>
+        </view>
+        <!-- 留白 -->
+        <view style="height: 20rpx;"></view>
+      </view>
+  </view>
+  </view>
+</view>
+
+<!-- ====================攻略部分===================== -->
+<!-- 攻略-轮播图部分 -->
+<view class="strategy-swiperbox" wx:if="{{currentEx=='攻略'}}">
+  <swiper class="swiperbox-box" autoplay="true" indicator-dots="true" indicator-active-color="white">
+    <block wx:for="{{all.strategyswiper}}" wx:key="index">
+      <swiper-item>
+        <image class="swiperbox-img" src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- ==下方介绍== -->
+<!-- 攻略-话题规则 -->
+<view class="rulesbox-rulespart" wx:if="{{currentEx=='攻略'}}">
+  <view class="blackbodyTitle">话题规则</view>
+  <view class="rulesbox-detial dis_flex-direction_row-aligin_center-justify-between">
+    <block wx:for="{{all.rulesdetial}}" wx:key="index">
+      <view class="rulesbox-detialItem">
+        <image class="detialItem-img" src="{{item.img}}" mode="aspectFill" bindtap="subject_rulesBtn"></image>
+        <view class="detialItem-text">
+          <text class="detialItem-text-text">{{item.text}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 攻略-演示视频 -->
+<view class="rulesbox-videopart" wx:if="{{currentEx=='攻略'}}">
+  <!-- 标题 -->
+  <view class="rulesbox-Title dis_flex-direction_row-aligin_center-justify-between">
+    <view class="rulesbox-Title-left">话题视频</view>
+    <view class="rulesbox-Title-right">更多 ></view>
+  </view>
+  <!-- 视频部分 -->
+  <view class="videopart" bindtap="subject_videoBtn">
+    <view class="videopart-Item dis_flex-direction_row-aligin_center-justify-start" wx:for="{{all.videoList}}">
+      <image class="videopart-Item-img" src="{{item.img}}" mode="aspectFill"></image>
+      <view class="videopart-Item-right">
+        <view class="videopart-Item-name">{{item.name}}</view>
+        <view class="videopart-Item-right-bottom dis_flex-direction_row-aligin_center-justify-between">
+          <view class="videopart-Item-cate">#{{item.type}}</view>
+          <view class="videopart-Item-number">{{item.count}}播放</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 攻略-常见问答 -->
+<view class="issuebox" wx:if="{{currentEx=='攻略'}}" >
+  <!-- 标题 -->
+  <view class="rulesbox-Title dis_flex-direction_row-aligin_center-justify-between">
+    <view class="rulesbox-Title-left">常见问答</view>
+    <view class="rulesbox-Title-right">更多 ></view>
+  </view>
+  <!-- 问答内容 -->
+  <block wx:for="{{all.question}}" wx:key="index">
+    <view class="issueItem dis_flex-direction_column-aligin_center-justify-start">
+      <!-- 问题 -->
+      <view class="issueItem-question">
+        {{item.question}}
+      </view>
+      <!-- 回答两行 -->
+      <view class="issueItem-reply">
+        {{item.reply}}
+      </view>
+    </view>
+  </block>
+
+</view>
+
+
+<view style="height: 100rpx;"></view>

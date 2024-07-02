@@ -1,0 +1,510 @@
+.primename{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 40rpx;
+  color: #ffffff;
+  
+}
+.primelogo{
+  margin-left: 40rpx;
+  position: absolute;
+  width: 250rpx;
+}
+.searchbarBox{
+  position: absolute;
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 50rpx;
+  background-color: #ffffff;
+  opacity: 0.5;
+}
+.searchbarBox-image{
+  margin-left: 10rpx;
+  width: 55rpx;
+  height: 55rpx;
+}
+.defalttext{
+  width: 500rpx;
+  margin-left: 10rpx;
+  color: #7f7f7f;
+}
+/* 搜索栏显示面板 */
+.comeoutbox{
+  position: fixed;
+  width: 650rpx;
+  height: auto;
+  margin-left: 50rpx;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20rpx;
+  box-shadow: 2rpx 2rpx #7f7f7f;
+}
+.comeoutbox-Item{
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.comeoutbox-Item-img{
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 30rpx;
+}
+.comeoutbox-Item-title{
+  line-height: 120rpx;
+}
+
+.topimage{
+  width: 100%;
+  height: 570rpx;
+  z-index: -1;
+}
+/* 金刚区 */
+.JGarea{
+  width: 100%;
+  height: 160rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.JGarea-item{
+  width: 160rpx;
+  height: 160rpx;
+}
+.JGarea-item-image{
+  margin-left: 25rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+.JGarea-item-name{
+  width: 160rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+/* .swiper_box{
+  width: 100%;
+  margin-top:-220rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+}
+.swiper{
+width: 90%;
+height: 300rpx;
+border-radius: 80rpx;
+}
+.swiper_img{
+width: 100%;
+height: 300rpx;
+border-radius: 60rpx;
+} */
+.select_case{
+  color: #121212;
+  margin-bottom: 30rpx; 
+  box-shadow: 5rpx 5rpx 10rpx #e9e9e9;
+}
+.text-warp{
+  word-break:keep-all;       /* 不换行 */
+  white-space:nowrap;        /* 不换行 */
+}
+
+/* 推荐盒子 */
+.recommend_box{
+  width: 700rpx;
+  height: 1000rpx;
+  box-shadow: 5rpx 5rpx 10rpx #888888;
+}
+.message{
+  padding: 20rpx 20rpx 40rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.face_img{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  width: 700rpx;
+  height: 100rpx;
+}
+.down{
+  width: 700rpx;
+  height:100%;
+}
+.left-box{
+  margin-left: 0;
+  margin-right: 15rpx;
+}
+.nickName{
+  color: #586B94;
+  font-weight: 550;
+  font-size: 34rpx;
+  margin-bottom: 10rpx;
+}
+.time-delete{
+  display: flex;
+  flex-direction: row;
+  font-size: 28rpx;
+  margin: 10rpx 0rpx 10rpx 0rpx;
+}
+.time{
+  /* color: #b7b7b7; */
+  color: #7f7f7f;
+  margin-right: 20rpx;
+}
+.delete{
+  color: #586B94;
+}
+.topic{
+  width: 280rpx;
+  height: 50rpx;
+  font-size: 28rpx;
+  color: #20894d;
+}
+.proposition{
+  font-size: 26rpx;
+  columns: #dbdbdb;
+}
+
+.hudong-box{
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.hudong-cell-prize{
+  width: 180rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.hudong-cell{
+  width: 140rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+/* 点赞互动 */
+.hudong-img{
+  width: 55rpx;
+  height: 55rpx;
+  margin-right: 5rpx;
+}
+.hudong-img-out{
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+}
+.images-wrap{
+  margin-top: 10rpx;
+}
+.image-1{
+  width: 400rpx;
+  height: 400rpx;
+}
+.image-2-3{
+  width: 225rpx;
+  height: 225rpx;
+  margin-right: 6rpx;
+}
+.image-4{
+  width: 225rpx;
+  height: 225rpx;
+  margin-right: 6rpx;
+  margin-top: 6rpx;
+}
+.image-5-9{
+  width: 225rpx;
+  height: 225rpx;
+  margin-right: 6rpx;
+  margin-top: 6rpx;
+}
+
+/* 评论 */
+.comment-box{
+  margin-top: 15rpx;
+  background-color: #F7F7F7;
+  padding: 10rpx 10rpx;
+  font-size: 30rpx;
+}
+.comment{
+  margin-bottom: 20rpx;
+}
+.comment-nickName{
+  color: #586B94;
+}
+.comment-obj{
+  font-weight: 450;
+  color: #586B94;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.share-button{ 
+  background-color: #f6f6f6;
+  margin: 0 0 ;
+  padding: 0rpx ;
+  /* border-color: #f6f6f6; */
+}
+.button_border_down::after{
+  border: none;
+  margin: 0 0 ;
+  padding: 0rpx ;
+}
+
+/* 瀑布流 */
+/* .masonry{
+  column-count: 2;
+  column-gap: 0;
+} */
+/* .masonryItem{
+  position: relative;
+  padding: 10rpx;
+  position: relative;
+  counter-increment: item-counter;
+} */
+/* .masonryItem image{
+  width: 350rpx;
+  height: auto;
+
+} */
+
+/* .masonryItem:nth-child(2n+1){
+  order: 1;
+}
+.masonryItem:nth-child(2n+2){
+  order: 2;
+} */
+/* .masonryItem:nth-child(2n+3){
+  order: 3;
+}
+.masonryItem:nth-child(2n){
+  order: 4;
+} */
+
+/* 测试 */
+/* .masonryItem::after{
+  position: absolute;
+  display: block;
+  top: 10rpx;
+  left: 10rpx;
+  width: 48rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  background-color: #000;
+  color: #fff;
+  content: counter(item-counter);
+} */
+
+/*  --------------------------------------------------*/
+.content {
+  text-align: justify;
+}
+.item {
+  background-color: #fff;
+  margin: 10rpx 3%;
+  margin-bottom: 20rpx;
+  display: inline-block;
+  width: 96%;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.item-ava {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+}
+
+.heart {
+  width: 30rpx;
+  height: 26rpx;
+  margin-right: 8rpx;
+}
+
+.heart {
+  display: flex;
+  align-items: center;
+}
+
+.item-img {
+  width: 100%
+}
+.item-video{
+  width: 100%;
+}
+.item-title {
+  font-size: 30rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-family: 'PingFang SC-Medium';
+  color: #1e1e1e;
+  margin: 15rpx 15rpx 10rpx 15rpx;
+}
+.item-title-weight{
+  font-size: 30rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  font-family: 'PingFang SC-Medium';
+  color: #1e1e1e;
+  margin: 15rpx 15rpx 10rpx 15rpx;
+  font-weight: 600;
+}
+
+.item .name {
+  display: flex;
+  padding: 0 15rpx;
+  margin-top: 15rpx;
+  padding-bottom: 10rpx;
+  align-items: center;
+  font-size: 24rpx;
+  color: #1e1e1e;
+  font-family: 'PingFang SC-Medium';
+}
+
+.name image {
+  flex: 0 0 auto;
+}
+
+.item-title-box {
+  display: flex;
+  position: relative;
+}
+.item-text-box {
+  display: flex;
+  position: relative;
+}
+
+.name-title {
+  flex: 1;
+  margin-left: 18rpx;
+  margin-right: 20rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.name text:last-child {
+  color: #c4c4c4;
+  text-decoration: underline;
+  line-height: 10rpx;
+
+}
+
+.left,
+.right {
+  display: inline-block;
+  vertical-align: top;
+  width: 49%;
+}
+
+
+/* -------------------JYbanner */
+.JLbannerbox{
+  width: 700rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.JLbody{
+  width: 700rpx;
+  height: 230rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+}
+.left-area image{
+  width: 330rpx;
+  height: 210rpx;
+}
+.right-area{
+  margin-left: 30rpx;
+  width: 350rpx;
+  display: flex;
+  flex-direction: column;
+}
+.JLNtitle{
+  width: 100%;
+  /* 不换行 */
+  white-space: nowrap;
+  /* 超出隐藏 */
+  overflow: hidden;
+  /* 超出省略 */
+  text-overflow: ellipsis;
+
+  margin-bottom: 30rpx;
+}
+.JLNcontent{
+  font-size: 28rpx;
+  border-radius:10rpx;
+  padding: 0 ;
+  line-height: 46rpx;
+  height: 46rpx;
+  margin-left: 0rpx;
+  margin-bottom: 40rpx;
+  background-color: #d1d1d1;
+  color: #7f7f7f;
+}
+.JLNnumber{
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+}
+.JLNnumber-left{
+  width: 190rpx;
+}
+.JLNnumber-Img{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  margin-left: -15rpx;
+}
+.JLNnumber-Img-2{
+  width: 35rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  margin-left: -8rpx;
+}
+.JLNnumber-Img-3{
+  width: 35rpx;
+  height: 30rpx;
+  border-radius: 50%;
+}
+.JLNnumber-num{
+  margin-top: 3rpx;
+  width: 160rpx; 
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  color: #7f7f7f;
+}
+
+.address{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #586B94;
+  margin-bottom: -10rpx;
+}

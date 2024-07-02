@@ -1,0 +1,111 @@
+/* pages/supportProject/supportProject.wxss */
+.topTabBox{
+  padding-left: 2%;
+  width: 98%;
+  height: 80rpx;
+  background-color: #ffffff;
+}
+.topTabBox-item{
+  /* 让长度自动分配 用子元素撑开 */
+  width: auto;
+  height: 70rpx;
+  text-align: center;
+}
+.topTabBox-item-text{
+  margin: 0rpx 25rpx;
+  line-height: 70rpx;
+}
+.currntTapcss{
+  border-bottom: 6rpx solid black;
+  font-weight: bold;
+}
+
+/* 分页盒子 */
+.PageItemBox{
+  width: 100%;
+  /* 先设置为1000rpx*/
+  height: auto;
+
+}
+/* 缺数据 */
+.lackBox{
+  width: 96%;
+  margin-left: 2%;
+  margin-top: 10rpx;
+  height: auto;
+}
+.lackImg{
+  width: 100%;
+  height: 1400rpx;
+}
+
+.showBox{
+  margin: 20rpx 3%;
+  width: 94%;
+  height: auto;
+}
+.showBoxItem{
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  margin-bottom: 50rpx;
+}
+.showBox-img{
+  position: relative;
+  width: 700rpx;
+  height: 700rpx;
+  border-radius: 20rpx;
+
+}
+.showBox-type{
+  position: absolute;
+  padding: 15rpx 20rpx;
+  top: 20rpx;
+  left: 560rpx;
+  background-color: rgba(151, 151, 151, 0.6);
+  color: #ffffff;
+}
+.showBox-type-red{
+  position: absolute;
+  /* width: 300rpx; */
+  padding: 15rpx 20rpx;
+  top: 20rpx;
+  left: 500rpx;
+  background-color: rgba(151, 151, 151, 0.6);
+  border-radius: 10rpx;
+  color: rgb(238, 68, 68);
+}
+.green{
+  color: #20894d;
+}
+.oran{
+  color: orange;
+}
+.showBox-content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.showBox-content-goodsName{
+  width: 55%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.showBox-content-right{
+  width: 45%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.showBox-content-right-shoptime{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color: #7f7f7f;
+}

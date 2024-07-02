@@ -1,0 +1,174 @@
+<!--pages/detail/detail.wxml-->
+ <!-- 信息删除提示
+<view class="nullMessage" wx:if="{{!action.images&&!action.text}}">
+  <image class="nullMessageImg" src="../../img/svg/FileBroken.svg" ></image>
+  <text class="nullMessageText">找不到帖子啦！或者已经被删除啦！</text>
+</view> -->
+
+<view class="message" wx:if="{{action.images&&action.text}}">
+
+  <view class="left">
+    <image class="face_img" src="{{action.faceImg}}"></image>
+    <!-- 点赞人物显示 -->
+    <van-button wx:if="{{!givelike&&action.prizeList!=0}}" plain type="primary" class="niceTotal-btn" size="mini" bind:click="givelike_ftot" >显示昵称</van-button>
+    <van-button wx:if="{{givelike&&action.prizeList!=0}}"  type="primary" class="niceTotal-btn" size="mini" bind:click="givelike_ttof" >显示头像</van-button>
+  </view>
+
+  <view class="right">
+    <view class="user-btn-box">
+      <view class="nickName">{{action.nickName}}</view>
+      <van-button wx:if="{{!imageStyle}}" plain type="primary" class="change-btn" size="small" bind:click="changeStyle_ftt">全图模式</van-button>
+      <van-button wx:if="{{imageStyle}}"  type="primary" class="change-btn" size="small" bind:click="changeStyle_ttf">全图模式</van-button>
+      <!-- <text class="change-btn">完整全图模式</text> -->
+    </view>
+    <view style="font-weight: 600;font-size: 38rpx;">{{action.title}}</view>
+    <view>{{action.text}}</view>
+
+    <view class="images-wrap">
+     
+      <block wx:for="{{action.images}}" wx:key="index">
+      
+        <block  wx:if="{{action.images.length==1}}">
+          <!-- 单图  1大图 2小图-->
+          <image wx:if="{{imageStyle}}" class="image-fill" src="{{item}}" mode="widthFix" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          <image wx:if="{{!imageStyle}}" class="image-1" src="{{item}}" mode="aspectFill" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          
+        </block>
+        <block  wx:if="{{action.images.length==2||action.images.length==3}}">
+          <!-- 2-3图 -->
+          <image wx:if="{{!imageStyle}}" class="image-2-3" src="{{item}}" mode="aspectFill" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          <image wx:if="{{imageStyle}}" class="image-fill" src="{{item}}" mode="widthFix" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          <!-- <image class="image-2-3" src="{{item}}" mode="{{imageStyle?'widthFix':'aspectFill'}}"></image> -->
+        </block>  
+        
+        <block  wx:if="{{action.images.length==4}}">
+          <!-- 4图 -->
+          <image wx:if="{{!imageStyle}}" class="image-4" src="{{item}}" mode="aspectFill" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          <image wx:if="{{imageStyle}}" class="image-fill" src="{{item}}" mode="widthFix" bindtap="previewImg"
+          data-src="{{item}}"></image>         
+        </block>  
+        
+        <block  wx:if="{{action.images.length>4}}">
+          <!-- 5-9图 -->
+          <image wx:if="{{!imageStyle}}" class="image-5-9" src="{{item}}" mode="aspectFill" bindtap="previewImg"
+          data-src="{{item}}"></image>
+          <image wx:if="{{imageStyle}}" class="image-fill" src="{{item}}" mode="widthFix" bindtap="previewImg"
+          data-src="{{item}}"></image>
+        </block>
+
+      </block>
+    </view>
+
+
+    <view class="time-delete">
+      <view class="time">{{action.time}}</view>
+      <view class="delete" bindtap="delete" wx:if="{{openid == action._openid}}">删除</view>
+    </view>
+
+    <view wx:if="{{action.address}}" style="color: #586B94;font-size: 28rpx;" bindtap="openLocation">{{action.address}}</view>
+
+    <view class="hudong-box">
+      <view class="hudong-cell-prize" bindtap="prizeAction">
+        <image class="hudong-img" src="{{action.isPrized?'../../images/index_able/like_yellow.png':'../../images/index_able/like.png'}}"></image>
+        <!-- <text style="margin-left: 5rpx;" wx:if="{{action.prizenum!=0}}">{{action.prizenum}}</text> -->
+        <view>{{action.prizeList.length>0?action.prizeList.length:'点赞'}}</view>
+      </view>
+
+      <view class="hudong-cell" style="margin-left: -55rpx;">
+        <image class="hudong-img" src="../../images/index_able/message.png"></image>
+        <view>{{action.commentList.length>0?action.commentList.length:'评论'}}</view>
+      </view>
+
+      <button open-type="share" size="mini" class="share-button button_border_down">
+        <view class="hudong-cell">
+        <image class="hudong-img-out" src="../../images/index_able/out.png"></image>
+        <view>转发</view>
+      </view>
+      </button>
+    </view>
+  </view>
+</view>
+<!-- 无点赞评论 -->
+<view class="tips" wx:if="{{action.commentList.length==0 && action.prizenum==0}}" >
+  <text style="color: #999898;">----每一份感动缘于点赞与评论----</text>
+</view>
+<!-- 暂无评论 -->
+<view class="tips" wx:if="{{action.commentList.length==0 && action.prizenum!=0}}" >
+  <text style="color: #999898;">----QAQ 目前暂时还没有人评论哦！----</text>
+</view>
+<!-- 暂无点赞 -->
+<view class="tips" wx:if="{{action.prizenum==0 && action.commentList.length!=0}}">
+  <text style="color: #999898;">----你想成为点赞第一人吗！----</text>
+</view>
+<!-- 点赞显示 人物图片 -->
+<view class="nice-box" wx:if="{{!givelike&&item.prizeList.length!=0}}">
+  <view wx:if="{{action.prizeList.length!=0}}">
+    <image class="nice-blue-img" src="../../images/index_able/like_yellow.png"></image>
+  </view>
+  <view class="nice-img-box">  
+    <block wx:for="{{action.prizeList}}" wx:key="index" wx:for-item="faceItem" wx:for-index="faceIndex">
+      <image class="nice-img" src="{{faceItem.faceImg}}"></image>
+    </block>
+  </view>
+</view>
+<!-- 点赞显示 人物姓名 && and-->
+<view class="nice-box" wx:if="{{givelike&&item.prizeList.length!=0}}" style="height: 108rpx;">
+<!--点赞黄色图标如果不进行判断操作 就会一直存在 会撑大盒子 -->
+  <view wx:if="{{action.prizeList.length!=0}}">
+    <image class="nice-blue-img" src="../../images/index_able/like_yellow.png"></image>
+  </view>
+  <view class="nice-text-box">
+  <!-- wx:for-item 二维循环  wx:for-index 下标 -->
+    <block wx:for="{{action.prizeList}}" wx:key="index" wx:for-item="nickItem" wx:for-index="nickIndex">
+      <view>{{nickItem.nickName}}</view>
+      <text wx:if="{{nickIndex < action.prizeList.length -1}}">，</text>
+    </block>
+  </view>
+</view>
+
+
+<!-- 评论显示  && and-->
+<view class="comment-box">
+  <view class="comment-left" wx:if="{{action.commentList.length!=0}}">
+    <image class="comment-log" src="../../images/index_able/message_yellow.png"></image>
+  </view>
+  <view class="comment-right">
+    <block wx:for="{{action.commentList}}" wx:key="index">
+      <view class="comment-one" bindlongtap="{{openid == item.openid?'deleteComment':''}}" data-index="{{index}}" bindtap="replyComment">
+        <image class="comment-face" src="{{item.faceImg}}" ></image>
+        <view class="comment-content">
+            <view class="nickname-time">
+              <view class="comment-nickName">{{item.nickName}}</view>
+              <view class="comment-time">{{item.time}}</view>
+            </view>
+            <!-- <view class="comment-text">
+              {{item.text}}
+            </view> -->
+            <view class="comment-text">
+              <text wx:if="{{item.toOpenid}}">回复<text class="comment-obj">{{item.toNickname}}: </text></text>{{item.text}}
+            </view>
+        </view>
+      </view>
+    </block>
+    
+  </view>
+  <view>
+  </view>
+</view>
+
+<!-- 留白 -->
+<view style="height: 200rpx;"></view>
+
+<!-- 发布评论 -->
+<view class="pub-comment">
+  <view class="pub-left">
+    <input class="pub-input" placeholder="{{plcaceHolder}}" bindinput="getInputValue" value="{{inputValue}}"></input>
+  </view>
+  <view class="pub-button" bindtap="publishComment">发送</view>
+</view>
+

@@ -1,0 +1,190 @@
+{
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "我的",
+          "pathName": "pages/user/user",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "服务",
+          "pathName": "pages/service/service",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "延香",
+          "pathName": "pages/message/message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "详情",
+          "pathName": "pages/detail/detail",
+          "query": "id=16db756f6312a2d913a0df984174ec6f",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "发布",
+          "pathName": "pages/add/add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "授权登录",
+          "pathName": "pages/auth/auth",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "hello",
+          "pathName": "pages/hello/hello",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "用户详情",
+          "pathName": "pages/userDetail/userDetail",
+          "query": "openid=oKDti5DETqNZz6qAogqG0N_JPQrw",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "鲸遇详情",
+          "pathName": "pages/jlDetail/jlDetail",
+          "query": "id=4c3f29d46355475c000df5007e04ab10",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "海纳-文创众筹",
+          "pathName": "pages/haina/haina",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "申请众筹",
+          "pathName": "pages/applyZC/applyZC",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "three.js",
+          "pathName": "pages/threeJs/threeJs",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "众筹商品详情页",
+          "pathName": "pages/haina_zcDetail/haina_zcsDetail",
+          "query": "id=3bbc6ba865ded693010533b7649d92fd",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "话题详情页",
+          "pathName": "pages/topicDetail/topicDetail",
+          "query": "id=63ca5b1365e555b600ae05be4fdee976",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "授权登录",
+          "pathName": "pages/auth/auth",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "我的发布",
+          "pathName": "pages/myActions/myActions",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "万生",
+          "pathName": "pages/wansheng/wansheng",
+          "query": "id=63ca5b1365ea9ef2014e72827540f06a",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "延香-投票",
+          "pathName": "pages/message/message",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订单信息",
+          "pathName": "pages/orderMessage/orderMessage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "支持项目",
+          "pathName": "pages/supportProject/supportProject",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "发现",
+          "pathName": "pages/service/service",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "征集详情页",
+          "pathName": "pages/soliciting/soliciting",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "免责声明",
+          "pathName": "pages/disclaimer/disclaimer",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "讨论评价",
+          "pathName": "pages/remarks/remarks",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "subject",
+          "pathName": "pages/subject/subject",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "%E9%B2%B8%E9%81%87",
+  "libVersion": "2.25.4"
+}

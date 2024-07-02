@@ -1,0 +1,195 @@
+/* pages/soliciting/soliciting.wxss */
+
+/* 上面的基本信息盒子 */
+.infoBox{
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+.infoBox-title{
+  margin-top: 20rpx;
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+  font-size: 34rpx;
+  font-weight: bold;
+}/* 征集物品名 */
+.infoBox-numbers{
+  width: 90%;
+  margin-left: 5%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 34rpx;
+}/* 评分 */
+.infoBox-redfont{
+  font-size: 40rpx;
+  line-height: 80rpx;
+  color: rgb(223,124,116);
+  margin: 0rpx 12rpx;
+  font-weight: bold;
+}/* 评分红字分数 */
+.infoBox-label{
+  width: 90%;
+  margin-left: 5%;
+  height: 60rpx;
+}/* 标签组盒子 */
+.infoBox-labelItem{
+  margin-right: 20rpx;
+  padding: 0rpx 16rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  background-color: rgb(254, 244, 202);
+  color: rgb(248, 181, 65);
+}/* 标签组个体内容 */
+.infoBox-ddltime{
+  margin-top: 10rpx;
+  width: 90%;
+  margin-left: 5%;
+  height: 60rpx;
+  line-height: 60rpx;
+}/* 截至时间 */
+.infoBox-surpport{
+  width: 90%;
+  margin-left: 5%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.infoBox-timeperiod{
+  width: 90%;
+  margin-left: 5%;
+  height: 60rpx;
+  line-height: 60rpx;
+}/* 可联系时间段 */
+.infoBox-greenfont{
+  font-size: 32rpx;
+  color: rgb(57, 211, 57);
+  margin: 0rpx 12rpx;
+  font-weight: bold;
+}
+/* 设计详情思路 */
+.detailcontextBox{
+  margin-top: 20rpx;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+.detailcontextBox-title{
+  width: 90%;
+  margin-left: 5%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.detailcontextBox-text{
+  width: 90%;
+  margin-left: 5%;
+  color: #7f7f7f;
+  height: auto;
+}
+/* 评论部分 */
+.conversationBox{
+  margin-top: 20rpx;
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+}
+.conversationBox-toppart{
+  width: 90%;
+  margin-left: 5%;
+  height: 80rpx;
+}
+.toppart-title{
+  margin-right: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: bold;
+}
+.toppart-Listnum{
+  width: 120rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #6e6e6e;
+}
+.toppart-img{
+  width: 20rpx;
+  height: 20rpx;
+}
+.conversationBox-bottompart{
+  margin-top: 10rpx;
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+}
+.bottompartItem{
+  width: 100%;
+  height: auto;
+  margin-bottom: 10rpx;
+}
+.Nameandscore-name{
+  font-size: 26rpx;
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 30rpx;
+}
+.Nameandscore-score{
+  width: auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 30rpx;
+}
+.starImg{
+  width: 28rpx;
+  height: 28rpx;
+}
+.bottompartItem-text{
+  font-size: 26rpx;
+  margin-top: 5rpx;
+  width: 96%;
+  height: auto;
+  color: #7f7f7f;
+}
+.bottompart-Btn{
+  margin-top: 20rpx;
+  width: 260rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border: 6rpx solid rgb(254, 244, 202);
+  color: rgb(248, 181, 65);
+}
+/* 温馨提示 */
+.cueBox{
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+  color: #7f7f7f;
+  font-size: 24rpx;
+}
+.cueBox-title{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.cueBox-text{
+  /* 在CSS中通过line-height属性来实现行间距的设置，line-height的值表示的是两行文字之间基线的距离。 */
+  /* CSS中通过letter-spacing属性来调整字间距，这个属性同样可以设置相对数值和绝对数值。 */
+  line-height:38rpx;
+}
+.cueBox-btn{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.cueBox-btnfont{
+  margin-left: 10rpx;
+  padding: 6rpx 12rpx;
+  color: #ffffff;
+  background-color: #FFC80B;
+  border-radius: 10rpx;
+}
+.cueBox-link{
+  width: 100%;
+} 

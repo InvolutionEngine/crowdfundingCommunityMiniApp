@@ -1,0 +1,48 @@
+<!-- 左上角返回 -->
+<view class="returnBtn">
+  <image class="returnBtn-icon" style="width: {{ capsuleHeight }}px; height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;" src="../../images/haina/left_arrow.png" bindtap="returnBtn"></image>
+</view>
+<!-- 暂时无法处理订单信息占据一行的问题，故此将跳转函数放置在这 -->
+<!-- 顶部分页名称 -->
+<view class="primename" style="height: {{ capsuleHeight }}px; top: {{capsuleTop}}px; line-height: {{ capsuleHeight }}px;color: black;" bindtap="returnBtn">支持项目</view>
+<view style="height:{{ capsuleHeight+capsuleTop}}px;background-color: #ffffff;"></view>
+
+<!-- 顶部tab切换 -->
+<view class="topTabBox dis_flex-direction_row-aligin_center-justify-start" >
+  <view class="topTabBox-item" wx:for="{{tapList}}">
+    <view class="topTabBox-item-text {{currentTap==item?'currntTapcss':''}}" data-name="{{item}}" bindtap="exchangeTap">{{item}}</view>
+  </view>
+</view>
+
+<!-- 分页 -->
+<!-- 全部分页内容 -->
+<view class="PageItemBox" wx:if="{{currentTap=='支持的项目'}}">
+  <view class="showBox">
+    <view wx:for="{{List}}" wx:key="index" class="showBoxItem">
+      <image class="showBox-img" src="{{item.spe_url[0]}}" data-id="{{item.goodsId}}" bind:tap="gotogoodsDetail">
+        <view wx:if="{{item.type=='申请退款中'}}" class="showBox-type-red">{{item.type}}</view>
+        <view wx:if="{{item.type=='已完成'}}" class="showBox-type">{{item.type}}</view>
+        <view wx:if="{{item.type=='待收货'}}" class="showBox-type green">{{item.type}}</view>
+        <view wx:if="{{item.type=='已取消'}}" class="showBox-type oran">{{item.type}}</view>
+      </image>
+      <view class="showBox-content">
+        <view class="showBox-content-goodsName">{{item.goodsName}}</view>
+        <view class="showBox-content-right">
+          <view class="showBox-content-right-shoptime">支持时间：{{item.shoptime}}</view>
+          <view class="showBox-content-right-shoptime">发货时间：{{item.deliverytime}}</view>
+        </view>
+      </view>
+      <view style="height: 20rpx;"></view>
+    </view>
+  </view>
+  <view class="lackBox" wx:if="{{List.length==0}}">
+    <image class="lackImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/null-img/lack_2.jpg"></image>
+  </view>
+</view>
+
+<!-- 发起的项目 -->
+<view class="PageItemBox" wx:if="{{currentTap=='发起的项目'}}">
+  <view class="lackBox">
+    <image class="lackImg" src="cloud://jingyu-0gthrnnd7f06d935.6a69-jingyu-0gthrnnd7f06d935-1309854973/null-img/lack_3.jpg"></image>
+  </view>
+</view>

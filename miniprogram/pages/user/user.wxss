@@ -1,0 +1,173 @@
+/* pages/user/user.wxss */
+.newUser{
+  position: absolute;
+  width: 200rpx;
+  height: 200rpx;
+  top:40rpx;
+  left: 270rpx;
+  /* background-color: aqua; */
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 40rpx;
+}
+.newUser_bc{
+  position: absolute;
+  width: 260rpx;
+  height: 260rpx;
+  top:10rpx;
+  left: 240rpx;
+  /* 径向渐变 */
+  /* 最左边最中心 */
+  background-image: radial-gradient(#FFE200, #ffffff);
+  /* background:linear-gradient(90deg,rgba(220,137,255,1) 0%,rgba(162,152,255,1) 52%,rgba(83,160,253,1) 100%);
+opacity:0.2969; */
+  border-radius: 50%;
+  z-index: 1;
+}
+.user_backcolor{
+  height: 350rpx;
+  background: linear-gradient(#FFE200, #f6f6f6); 
+  /* background-color: #FFE200; */
+  position: relative;
+}
+.bg{
+  top: 500rpx;
+  left: 75rpx;
+  width: 75%;
+  position: absolute;
+  z-index: -1;
+}
+.user_show_img{
+  margin-top: -150rpx;
+  margin-left: 30rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.user_show_text_name{
+  width: 300rpx;
+  margin-top: -180rpx;
+}
+.records{
+  top: 15rpx;
+}
+.setting{
+  top: 115rpx;
+}
+
+.user_show_button{
+  position: absolute;
+  left: 540rpx;
+  font-size: 25rpx;
+  /*transparent  */
+  background-color: transparent;
+  border-radius: 25rpx;
+  border: 5rpx solid #fff;
+}
+
+.personality{
+  position: absolute;
+  top: 200rpx;
+  margin-left: 35rpx;
+}
+.user_sex{
+  position: absolute;
+  top: 270rpx;
+  margin-left: 35rpx;
+}
+.user_hobby{
+  position: absolute;
+  top: 270rpx;
+  margin-left: 100rpx;
+}
+.user_level{
+  position: absolute;
+  top: 130rpx;
+  margin-left: 210rpx;
+}
+.user_tagmessage{
+  position: absolute;
+  top: 270rpx;
+  margin-left: 250rpx;
+}
+.user_icon_level{
+  width: 70rpx;
+  height: 70rpx;
+}
+.user_icon_sex{
+  width: 50rpx;
+  height: 50rpx;
+}
+/*  */
+
+.details{
+  width: 70%;
+  height: 150rpx;
+  background-color: #FFE200;
+}
+
+
+
+
+/*  */
+.ab_case_list{
+  background-color: #fff;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 5rpx 5rpx 10rox #fff;
+}
+.ab_img{
+  margin-left: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+.ab_text{
+  margin-left: 30rpx;
+}
+.ab_icon{
+  margin-right: 5rpx;
+}
+
+
+/* ------------ */
+.about{
+  position:fixed;
+  background-color: rgba(0,0,0,0.4);
+  height: 1500rpx;
+  width: 100%;
+}
+
+.about .content{
+  background-color: #fff;
+  height: 700rpx;
+  width: 90%;
+  border-radius: 30rpx;
+  margin: 0 auto;
+  margin-top: 220rpx;
+  text-align: center;
+}
+
+.about .content .img image{
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 50rpx;
+}
+.about .content .font{
+  font-weight: bold;
+  font-size: 40rpx;
+}
+.about .content .font1{
+  color: #919191;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.about .content .font2{
+  color: black;
+  margin-top: 20rpx;
+  font-size: 35rpx;
+}

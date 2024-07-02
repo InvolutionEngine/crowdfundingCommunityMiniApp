@@ -1,0 +1,71 @@
+<view class="ImgBox">
+  <view class="topbox">
+    <!-- height auto -->
+    <view class="toplabel">{{wanshengList.toplabel}}</view>
+    <!-- <image wx:if="{{current==1}}" style="width: 100%;height: auto" src="{{list[0].url}}" mode="widthFix"></image> -->
+    <image style="width: 100%;height: auto" src="{{wanshengList.list[current-1].url}}" mode="widthFix"></image>
+  </view>
+  <!-- 作品名称与作者介绍 -->
+  <view class="midbox"> 
+    <view class="workname">{{wanshengList.worksname}}</view>
+    <view class="tagbox ">
+        <!-- 官方认证 黄底黑字标签 -->
+        <view class="tagbox-official">
+          <text class="official-text">{{wanshengList.officialtip}}</text>
+        </view>  
+        <!-- 类别认证 灰底黄子标签 -->
+        <view class="tagbox-category">
+          <text class="category-text">{{wanshengList.categorytip}}</text>
+        </view>
+    </view>
+    <view class="tagbox dis_flex-direction_row-aligin_center-justify-start">
+       <!-- 先商户头像后名称 -->
+       <image class="busimg" src="{{wanshengList.busimg}}"></image>
+       <view class="busname">{{wanshengList.busname}}</view>
+    </view>
+  </view>
+  <view class="bottombox warp">
+    <block wx:for="{{wanshengList.list}}" wx:key="index">
+      <image src="{{item.url}}" class="bottombox_img {{current==item.index?'choose':''}}" bindtap="exchangeCurrent" data-index="{{item.index}}"></image>
+    </block>
+  </view>
+</view>
+
+
+<view class="title">作品简介</view>
+<!-- 作品简介 关于我们 -->
+<view class="detailbox {{if_fold==true?'fold':'unfold'}}">
+  {{wanshengList.content}}
+</view>
+<view wx:if="{{if_fold==true}}" class="unfold_button" bindtap="unfold_button">点击查看更多</view>
+<view wx:else class="fold_button" bindtap="fold_button">收回查看</view>
+
+
+<view class="title" style="margin-bottom: 30rpx;">关于我们</view>
+
+
+
+<!-- <view style="height: 300rpx;"></view> -->
+
+<block wx:for="{{wanshengList.publiser}}" class="mebox" wx:key="index">
+   <view class="shang">
+    <view class="mebox_leftbox">
+      <image class="faceImg" src="{{item.faceImg}}"></image>
+      <view class="nickname">{{item.nickname}}</view>
+    </view>
+    <view class="mebox_midbox">
+      {{item.identity}}
+    </view>
+    <view class="mebox_rightbox">
+      {{item.content}}
+    </view>
+   </view>
+   <!-- 其余作品 -->
+   <view class="xia" wx:if="{{item.artwork}}">
+    <view class="tips">其余作品展示</view>
+    <view class="xia_item" wx:for="{{item.artwork}}" wx:for-item="artwork">
+      <image class="artwork_img" src="{{artwork.img}}" bindtap="gotows" data-id="{{artwork.id}}"></image>
+      <view class="artwork_name">{{artwork.name}}</view>
+    </view>
+   </view>
+</block>

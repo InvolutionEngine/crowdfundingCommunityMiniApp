@@ -1,0 +1,122 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/service/service",
+    "pages/add/add",
+    "pages/message/message",
+    "pages/user/user",
+    
+    "pages/subject/subject",
+
+    "pages/soliciting/soliciting",
+    "pages/remarks/remarks",
+    "pages/disclaimer/disclaimer",
+    
+    "pages/topicDetail/topicDetail",
+
+    "pages/jlDetail/jlDetail",
+    "pages/userDetail/userDetail",
+    "pages/detail/detail",
+    "pages/auth/auth",   
+    "pages/hello/hello",
+
+    "pages/haina/haina",
+    "pages/haina_zcDetail/haina_zcsDetail",
+
+    "pages/wansheng/wansheng",
+    "pages/applyZC/applyZC",
+
+    "pages/myActions/myActions",
+
+    "pages/change_personality/change_personality",
+    "pages/orderMessage/orderMessage",
+    "pages/supportProject/supportProject",
+
+    "pages/threeJs/threeJs"
+
+
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
+  "tabBar": {
+    "color": "#888",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "selectedColor": "#FFE200",
+    "list": [
+        {
+            "pagePath": "pages/index/index",
+            "text": "发现",
+            "iconPath": "/images/index/index.png",
+            "selectedIconPath": "images/index_select/index.png"
+        },
+        {
+          "pagePath": "pages/service/service",
+          "text": "服务",
+          "iconPath": "/images/index/service.png",
+          "selectedIconPath": "images/index_select/service.png"
+        },
+        {
+          "pagePath": "pages/add/add",
+          "text": "冒泡",
+          "iconPath": "/images/index/add.png",
+          "selectedIconPath": "images/index_select/add.png"
+        },
+        {
+            "pagePath": "pages/message/message",
+            "text": "延香",
+            "iconPath": "/images/index/message.png",
+            "selectedIconPath": "images/index_select/message.png"
+        },
+        {
+            "pagePath": "pages/user/user",
+            "text": "我的",
+            "iconPath": "/images/index/user.png",
+            "selectedIconPath": "images/index_select/user.png"
+        }
+    ]
+},
+  "window": {
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFE200",
+    "navigationBarTitleText": "鲸遇-让您随时金遇",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-steps": "@vant/weapp/steps/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+
+}
